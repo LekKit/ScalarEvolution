@@ -4,7 +4,7 @@
   "description": "${mod_description}",
   "version": "${mod_version}",
   "mcversion": "${mc_version}",
-  "url": "https://github.com/LekKit/RVVM",
+  "url": "https://github.com/LekKit/ScalarEvolution",
   "updateUrl": "",
   "authorList": ["${mod_author}"],
   "credits": "",
