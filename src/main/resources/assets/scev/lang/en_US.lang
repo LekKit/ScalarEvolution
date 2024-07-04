@@ -1,0 +1,105 @@
+#PARSE_ESCAPES
+itemGroup.tabScalarEvolution=Scalar Evolution
+
+item.scev.epoxy.name=Epoxy Solution
+item.scev.epoxy.lore0=Versatile adhesive
+
+item.scev.silica_compound.name=Silica Compound
+item.scev.silica_compound.lore0=Melts in §eFurnace
+
+item.scev.mold_compound.name=Mold Compound
+item.scev.mold_compound.lore0=Insulating semiconductor packaging
+
+item.scev.fiberglass.name=Fiberglass
+item.scev.fiberglass.lore0=Circuit board sheet material
+
+item.scev.silicon_wafer.name=Silicon Wafer
+item.scev.silicon_wafer.lore0=Semiconductor manufacturing material
+
+item.scev.pcb_base.name=Printed Circuit Board
+item.scev.pcb_base.lore0=Ready to solder electronic components
+
+item.scev.dsub_connector.name=D-Sub Connector
+item.scev.dsub_connector.lore0=Metal-shielded communication port
+
+item.scev.crystal_oscillator.name=Crystal Oscillator
+item.scev.crystal_oscillator.lore0=High-stability 16MHz resonator
+
+item.scev.electronic_parts.name=Pile of electronic components
+item.scev.electronic_parts.lore0=Guaranteed non-counterfeit!
+
+item.scev.voltage_regulator.name=Voltage Regulator Module (VRM)
+item.scev.voltage_regulator.lore0=MOSFET-based DC stabilizer
+
+item.scev.rtc_module.name=Real-time Clock
+item.scev.rtc_module.lore0=Keeps your machine wall clock time
+
+item.scev.char_display.name=Character display
+item.scev.char_display.lore0=Resolution: §e80x24 characters
+
+item.scev.gfx_display.name=Graphics display
+item.scev.gfx_display.lore0=Resolution: §e640x480
+
+item.scev.flash_chip.name=Flash ROM Chip
+item.scev.flash_chip.lore0=Firmware storage chip
+item.scev.flash_chip.lore1=Capacity: §e8 MiB
+
+item.scev.soc.name=System on a Chip (SoC)
+
+item.scev.cpu1.name=Central Processing Unit (CPU)
+item.scev.cpu2.name=§eCentral Processing Unit (CPU)
+item.scev.cpu3.name=§bCentral Processing Unit (CPU)
+
+
+item.scev.soldering_iron.name=§ePinecil Soldering Iron
+item.scev.soldering_iron.lore0=Can be heated in §eFurnace
+
+item.scev.ram_sodimm1.name=Memory Stick
+item.scev.ram_sodimm2.name=Memory Stick
+item.scev.ram_sodimm3.name=§eMemory Stick
+item.scev.ram_sodimm4.name=§bMemory Stick
+
+item.scev.rtl8169.name=RailTech RTL8169 Network Card
+item.scev.rtl8169.lore0=Connects to the §eInternet
+item.scev.rtl8169.lore1=Be sure to secure your machine!
+
+item.scev.vga_card.name=Videoadapter Card
+item.scev.vga_card.lore0=Provides a framebuffer §eVGA output
+
+item.scev.gpio_card.name=GPIO Redstone Card
+item.scev.gpio_card.lore0=General-purpose §eRedstone I/O
+item.scev.gpio_card.lore1=Make your own MinecraftPi!
+
+item.scev.nvme.name=§eNVMe Drive
+item.scev.nvme.lore0=Modern flash storage solution
+
+item.scev.motherboard1.name=Motherboard
+item.scev.motherboard1.lore0=Housing of all machine components
+
+item.scev.motherboard2.name=§eAdvanced Motherboard
+item.scev.motherboard1.lore0=Housing of all machine components
+
+item.scev.hdd.name=IDE Hard Disk Drive
+
+tile.scev.vt100.name=VT100 Terminal
+tile.scev.vt100.lore0=Connects to §eSerial port (UART)
+tile.scev.vt100.lore1=Resolution: §e80x24 characters
+
+tile.scev.crt_monitor.name=CRT Monitor
+tile.scev.crt_monitor.lore0=Connects to §eVideo Out (VGA)
+tile.scev.crt_monitor.lore1=Resolution: §e640x480
+
+tile.scev.workstation.name=§eWorkstation Machine Case
+tile.scev.workstation.lore0=Server-grade enterprise computing
+
+tile.scev.powermark.name=PowerMark Case
+
+tile.scev.tinkerpad.name=§eTinkerpad Laptop
+tile.scev.tinkerpad.lore0=Gotta flash coreboot!
+
+tile.scev.keyboard.name=Keyboard
+tile.scev.keyboard.lore0=In absence, press F1
+
+tile.scev.keyboard_mouse.name=Keyboard with mice
+
+text.scev.capacity=Capacity
