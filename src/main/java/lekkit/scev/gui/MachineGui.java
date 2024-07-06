@@ -48,7 +48,7 @@ public class MachineGui extends GuiScreen {
             machine.loadBootrom("/home/lekkit/stuff/vm/fw_jump.bin");
             machine.loadKernel("/home/lekkit/stuff/vm/Image");
 
-            machine.appendCmdLine("root=/dev/nvme0n1");
+            machine.appendCmdline("root=/dev/nvme0n1");
 
             fb = new Framebuffer(machine, 640, 480, 32);
             kb = new HIDKeyboard(machine);
