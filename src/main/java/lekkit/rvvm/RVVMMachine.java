@@ -1,11 +1,15 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
+
 package lekkit.rvvm;
 
 import java.nio.ByteBuffer;
-import java.util.Vector;
 
 public class RVVMMachine {
-    protected final long machine;
-    protected Vector<Framebuffer> fb_refs; // Make the GC happy
+    public long machine;
 
     public static final int RVVM_OPT_NONE = 0;
     public static final int RVVM_OPT_JIT = 1;          // Enable JIT
@@ -30,7 +34,6 @@ public class RVVMMachine {
         }
         if (machine != 0) {
             RVVMNative.clint_init_auto(machine);
-            fb_refs = new Vector<Framebuffer>();
         }
     }
 
@@ -41,10 +44,10 @@ public class RVVMMachine {
         if (isValid()) return RVVMNative.get_dma_buf(machine, addr, size);
         return null;
     }
-    public void setCmdLine(String cmdline) {
+    public void setCmdline(String cmdline) {
         if (isValid()) RVVMNative.set_cmdline(machine, cmdline);
     }
-    public void appendCmdLine(String cmdline) {
+    public void appendCmdline(String cmdline) {
         if (isValid()) RVVMNative.append_cmdline(machine, cmdline);
     }
     public long getOption(int opt) {
@@ -97,8 +100,11 @@ public class RVVMMachine {
     }
 
     @Override
-    protected void finalize() {
-        if (isValid()) RVVMNative.free_machine(machine);
+    protected synchronized void finalize() {
+        if (isValid()) {
+            RVVMNative.free_machine(machine);
+            machine = 0;
+        }
     }
 }
 
