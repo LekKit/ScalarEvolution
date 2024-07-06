@@ -1,5 +1,6 @@
 package lekkit.scev.container;
 
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Container;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -10,7 +11,9 @@ public class ContainerBase extends Container {
     private static final int INV_SIZE = 36;
     private static final int CONT_START = INV_SIZE;
 
-    public ContainerBase(EntityPlayer player) {
+    private final IInventory inventory;
+
+    public ContainerBase(EntityPlayer player, IInventory inventory) {
         // Player inventory
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 9; ++j) {
@@ -22,6 +25,12 @@ public class ContainerBase extends Container {
         for (int i = 0; i < 9; ++i) {
             this.addSlotToContainer(new Slot(player.inventory, i, 8 + i * 18, 142));
         }
+
+        this.inventory = inventory;
+    }
+
+    public ContainerBase(EntityPlayer player) {
+        this(player, null);
     }
 
     public int customSlotsSize() {
@@ -137,6 +146,9 @@ public class ContainerBase extends Container {
 
     @Override
     public boolean canInteractWith(EntityPlayer player) {
+        if (inventory != null) {
+            return inventory.isUseableByPlayer(player);
+        }
         return true;
     }
 }

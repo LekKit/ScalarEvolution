@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public class ContainerWorkstation extends ContainerBase {
     public ContainerWorkstation(EntityPlayer player, TileEntityWorkstation inventory) {
-        super(player);
+        super(player, inventory);
 
         addSlotToContainer(new SlotMotherboard(inventory, 0, 8, 8));
         addSlotToContainer(new SlotCPU(inventory, 1, 78, 17));
