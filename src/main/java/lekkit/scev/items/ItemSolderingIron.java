@@ -9,9 +9,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-public class ItemSolderingIron extends ItemBase {
-    public ItemSolderingIron(){
-        setMaxStackSize(1);
+public class ItemSolderingIron extends ItemNonStackable {
+    public ItemSolderingIron() {
         setMaxDamage(25);
     }
 
@@ -66,12 +65,4 @@ public class ItemSolderingIron extends ItemBase {
     {
         return true;
     }
-/*
-    @Override
-    public double getDurabilityForDisplay(ItemStack stack)
-    {
-        return 0.5;
-    }
-*/
 }
-

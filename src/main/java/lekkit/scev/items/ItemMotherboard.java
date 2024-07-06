@@ -7,11 +7,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-public class ItemMotherboard extends ItemBase {
-    public ItemMotherboard() {
-        setMaxStackSize(1);
-    }
-
+public class ItemMotherboard extends ItemNonStackable {
     // Without this, inventory won't work (Go figure...)
     @Override
     public int getMaxItemUseDuration(ItemStack stack) {

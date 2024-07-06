@@ -11,7 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.StatCollector;
 
 public class ItemBase extends Item {
-    class StrPair {
+    private class StrPair {
         StrPair(String text, String post) {
             key = text;
             val = post;
@@ -20,7 +20,7 @@ public class ItemBase extends Item {
         public String val;
     }
 
-    Vector<StrPair> customLore = new Vector<StrPair>();
+    private Vector<StrPair> customLore = new Vector<StrPair>();
 
     public void addLore(String text, String post) {
         customLore.add(new StrPair(text, post));
@@ -29,15 +29,17 @@ public class ItemBase extends Item {
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean wtf) {
         list.add("");
-        for (StrPair pair : customLore) {
-            list.add(StatCollector.translateToLocal(pair.key) + pair.val);
-        }
+
         for (int i=0; i<10; ++i) {
             if (StatCollector.canTranslate(getUnlocalizedName() + ".lore" + i)) {
                 list.add(StatCollector.translateToLocal(getUnlocalizedName() + ".lore" + i));
             } else {
                 break;
             }
+        }
+
+        for (StrPair pair : customLore) {
+            list.add(StatCollector.translateToLocal(pair.key) + pair.val);
         }
     }
 }
