@@ -78,8 +78,10 @@ public class TileEntityBaseInventory extends TileEntityBase implements IInventor
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-        return true;
+    public boolean isUseableByPlayer(EntityPlayer player) {
+        // Is the TileEntity still alive and reachable by the player?
+        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this
+            && player.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
     }
 
     @Override
