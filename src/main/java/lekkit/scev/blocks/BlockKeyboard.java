@@ -3,7 +3,6 @@ package lekkit.scev.blocks;
 import lekkit.scev.tileentity.TileEntityKeyboard;
 
 import net.minecraft.world.World;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.tileentity.TileEntity;
 
 // Reference vanilla class for ease of porting: BlockCocoa
