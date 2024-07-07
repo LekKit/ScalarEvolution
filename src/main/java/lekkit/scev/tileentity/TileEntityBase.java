@@ -9,20 +9,43 @@ import net.minecraft.network.NetworkManager;
 public class TileEntityBase extends TileEntity {
 
     /*
-     * Sync NBT data over network
+     * Custom serialization/deserialization without syncing vanilla NBT
+     */
+
+    public void deserializeFromNBT(NBTTagCompound compound) {}
+    public void serializeToNBT(NBTTagCompound compound) {}
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        super.readFromNBT(compound);
+        this.deserializeFromNBT(compound);
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound compound) {
+        super.writeToNBT(compound);
+        this.serializeToNBT(compound);
+    }
+
+    /*
+     * Sync custom NBT data over network
      */
 
     @Override
     public Packet getDescriptionPacket() {
-        NBTTagCompound tagCompound = new NBTTagCompound();
-        this.writeToNBT(tagCompound);
-        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 3, tagCompound);
-     }
+        NBTTagCompound compound = new NBTTagCompound();
+        if (compound != null) {
+            this.serializeToNBT(compound);
+        }
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 3, compound);
+   }
 
-     @Override
-     public void onDataPacket(NetworkManager networkManager, S35PacketUpdateTileEntity packet) {
-        readFromNBT(packet.func_148857_g());
-     }
-
+   @Override
+   public void onDataPacket(NetworkManager networkManager, S35PacketUpdateTileEntity packet) {
+      NBTTagCompound compound = packet.func_148857_g();
+      if (compound != null) {
+         this.deserializeFromNBT(compound);
+      }
+   }
 }
 

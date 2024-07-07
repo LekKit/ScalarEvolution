@@ -94,8 +94,7 @@ public class TileEntityBaseInventory extends TileEntityBase implements IInventor
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound) {
-        super.readFromNBT(compound);
+    public void deserializeFromNBT(NBTTagCompound compound) {
         NBTTagList items = compound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 
         inventory = new ItemStack[getSizeInventory()];
@@ -111,8 +110,7 @@ public class TileEntityBaseInventory extends TileEntityBase implements IInventor
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound compound) {
-        super.writeToNBT(compound);
+    public void serializeToNBT(NBTTagCompound compound) {
         // Create a new NBT Tag List to store itemstacks as NBT Tags
         NBTTagList items = new NBTTagList();
 

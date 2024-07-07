@@ -7,15 +7,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class BlockWorkstation extends BlockDirectionalModel {
+public class BlockWorkstation extends BlockMachineBase {
     @Override
     public TileEntity createNewTileEntity(World world, int par2) {
         return new TileEntityWorkstation();
-    }
-
-    @Override
-    public boolean canProvidePower() {
-        return true;
     }
 
     @Override

@@ -5,7 +5,7 @@ import lekkit.scev.tileentity.TileEntityTinkerpad;
 import net.minecraft.world.World;
 import net.minecraft.tileentity.TileEntity;
 
-public class BlockTinkerpad extends BlockDirectionalModel {
+public class BlockTinkerpad extends BlockMachineBase {
     @Override
     public TileEntity createNewTileEntity(World world, int par2) {
         return new TileEntityTinkerpad();
