@@ -12,21 +12,20 @@ public class ContainerMotherboard extends ContainerBaseItem {
         super(player, inventoryItem);
         inventory = inventoryItem;
 
-        addSlotToContainer(new SlotBase(inventory, 0, 8, 8));
-        addSlotToContainer(new SlotBase(inventory, 1, 78, 17));
-        addSlotToContainer(new SlotBase(inventory, 2, 78, 53));
+        addSlotToContainer(new SlotBase(inventory, 0, 78, 17));
+        addSlotToContainer(new SlotBase(inventory, 1, 78, 53));
 
-        addSlotToContainer(new SlotBase(inventory, 3, 102, 17));
-        addSlotToContainer(new SlotBase(inventory, 4, 120, 17));
-        addSlotToContainer(new SlotBase(inventory, 5, 102, 39));
-        addSlotToContainer(new SlotBase(inventory, 6, 120, 39));
+        addSlotToContainer(new SlotBase(inventory, 2, 102, 17));
+        addSlotToContainer(new SlotBase(inventory, 3, 120, 17));
+        addSlotToContainer(new SlotBase(inventory, 4, 102, 39));
+        addSlotToContainer(new SlotBase(inventory, 5, 120, 39));
 
-        addSlotToContainer(new SlotBase(inventory, 7, 54, 17));
-        addSlotToContainer(new SlotBase(inventory, 8, 54, 35));
-        addSlotToContainer(new SlotBase(inventory, 9, 54, 53));
+        addSlotToContainer(new SlotBase(inventory, 6, 54, 17));
+        addSlotToContainer(new SlotBase(inventory, 7, 54, 35));
+        addSlotToContainer(new SlotBase(inventory, 8, 54, 53));
 
-        addSlotToContainer(new SlotBase(inventory, 10, 36, 17));
-        addSlotToContainer(new SlotBase(inventory, 11, 36, 35));
-        addSlotToContainer(new SlotBase(inventory, 12, 36, 53));
+        addSlotToContainer(new SlotBase(inventory, 9, 36, 17));
+        addSlotToContainer(new SlotBase(inventory, 10, 36, 35));
+        addSlotToContainer(new SlotBase(inventory, 11, 36, 53));
     }
 }

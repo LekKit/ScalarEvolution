@@ -24,11 +24,7 @@ public class GuiMotherboard extends GuiContainer {
         buttonList.add(new ButtonBase(1, guiX + 8, guiY + 33, "power_btn"));
         buttonList.add(new ButtonBase(2, guiX + 8, guiY + 52, "reset_btn"));
     }
-/*
-    public void drawScreen(int width, int height, float par3) {
-        super.drawScreen(width, height, par3);
-    }
-*/
+
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {
     }
