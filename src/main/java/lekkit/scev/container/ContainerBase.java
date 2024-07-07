@@ -37,6 +37,13 @@ public class ContainerBase extends Container {
         return inventorySlots.size() - INV_SIZE;
     }
 
+    public void removeSlotFromContainer(IInventory inventory, int slotIndex) {
+        Slot slot = getSlotFromInventory(inventory, slotIndex);
+        if (slot != null) {
+            inventorySlots.remove(slot);
+        }
+    }
+
     // Handle shift-click
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int index) {
