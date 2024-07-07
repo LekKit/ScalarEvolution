@@ -3,7 +3,6 @@ package lekkit.scev.blocks;
 import lekkit.scev.tileentity.TileEntityKeyboardMouse;
 
 import net.minecraft.world.World;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.tileentity.TileEntity;
 
 // Reference vanilla class for ease of porting: BlockCocoa
@@ -15,10 +14,8 @@ public class BlockKeyboardMouse extends BlockDirectionalModel {
     }
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess access, int x, int y, int z) {
-        int l = access.getBlockMetadata(x, y, z);
-
-        switch ((l + 2) / 4) {
+    public void setBlockBoundsBasedOnDirection(int direction) {
+        switch (direction) {
             case 0:
                 this.setBlockBounds(0.0F, 0.0F, 0.5F, 1.0F, 0.0625F, 1.0F);
                 break;

@@ -1,5 +1,7 @@
 package lekkit.scev.blocks;
 
+import java.util.List;
+
 import lekkit.scev.main.ScalarEvolution;
 
 import cpw.mods.fml.relauncher.Side;
@@ -10,6 +12,9 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.AxisAlignedBB;
 
 public abstract class BlockDirectionalModel extends BlockContainer {
     public BlockDirectionalModel() {
@@ -40,6 +45,26 @@ public abstract class BlockDirectionalModel extends BlockContainer {
 
         world.setBlockMetadataWithNotify(x, y, z, dir, 2);
     }
+
+    // Override to change block bounding box
+    public void setBlockBoundsBasedOnDirection(int direction) {}
+
+
+    @Override
+    public void setBlockBoundsBasedOnState(IBlockAccess access, int x, int y, int z) {
+        int metadata = access.getBlockMetadata(x, y, z);
+        int direction = ((metadata + 2) / 4) % 4;
+
+        setBlockBoundsBasedOnDirection(direction);
+    }
+
+
+    @Override
+    public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB aabb, List list, Entity entity) {
+        setBlockBoundsBasedOnState(world, x, y, z);
+        super.addCollisionBoxesToList(world, x, y, z, aabb, list, entity);
+    }
+
 
     @SideOnly(Side.CLIENT)
     @Override

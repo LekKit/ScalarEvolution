@@ -31,8 +31,9 @@ public class TileModelRenderer extends TileEntitySpecialRenderer {
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float f) {
         GL11.glPushMatrix();
         if (fullScale) {
+            int direction = ((tileEntity.getBlockMetadata() + 2) / 4) % 4;
             GL11.glTranslated(x + 0.5, y + 0.5, z + 0.5);
-            GL11.glRotatef(((tileEntity.getBlockMetadata() + 2) / 4) * 90F, 0F, 1F, 0F);
+            GL11.glRotatef(direction * 90F, 0F, 1F, 0F);
         } else {
             GL11.glTranslated(x + 0.5, y + 0.375, z + 0.5);
             GL11.glScalef(0.75f, 0.75f, 0.75f);
