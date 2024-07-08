@@ -1,5 +1,6 @@
 package lekkit.scev.main;
 
+import lekkit.scev.packet.PacketDispatcher;
 import lekkit.scev.items.*;
 import lekkit.scev.blocks.*;
 import lekkit.scev.tileentity.*;
@@ -38,7 +39,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 @Mod(modid = ScalarEvolution.MODID, version = ScalarEvolution.VERSION, name = ScalarEvolution.NAME)
 public class ScalarEvolution {
-	@Instance("scev")
+    @Instance(ScalarEvolution.MODID)
     public static ScalarEvolution instance;
 
     @SidedProxy(clientSide = "lekkit.scev.main.ClientProxy", serverSide = "lekkit.scev.main.CommonProxy")
@@ -51,7 +52,6 @@ public class ScalarEvolution {
     public static final int GUI_WORKSTATION_INV = 0;
     public static final int GUI_MOTHERBOARD_INV = 1;
 
-    public static final SimpleNetworkWrapper network = new SimpleNetworkWrapper(MODID);
     public static ModConfig config;
 
     public static Block vt100;
@@ -161,6 +161,11 @@ public class ScalarEvolution {
         nvme = registerItem("nvme", new ItemPCI());
         motherboard1 = registerItem("motherboard1", new ItemMotherboard());
         motherboard2 = registerItem("motherboard2", new ItemMotherboard());
+    }
+
+    @EventHandler
+    public void init(FMLInitializationEvent event) {
+        PacketDispatcher.registerPackets();
 
         // Recipes
         GameRegistry.addRecipe(new ItemStack(epoxy), "SRS", "RPR", "SRS",
