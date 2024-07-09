@@ -8,17 +8,15 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 public class GuiContainerBase extends GuiContainer {
-    private final boolean fatGui;
     private ResourceLocation bgTexture = null;
     private ContainerBase container;
 
-    public GuiContainerBase(ContainerBase container, boolean fatGui) {
+    public GuiContainerBase(ContainerBase container) {
         super(container);
         this.container = container;
-        this.fatGui = fatGui;
 
         // Fucking magic numbers calculated from GuiChest behavior, go figure
-        if (fatGui) {
+        if (container.isFatGui()) {
             this.ySize = 222;
         } else {
             this.ySize = 168;
@@ -60,12 +58,18 @@ public class GuiContainerBase extends GuiContainer {
             mc.getTextureManager().bindTexture(bgTexture);
             int k = getGuiPosX();
             int l = getGuiPosY();
-            if (fatGui) {
+            if (container.isFatGui()) {
                 this.drawTexturedModalRect(k, l, 0, 0, this.xSize, 125);
                 this.drawTexturedModalRect(k, l + 125, 0, 126, this.xSize, 96);
             } else {
                 drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
             }
         }
+    }
+
+    @Override
+    protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_) {
+        this.fontRendererObj.drawString("Computer Case", 8, 6, 4210752);
+        //this.fontRendererObj.drawString(this.upperChestInventory.hasCustomInventoryName(), 8, this.ySize - 96 + 2, 4210752);
     }
 }

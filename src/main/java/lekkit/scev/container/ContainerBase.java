@@ -11,6 +11,9 @@ public class ContainerBase extends Container {
     private static final int INV_SIZE = 36;
     private static final int CONT_START = INV_SIZE;
 
+    private final boolean fatGui;
+
+    private final EntityPlayer player;
     private final IInventory inventory;
 
     public ContainerBase(EntityPlayer player, IInventory inventory, boolean fatGui) {
@@ -29,7 +32,9 @@ public class ContainerBase extends Container {
             this.addSlotToContainer(new Slot(player.inventory, i, 8 + i * 18, yOffset + 142));
         }
 
+        this.player = player;
         this.inventory = inventory;
+        this.fatGui = fatGui;
     }
 
     public ContainerBase(EntityPlayer player, IInventory inventory) {
@@ -49,6 +54,18 @@ public class ContainerBase extends Container {
         if (slot != null) {
             inventorySlots.remove(slot);
         }
+    }
+
+    public IInventory getPlayerInventory() {
+        return player.inventory;
+    }
+
+    public IInventory getContainerInventory() {
+        return inventory;
+    }
+
+    public boolean isFatGui() {
+        return fatGui;
     }
 
     // Handle shift-click
