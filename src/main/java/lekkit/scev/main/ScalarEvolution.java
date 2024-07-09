@@ -159,8 +159,8 @@ public class ScalarEvolution {
         gpio_card = registerItem("gpio_card", new ItemPCI());
         sound_card = registerItem("sound_card", new ItemPCI());
         nvme = registerItem("nvme", new ItemPCI());
-        motherboard1 = registerItem("motherboard1", new ItemMotherboard());
-        motherboard2 = registerItem("motherboard2", new ItemMotherboard());
+        motherboard1 = registerItem("motherboard1", new ItemMotherboard(1));
+        motherboard2 = registerItem("motherboard2", new ItemMotherboard(2));
     }
 
     @EventHandler
