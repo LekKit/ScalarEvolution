@@ -13,24 +13,31 @@ public class ContainerBase extends Container {
 
     private final IInventory inventory;
 
-    public ContainerBase(EntityPlayer player, IInventory inventory) {
+    public ContainerBase(EntityPlayer player, IInventory inventory, boolean fatGui) {
+        // More stupid magic numbers sorta resembling ContainerChest
+        int yOffset = fatGui ? 55 : 0;
+
         // Player inventory
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 9; ++j) {
-                this.addSlotToContainer(new Slot(player.inventory, i * 9 + j + 9, 8 + j * 18, 84 + i * 18));
+                this.addSlotToContainer(new Slot(player.inventory, i * 9 + j + 9, 8 + j * 18, yOffset + 84 + i * 18));
             }
         }
 
         // Player action bar
         for (int i = 0; i < 9; ++i) {
-            this.addSlotToContainer(new Slot(player.inventory, i, 8 + i * 18, 142));
+            this.addSlotToContainer(new Slot(player.inventory, i, 8 + i * 18, yOffset + 142));
         }
 
         this.inventory = inventory;
     }
 
+    public ContainerBase(EntityPlayer player, IInventory inventory) {
+        this(player, inventory, false);
+    }
+
     public ContainerBase(EntityPlayer player) {
-        this(player, null);
+        this(player, null, false);
     }
 
     public int customSlotsSize() {
