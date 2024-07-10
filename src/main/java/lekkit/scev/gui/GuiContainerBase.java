@@ -84,8 +84,8 @@ public class GuiContainerBase extends GuiContainer {
             if (!containerInventory.hasCustomInventoryName()) containerName = I18n.format(containerName);
             if (!playerInventory.hasCustomInventoryName()) inventoryName = I18n.format(inventoryName);
 
-            this.fontRendererObj.drawString(containerName, 8, 6, getGuiTextColor());
-            this.fontRendererObj.drawString(inventoryName, 8, this.ySize - 94, getGuiTextColor());
+            this.fontRendererObj.drawStringWithShadow(containerName, 8, 6, getGuiTextColor());
+            this.fontRendererObj.drawStringWithShadow(inventoryName, 8, this.ySize - 94, getGuiTextColor());
         }
     }
 }
