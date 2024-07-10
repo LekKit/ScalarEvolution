@@ -30,11 +30,11 @@ public class GuiContainerBase extends GuiContainer {
     }
 
     public int getGuiPosX() {
-        return (this.width - this.xSize) / 2;
+        return guiLeft;
     }
 
     public int getGuiPosY() {
-        return (this.height - this.ySize) / 2;
+        return guiTop;
     }
 
     public ContainerBase getClientSideContainer() {
@@ -63,14 +63,7 @@ public class GuiContainerBase extends GuiContainer {
         if (bgTexture != null) {
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             mc.getTextureManager().bindTexture(bgTexture);
-            int k = getGuiPosX();
-            int l = getGuiPosY();
-            if (container.isFatGui()) {
-                this.drawTexturedModalRect(k, l, 0, 0, this.xSize, 125);
-                this.drawTexturedModalRect(k, l + 125, 0, 126, this.xSize, 96);
-            } else {
-                drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
-            }
+            drawTexturedModalRect(guiLeft, guiTop, 0, 0, this.xSize, this.ySize);
         }
     }
 
@@ -85,7 +78,7 @@ public class GuiContainerBase extends GuiContainer {
             if (!playerInventory.hasCustomInventoryName()) inventoryName = I18n.format(inventoryName);
 
             this.fontRendererObj.drawStringWithShadow(containerName, 8, 6, getGuiTextColor());
-            this.fontRendererObj.drawStringWithShadow(inventoryName, 8, this.ySize - 94, getGuiTextColor());
+            this.fontRendererObj.drawStringWithShadow(inventoryName, 8, this.ySize - 93, getGuiTextColor());
         }
     }
 }

@@ -18,7 +18,7 @@ public class ContainerBase extends Container {
 
     public ContainerBase(EntityPlayer player, IInventory inventory, boolean fatGui) {
         // More stupid magic numbers sorta resembling ContainerChest
-        int yOffset = fatGui ? 55 : 0;
+        int yOffset = fatGui ? 56 : 0;
 
         // Player inventory
         for (int i = 0; i < 3; ++i) {
