@@ -207,7 +207,7 @@ public class ScalarEvolution {
                                             Class<? extends TileEntity> teClass, TileEntitySpecialRenderer teRenderer,
                                             IItemRenderer itemRenderer) {
         block.setBlockName(ScalarEvolution.MODID + "." + name).setCreativeTab(ScalarEvolution.creativeTab);
-        GameRegistry.registerBlock(block, itemClass, ScalarEvolution.MODID + ":" + name);
+        GameRegistry.registerBlock(block, itemClass, name);
         GameRegistry.registerTileEntity(teClass, ScalarEvolution.MODID + ":" + name);
         ClientRegistry.bindTileEntitySpecialRenderer(teClass, teRenderer);
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(block), itemRenderer);
