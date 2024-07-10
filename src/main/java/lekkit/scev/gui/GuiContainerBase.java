@@ -4,6 +4,8 @@ import lekkit.scev.main.ScalarEvolution;
 import lekkit.scev.container.ContainerBase;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
@@ -51,6 +53,11 @@ public class GuiContainerBase extends GuiContainer {
         initUserInterface();
     }
 
+    // Return -1 to stop drawing GUI text
+    public int getGuiTextColor() {
+        return 0xE0E0E0;
+    }
+
     @Override
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
         if (bgTexture != null) {
@@ -69,7 +76,16 @@ public class GuiContainerBase extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_) {
-        this.fontRendererObj.drawString("Computer Case", 8, 6, 4210752);
-        //this.fontRendererObj.drawString(this.upperChestInventory.hasCustomInventoryName(), 8, this.ySize - 96 + 2, 4210752);
+        if (getGuiTextColor() != -1) {
+            IInventory containerInventory = container.getContainerInventory();
+            IInventory playerInventory = container.getPlayerInventory();
+            String containerName = containerInventory.getInventoryName();
+            String inventoryName = playerInventory.getInventoryName();
+            if (!containerInventory.hasCustomInventoryName()) containerName = I18n.format(containerName);
+            if (!playerInventory.hasCustomInventoryName()) inventoryName = I18n.format(inventoryName);
+
+            this.fontRendererObj.drawString(containerName, 8, 6, getGuiTextColor());
+            this.fontRendererObj.drawString(inventoryName, 8, this.ySize - 94, getGuiTextColor());
+        }
     }
 }
