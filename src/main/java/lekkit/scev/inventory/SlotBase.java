@@ -31,9 +31,13 @@ public class SlotBase extends Slot {
         return slotBackground;
     }
 
+    public int getSlotIndex() {
+        return slotIndex;
+    }
+
     @Override
     public boolean isItemValid(ItemStack stack) {
-        return this.inventory.isItemValidForSlot(this.slotIndex, stack);
+        return this.inventory.isItemValidForSlot(getSlotIndex(), stack);
     }
 
     @Override

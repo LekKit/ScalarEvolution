@@ -47,6 +47,10 @@ public class GuiContainerBase extends GuiContainer {
     public void initUserInterface() {
     }
 
+    public boolean isSlotEnabled(int slotIndex) {
+        return true;
+    }
+
     @Override
     public void initGui() {
         super.initGui();
@@ -59,6 +63,25 @@ public class GuiContainerBase extends GuiContainer {
     // Return -1 to stop drawing GUI text
     public int getGuiTextColor() {
         return 0xE0E0E0;
+    }
+
+    /*
+     * "mouse in zone" method used by isMouseOverSlot() which is private... So ugh anyways
+     *
+     * - YOU ARE SURROUNDED! USE MIXINS!
+     * - I WILL NOT USE MIXINS!
+     */
+    @Override
+    protected boolean func_146978_c(int x, int y, int w, int h, int mouseX, int mouseY) {
+        for (int i = 0; i < this.inventorySlots.inventorySlots.size(); ++i) {
+            Slot slot = (Slot)this.inventorySlots.inventorySlots.get(i);
+
+            if (slot.xDisplayPosition == x && slot.yDisplayPosition == y && slot instanceof SlotBase) {
+                SlotBase slotBase = (SlotBase)slot;
+                if (!isSlotEnabled(slotBase.getSlotIndex())) return false;
+            }
+        }
+        return super.func_146978_c(x, y, w, h, mouseX, mouseY);
     }
 
     @Override
@@ -78,7 +101,7 @@ public class GuiContainerBase extends GuiContainer {
                 SlotBase slotBase = (SlotBase)slot;
                 String slotBgName = slotBase.getSlotBackgroundName();
 
-                if (slotBase.getStack() == null && slotBgName != null) {
+                if (isSlotEnabled(slotBase.getSlotIndex()) && slotBase.getStack() == null && slotBgName != null) {
                     int x = guiLeft + slotBase.xDisplayPosition;
                     int y = guiTop + slotBase.yDisplayPosition;
                     ResourceLocation res = new ResourceLocation(ScalarEvolution.MODID, "textures/gui/" + slotBgName + ".png");
