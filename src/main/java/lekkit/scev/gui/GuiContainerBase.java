@@ -93,7 +93,7 @@ public class GuiContainerBase extends GuiContainer {
         }
 
         // Because fuck minecraft GUI slot background rendering
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.25F);
         GL11.glEnable(GL11.GL_BLEND);
         for (int i = 0; i < this.inventorySlots.inventorySlots.size(); ++i) {
             Slot slot = (Slot)this.inventorySlots.inventorySlots.get(i);
