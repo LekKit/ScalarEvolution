@@ -13,12 +13,22 @@ import net.minecraft.item.ItemStack;
 
 public class SlotBase extends Slot {
     protected final int slotIndex;
+    protected final String slotBackground;
 
-    public SlotBase(IInventory inventory, int index, int xPos, int yPos) {
+    public SlotBase(IInventory inventory, int index, int xPos, int yPos, String bgName) {
         super(inventory, index, xPos, yPos);
 
         // Because this.slotNumber is counted including player inventory slots...
         slotIndex = index;
+        slotBackground = bgName;
+    }
+
+    public SlotBase(IInventory inventory, int index, int xPos, int yPos) {
+        this(inventory, index, xPos, yPos, null);
+    }
+
+    public String getSlotBackgroundName() {
+        return slotBackground;
     }
 
     @Override

@@ -2,10 +2,13 @@ package lekkit.scev.gui;
 
 import lekkit.scev.main.ScalarEvolution;
 import lekkit.scev.container.ContainerBase;
+import lekkit.scev.inventory.SlotBase;
+import lekkit.scev.inventory.IconSilly;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
@@ -65,6 +68,28 @@ public class GuiContainerBase extends GuiContainer {
             mc.getTextureManager().bindTexture(bgTexture);
             drawTexturedModalRect(guiLeft, guiTop, 0, 0, this.xSize, this.ySize);
         }
+
+        // Because fuck minecraft GUI slot background rendering
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
+        GL11.glEnable(GL11.GL_BLEND);
+        for (int i = 0; i < this.inventorySlots.inventorySlots.size(); ++i) {
+            Slot slot = (Slot)this.inventorySlots.inventorySlots.get(i);
+            if (slot instanceof SlotBase) {
+                SlotBase slotBase = (SlotBase)slot;
+                String slotBgName = slotBase.getSlotBackgroundName();
+
+                if (slotBase.getStack() == null && slotBgName != null) {
+                    int x = guiLeft + slotBase.xDisplayPosition;
+                    int y = guiTop + slotBase.yDisplayPosition;
+                    ResourceLocation res = new ResourceLocation(ScalarEvolution.MODID, "textures/gui/" + slotBgName + ".png");
+
+                    mc.getTextureManager().bindTexture(res);
+                    drawTexturedModelRectFromIcon(x, y, new IconSilly(), 16, 16);
+                }
+            }
+        }
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
     @Override
