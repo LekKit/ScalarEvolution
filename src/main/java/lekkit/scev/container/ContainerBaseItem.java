@@ -9,6 +9,10 @@ public class ContainerBaseItem extends ContainerBase {
         super(player, inventory);
     }
 
+    public ContainerBaseItem(EntityPlayer player, IInventory inventory, boolean fatGui) {
+        super(player, inventory, fatGui);
+    }
+
     @Override
     public ItemStack slotClick(int slot, int button, int flag, EntityPlayer player) {
         // This will prevent the player from interacting with the item that opened the inventory:
