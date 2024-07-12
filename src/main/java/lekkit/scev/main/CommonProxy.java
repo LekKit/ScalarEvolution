@@ -18,7 +18,7 @@ public class CommonProxy implements IGuiHandler {
             TileEntityWorkstation te = (TileEntityWorkstation)world.getTileEntity(x, y, z);
 
             if (te != null) {
-                return new ContainerWorkstation(player, te);
+                return new ContainerComputerCase(player, te);
             }
         }
         if (guiId == ScalarEvolution.GUI_MOTHERBOARD_INV) {
@@ -33,7 +33,7 @@ public class CommonProxy implements IGuiHandler {
             TileEntityWorkstation te = (TileEntityWorkstation)world.getTileEntity(x, y, z);
 
             if (te != null) {
-                return new GuiMotherboard(new ContainerWorkstation(player, te));
+                return new GuiComputerCase(new ContainerComputerCase(player, te));
             }
         }
         if (guiId == ScalarEvolution.GUI_MOTHERBOARD_INV) {

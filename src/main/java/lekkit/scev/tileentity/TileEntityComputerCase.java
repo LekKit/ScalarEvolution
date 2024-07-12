@@ -7,11 +7,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class TileEntityComputerCase extends TileEntityBaseInventory {
-    protected static final int computerCaseSlots = 1;
+    protected static final int computerCaseSize = 1;
     protected InventoryMotherboard invMotherboard = null;
 
     public TileEntityComputerCase() {
-        super(computerCaseSlots);
+        super(computerCaseSize);
     }
 
     // Upon insertion/removal of the motherboard, open/close it's
@@ -24,37 +24,53 @@ public class TileEntityComputerCase extends TileEntityBaseInventory {
         }
     }
 
+    public ItemMotherboard getItemMotherboard() {
+        if (invMotherboard != null) {
+            return (ItemMotherboard)invMotherboard.getInventoryItemStack().getItem();
+        }
+        return null;
+    }
+
+    public int getComputerCaseSize() {
+        return computerCaseSize;
+    }
+
+    @Override
+    public String getInventoryName() {
+        return "container.scev.computer_case";
+    }
+
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
-        if (slot < computerCaseSlots) {
+        if (slot < computerCaseSize) {
             return stack.getItem() instanceof ItemMotherboard;
         } else if (invMotherboard != null) {
-            return invMotherboard.isItemValidForSlot(slot - computerCaseSlots, stack);
+            return invMotherboard.isItemValidForSlot(slot - computerCaseSize, stack);
         }
         return false;
     }
 
     @Override
     public int getSizeInventory() {
-        return computerCaseSlots + (invMotherboard != null ? invMotherboard.getSizeInventory() : 0);
+        return computerCaseSize + (invMotherboard != null ? invMotherboard.getSizeInventory() : 0);
     }
 
     @Override
     public ItemStack getStackInSlot(int slot) {
-        if (slot < computerCaseSlots) {
+        if (slot < computerCaseSize) {
             return super.getStackInSlot(slot);
         } else if (invMotherboard != null) {
-            return invMotherboard.getStackInSlot(slot - computerCaseSlots);
+            return invMotherboard.getStackInSlot(slot - computerCaseSize);
         }
         return null;
     }
 
     @Override
     public ItemStack decrStackSize(int slot, int amount) {
-        if (slot < computerCaseSlots) {
+        if (slot < computerCaseSize) {
             return super.decrStackSize(slot, amount);
         } else if (invMotherboard != null) {
-            return invMotherboard.decrStackSize(slot - computerCaseSlots, amount);
+            return invMotherboard.decrStackSize(slot - computerCaseSize, amount);
         }
         return null;
     }
@@ -66,11 +82,11 @@ public class TileEntityComputerCase extends TileEntityBaseInventory {
 
     @Override
     public void setInventorySlotContents(int slot, ItemStack stack) {
-        if (slot < computerCaseSlots) {
+        if (slot < computerCaseSize) {
             super.setInventorySlotContents(slot, stack);
             updateInvMotherboard();
         } else if (invMotherboard != null) {
-            invMotherboard.setInventorySlotContents(slot - computerCaseSlots, stack);
+            invMotherboard.setInventorySlotContents(slot - computerCaseSize, stack);
         }
     }
 

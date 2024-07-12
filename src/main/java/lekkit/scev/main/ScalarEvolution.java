@@ -96,6 +96,7 @@ public class ScalarEvolution {
     public static Item nvme;
     public static Item motherboard1;
     public static Item motherboard2;
+    public static Item motherboard3;
 
     @EventHandler
     public void load(FMLInitializationEvent event) {
@@ -158,9 +159,10 @@ public class ScalarEvolution {
         vga_card = registerItem("vga_card", new ItemPCI());
         gpio_card = registerItem("gpio_card", new ItemPCI());
         sound_card = registerItem("sound_card", new ItemPCI());
-        nvme = registerItem("nvme", new ItemPCI());
+        nvme = registerItem("nvme", new ItemNVMe());
         motherboard1 = registerItem("motherboard1", new ItemMotherboard(1));
         motherboard2 = registerItem("motherboard2", new ItemMotherboard(2));
+        motherboard3 = registerItem("motherboard3", new ItemMotherboard(3));
     }
 
     @EventHandler
