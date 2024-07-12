@@ -24,6 +24,10 @@ public class InventoryItem implements IInventory {
         readFromNBT(item_stack.getTagCompound());
     }
 
+    public ItemStack getInventoryItemStack() {
+        return item_stack;
+    }
+
     @Override
     public int getSizeInventory() {
         return inventory.length;
