@@ -1,6 +1,14 @@
 #PARSE_ESCAPES
 itemGroup.tabScalarEvolution=Scalar Evolution
 
+container.scev.computer_case=Computer case
+container.scev.motherboard=Motherboard
+
+text.scev.capacity=Capacity
+text.scev.ram_slots=Memory slots
+text.scev.pci_slots=PCI Expansion slots
+text.scev.m2_slots=M.2 (NGFF) slots
+
 item.scev.epoxy.name=Epoxy Solution
 item.scev.epoxy.lore0=Versatile adhesive
 
@@ -77,7 +85,10 @@ item.scev.motherboard1.name=Motherboard
 item.scev.motherboard1.lore0=Housing of all machine components
 
 item.scev.motherboard2.name=§eAdvanced Motherboard
-item.scev.motherboard1.lore0=Housing of all machine components
+item.scev.motherboard2.lore0=Housing of all machine components
+
+item.scev.motherboard3.name=§bElite Motherboard
+item.scev.motherboard3.lore0=Housing of all machine components
 
 item.scev.hdd.name=IDE Hard Disk Drive
 
@@ -101,5 +112,3 @@ tile.scev.keyboard.name=Keyboard
 tile.scev.keyboard.lore0=In absence, press F1
 
 tile.scev.keyboard_mouse.name=Keyboard with mice
-
-text.scev.capacity=Capacity

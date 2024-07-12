@@ -10,6 +10,11 @@ public class InventoryMotherboard extends InventoryItem {
     }
 
     @Override
+    public String getInventoryName() {
+        return "container.scev.motherboard";
+    }
+
+    @Override
     public boolean isItemValidForSlot(int slotIndex, ItemStack itemstack) {
         ItemMotherboard motherboard = (ItemMotherboard)getInventoryItemStack().getItem();
         if (!motherboard.isInventorySlotEnabled(slotIndex)) return false;
