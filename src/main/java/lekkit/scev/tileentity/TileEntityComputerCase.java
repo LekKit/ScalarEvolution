@@ -70,7 +70,9 @@ public class TileEntityComputerCase extends TileEntityComputer {
         if (slot < computerCaseSize) {
             return super.decrStackSize(slot, amount);
         } else if (invMotherboard != null) {
-            return invMotherboard.decrStackSize(slot - computerCaseSize, amount);
+            ItemStack stack = invMotherboard.decrStackSize(slot - computerCaseSize, amount);
+            super.markDirty();
+            return stack;
         }
         return null;
     }
@@ -87,6 +89,7 @@ public class TileEntityComputerCase extends TileEntityComputer {
             updateInvMotherboard();
         } else if (invMotherboard != null) {
             invMotherboard.setInventorySlotContents(slot - computerCaseSize, stack);
+            super.markDirty();
         }
     }
 
