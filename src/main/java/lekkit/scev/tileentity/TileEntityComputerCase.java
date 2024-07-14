@@ -6,7 +6,7 @@ import lekkit.scev.items.ItemMotherboard;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class TileEntityComputerCase extends TileEntityBaseInventory {
+public class TileEntityComputerCase extends TileEntityComputer {
     protected static final int computerCaseSize = 1;
     protected InventoryMotherboard invMotherboard = null;
 
