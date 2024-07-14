@@ -87,7 +87,7 @@ item.scev.motherboard1.lore0=Housing of all machine components
 item.scev.motherboard2.name=§eAdvanced Motherboard
 item.scev.motherboard2.lore0=Housing of all machine components
 
-item.scev.motherboard3.name=§bElite Motherboard
+item.scev.motherboard3.name=§bEnterprise Motherboard
 item.scev.motherboard3.lore0=Housing of all machine components
 
 item.scev.hdd.name=IDE Hard Disk Drive
