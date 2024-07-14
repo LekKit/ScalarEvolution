@@ -2,6 +2,8 @@ package lekkit.scev.packet;
 
 import lekkit.scev.main.ScalarEvolution;
 
+import lekkit.scev.packet.server.*;
+
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -19,8 +21,7 @@ public class PacketDispatcher {
     * Call this during pre-init or loading and register all of your packets (messages) here
     */
     public static final void registerPackets() {
-        //registerMessage(OpenGuiMessage.OpenGuiMessageHandler.class, OpenGuiMessage.class, Side.SERVER);
-        //registerMessage(SyncPlayerPropsMessage.SyncPlayerPropsMessageHandler.class, SyncPlayerPropsMessage.class, Side.CLIENT);
+        registerMessage(MachineResetPacket.Handler.class, MachineResetPacket.class, Side.SERVER);
     }
 
     /**

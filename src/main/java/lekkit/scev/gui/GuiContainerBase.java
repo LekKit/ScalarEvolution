@@ -6,6 +6,7 @@ import lekkit.scev.inventory.SlotBase;
 import lekkit.scev.inventory.IconSilly;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.client.resources.I18n;
@@ -63,6 +64,19 @@ public class GuiContainerBase extends GuiContainer {
     // Return -1 to stop drawing GUI text
     public int getGuiTextColor() {
         return 0xE0E0E0;
+    }
+
+    public void buttonClicked(ButtonBase button) {
+    }
+
+    @Override
+    public void actionPerformed(GuiButton button) {
+        super.actionPerformed(button);
+        if (button instanceof ButtonBase) {
+            buttonClicked((ButtonBase)button);
+        } else {
+            System.out.println("Unknown GuiButton clicked!");
+        }
     }
 
     /*

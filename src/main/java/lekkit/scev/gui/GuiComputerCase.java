@@ -4,6 +4,8 @@ import lekkit.scev.main.ScalarEvolution;
 import lekkit.scev.container.ContainerComputerCase;
 import lekkit.scev.tileentity.TileEntityComputerCase;
 import lekkit.scev.items.ItemMotherboard;
+import lekkit.scev.packet.PacketDispatcher;
+import lekkit.scev.packet.server.MachineResetPacket;
 
 public class GuiComputerCase extends GuiContainerBase {
 
@@ -40,6 +42,11 @@ public class GuiComputerCase extends GuiContainerBase {
             }
         }
         return false;
+    }
+
+    @Override
+    public void buttonClicked(ButtonBase button) {
+        PacketDispatcher.sendToServer(new MachineResetPacket(false));
     }
 
     @Override
