@@ -17,9 +17,13 @@ public class TileEntityBaseInventory extends TileEntityBase implements IInventor
         inventory = new ItemStack[inv_size];
     }
 
+    public int getTileInventorySize() {
+        return inventory.length;
+    }
+
     @Override
     public int getSizeInventory() {
-        return inventory.length;
+        return getTileInventorySize();
     }
 
     @Override
@@ -99,13 +103,13 @@ public class TileEntityBaseInventory extends TileEntityBase implements IInventor
     public void deserializeFromNBT(NBTTagCompound compound) {
         NBTTagList items = compound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 
-        inventory = new ItemStack[getSizeInventory()];
+        inventory = new ItemStack[getTileInventorySize()];
         for (int i = 0; i < items.tagCount(); ++i) {
             NBTTagCompound item = (NBTTagCompound) items.getCompoundTagAt(i);
             int slot = item.getInteger("Slot");
 
             // Just double-checking that the saved slot index is within our inventory array bounds
-            if (slot >= 0 && slot < getSizeInventory()) {
+            if (slot >= 0 && slot < getTileInventorySize()) {
                 inventory[slot] = ItemStack.loadItemStackFromNBT(item);
             }
         }
@@ -116,7 +120,7 @@ public class TileEntityBaseInventory extends TileEntityBase implements IInventor
         // Create a new NBT Tag List to store itemstacks as NBT Tags
         NBTTagList items = new NBTTagList();
 
-        for (int i = 0; i < getSizeInventory(); ++i) {
+        for (int i = 0; i < getTileInventorySize(); ++i) {
             // Only write stacks that contain items
             if (getStackInSlot(i) != null) {
                 // Make a new NBT Tag Compound to write the itemstack and slot index to
