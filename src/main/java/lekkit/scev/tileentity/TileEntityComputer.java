@@ -9,11 +9,17 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class TileEntityComputer extends TileEntityBaseInventory {
     protected UUID machineUUID;
+    protected boolean unloaded = false;
 
     public TileEntityComputer(int invSize) {
         super(invSize);
 
         machineUUID = UUID.randomUUID();
+    }
+
+    public boolean isServer() {
+        // For whatever reason worldObj is null on world load
+        return getWorldObj() == null || !getWorldObj().isRemote;
     }
 
     @Override
@@ -24,8 +30,9 @@ public class TileEntityComputer extends TileEntityBaseInventory {
         if (uuidString != null) {
             machineUUID = UUID.fromString(uuidString);
 
-            // Try to resume machine snapshot
-            MachineManager.tryResumeMachineState(machineUUID);
+            if (isServer()) {
+                // TODO: Try to resume machine snapshot
+            }
         }
     }
 
@@ -39,7 +46,7 @@ public class TileEntityComputer extends TileEntityBaseInventory {
     public void invalidate() {
         super.invalidate();
 
-        if (!getWorldObj().isRemote) {
+        if (isServer()) {
             // Kill the running machine
             MachineManager.destroyMachineState(machineUUID);
         }
@@ -49,19 +56,22 @@ public class TileEntityComputer extends TileEntityBaseInventory {
     public void onChunkUnload() {
         super.onChunkUnload();
 
-        if (!getWorldObj().isRemote) {
+        if (isServer()) {
             // Pause the running machine
             MachineState state = MachineManager.getMachineState(machineUUID);
             if (state != null) {
                 state.getMachine().pause();
+
+                unloaded = true;
             }
         }
     }
 
+    @Override
     public void updateEntity() {
         super.updateEntity();
 
-        if (!getWorldObj().isRemote) {
+        if (unloaded && isServer()) {
             // Resume the paused powered machine
             MachineState state = MachineManager.getMachineState(machineUUID);
             if (state != null && state.getMachine().isPowered()) {
