@@ -121,5 +121,4 @@ public class BlockMachineBase extends BlockDirectionalModel {
     public boolean canProvidePower() {
         return true;
     }
-
 }
