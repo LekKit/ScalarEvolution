@@ -40,9 +40,9 @@ public class MachineState {
         return machine.isValid();
     }
 
-    public boolean attachFirmwareFlash(UUID disk_uuid, long disk_mb) {
+    public boolean attachFirmwareFlash(UUID disk_uuid, long disk_mb, String origin) {
         if (machine != null && machine.isValid() && flash == null) {
-            if (StorageManager.initImage(disk_uuid, disk_mb)) {
+            if (StorageManager.initImage(disk_uuid, disk_mb, origin)) {
                 flash = new MTDFlash(machine, StorageManager.imagePath(disk_uuid), true);
                 return true;
             }
@@ -66,9 +66,9 @@ public class MachineState {
         return false;
     }
 
-    public boolean attachNVMeDrive(UUID disk_uuid, long disk_mb) {
+    public boolean attachNVMeDrive(UUID disk_uuid, long disk_mb, String origin) {
         if (nvme_drives.get(disk_uuid) == null) {
-            if (StorageManager.initImage(disk_uuid, disk_mb)) {
+            if (StorageManager.initImage(disk_uuid, disk_mb, origin)) {
                 NVMeDrive nvme = new NVMeDrive(machine, StorageManager.imagePath(disk_uuid), true);
                 nvme_drives.put(disk_uuid, nvme);
                 return true;
