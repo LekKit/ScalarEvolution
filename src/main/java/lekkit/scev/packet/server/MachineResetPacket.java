@@ -10,7 +10,7 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class MachineResetPacket implements IMessage {
-    private boolean reset;
+    public boolean reset;
 
     public MachineResetPacket() {}
     public MachineResetPacket(boolean reset) {
@@ -36,7 +36,11 @@ public class MachineResetPacket implements IMessage {
                     // Machine power/reset handling
                     TileEntityComputer te = (TileEntityComputer)container.getContainerInventory();
 
-                    te.powerOn();
+                    if (message.reset) {
+                        te.reset();
+                    } else {
+                        te.power();
+                    }
                 }
             }
             return null;
