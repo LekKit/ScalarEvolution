@@ -30,6 +30,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -167,6 +168,7 @@ public class ScalarEvolution {
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
+        FMLCommonHandler.instance().bus().register(new ModEventHandler());
         PacketDispatcher.registerPackets();
 
         // Recipes
@@ -203,6 +205,10 @@ public class ScalarEvolution {
 
         GameRegistry.addSmelting(silica_compound, new ItemStack(mold_compound), 0.0F);
         GameRegistry.addSmelting(soldering_iron, new ItemStack(soldering_iron), 0.0F);
+    }
+
+    @EventHandler
+    public void onServerStopping(FMLServerStoppingEvent event) {
     }
 
     protected static Block registerTileModel(String name, Block block, java.lang.Class<? extends ItemBlock> itemClass,
