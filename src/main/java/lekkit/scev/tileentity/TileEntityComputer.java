@@ -17,9 +17,40 @@ public class TileEntityComputer extends TileEntityBaseInventory {
         machineUUID = UUID.randomUUID();
     }
 
-    public boolean isServer() {
+    public UUID getMachineUUID() {
+        return machineUUID;
+    }
+
+    public boolean runningOnServer() {
         // For whatever reason worldObj is null on world load
         return getWorldObj() == null || !getWorldObj().isRemote;
+    }
+
+    public boolean isLaptop() {
+        return false;
+    }
+
+    protected MachineState buidMachine(UUID uuid) {
+        return null;
+    }
+
+    public void powerOn() {
+        MachineState state = MachineManager.getMachineState(getMachineUUID());
+
+        if (state == null) {
+            state = buidMachine(getMachineUUID());
+        }
+
+        if (state != null) {
+            state.getMachine().start();
+        }
+    }
+
+    public void reset() {
+        MachineState state = MachineManager.getMachineState(getMachineUUID());
+        if (state != null) {
+            state.getMachine().reset();
+        }
     }
 
     @Override
@@ -31,7 +62,7 @@ public class TileEntityComputer extends TileEntityBaseInventory {
             if (uuidString != null) {
                 machineUUID = UUID.fromString(uuidString);
 
-                if (isServer()) {
+                if (runningOnServer()) {
                     // TODO: Try to resume machine snapshot
                 }
             }
@@ -41,16 +72,16 @@ public class TileEntityComputer extends TileEntityBaseInventory {
     @Override
     public void serializeToNBT(NBTTagCompound compound) {
         super.serializeToNBT(compound);
-        compound.setString("UUID", machineUUID.toString());
+        compound.setString("UUID", getMachineUUID().toString());
     }
 
     @Override
     public void invalidate() {
         super.invalidate();
 
-        if (isServer()) {
+        if (isLaptop() && runningOnServer()) {
             // Kill the running machine
-            MachineManager.destroyMachineState(machineUUID);
+            MachineManager.destroyMachineState(getMachineUUID());
         }
     }
 
@@ -58,9 +89,9 @@ public class TileEntityComputer extends TileEntityBaseInventory {
     public void onChunkUnload() {
         super.onChunkUnload();
 
-        if (isServer()) {
+        if (runningOnServer()) {
             // Pause the running machine
-            MachineState state = MachineManager.getMachineState(machineUUID);
+            MachineState state = MachineManager.getMachineState(getMachineUUID());
             if (state != null) {
                 state.getMachine().pause();
 
@@ -73,9 +104,9 @@ public class TileEntityComputer extends TileEntityBaseInventory {
     public void updateEntity() {
         super.updateEntity();
 
-        if (unloaded && isServer()) {
+        if (unloaded && runningOnServer()) {
             // Resume the paused powered machine
-            MachineState state = MachineManager.getMachineState(machineUUID);
+            MachineState state = MachineManager.getMachineState(getMachineUUID());
             if (state != null && state.getMachine().isPowered()) {
                 state.getMachine().start();
             }
