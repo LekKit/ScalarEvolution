@@ -46,7 +46,14 @@ public class GuiComputerCase extends GuiContainerBase {
 
     @Override
     public void buttonClicked(ButtonBase button) {
-        PacketDispatcher.sendToServer(new MachineResetPacket(false));
+        switch (button.id) {
+            case 1:
+                PacketDispatcher.sendToServer(new MachineResetPacket(false));
+                break;
+            case 2:
+                PacketDispatcher.sendToServer(new MachineResetPacket(true));
+                break;
+        }
     }
 
     @Override
