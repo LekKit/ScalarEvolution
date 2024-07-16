@@ -6,15 +6,15 @@ public class ItemRAM extends ItemBase {
     public ItemRAM(int level) {
         this.level = level;
 
-        addLore("text.scev.capacity", ": §e" + (getRamSize() >> 20) + " MiB");
+        addLore("text.scev.capacity", ": §e" + getRamMegs() + " MiB");
     }
 
-    public int getRamSize() {
+    public int getRamMegs() {
         switch (level) {
-            case 0: return (8 << 20);
-            case 1: return (16 << 20);
-            case 2: return (32 << 20);
-            case 3: return (64 << 20);
+            case 0: return 8;
+            case 1: return 16;
+            case 2: return 32;
+            case 3: return 64;
         }
         return 0;
     }
