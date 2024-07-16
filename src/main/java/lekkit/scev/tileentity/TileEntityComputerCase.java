@@ -61,7 +61,24 @@ public class TileEntityComputerCase extends TileEntityComputer {
             return null;
         }
 
-        // TODO: Enumerate all other devices
+        boolean fail = false;
+        for (int i = 0; i < invMotherboard.getSizeInventory(); ++i) {
+            ItemStack stack = invMotherboard.getStackInSlot(i);
+            if (stack != null) {
+                if (stack.getItem() instanceof ItemFlash) {
+                    ItemFlash item = (ItemFlash)stack.getItem();
+                    fail = fail || state.attachFirmwareFlash(item.getStorageUUID(stack), item.getStorageSize(), item.getStorageOrigin());
+                } else if (stack.getItem() instanceof ItemNVMe) {
+                    ItemNVMe item = (ItemNVMe)stack.getItem();
+                    fail = fail || state.attachNVMeDrive(item.getStorageUUID(stack), item.getStorageSize(), item.getStorageOrigin());
+                }
+            }
+        }
+
+        if (fail) {
+            MachineManager.destroyMachineState(uuid);
+            return null;
+        }
 
         return state;
     }
