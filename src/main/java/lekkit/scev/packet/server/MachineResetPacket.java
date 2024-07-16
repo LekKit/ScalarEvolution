@@ -33,10 +33,10 @@ public class MachineResetPacket implements IMessage {
             if (player.openContainer instanceof ContainerBase) {
                 ContainerBase container = (ContainerBase)player.openContainer;
                 if (container.getContainerInventory() instanceof TileEntityComputer) {
+                    // Machine power/reset handling
                     TileEntityComputer te = (TileEntityComputer)container.getContainerInventory();
 
-                    // Machine power/reset handling
-                    System.out.println("MachineResetPacket!");
+                    te.powerOn();
                 }
             }
             return null;
