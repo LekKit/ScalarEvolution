@@ -44,7 +44,7 @@ public class TileEntityComputerCase extends TileEntityComputer {
         int mem_mb = 0;
         for (int i = 0; i < invMotherboard.getSizeInventory(); ++i) {
             ItemStack stack = invMotherboard.getStackInSlot(i);
-            if (stack.getItem() instanceof ItemRAM) {
+            if (stack != null && stack.getItem() instanceof ItemRAM) {
                 ItemRAM item = (ItemRAM)stack.getItem();
                 mem_mb += item.getRamMegs();
             }
