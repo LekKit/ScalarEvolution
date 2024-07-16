@@ -23,6 +23,8 @@ public class MachineState {
     }
 
     public boolean create(long mem_mb, int smp, boolean rv64) {
+        RVVMNative.loadLib("/usr/lib/librvvm.so");
+
         machine = new RVVMMachine(mem_mb, smp, rv64);
         if (machine.isValid()) {
             new PLIC(machine);
