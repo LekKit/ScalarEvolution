@@ -1,5 +1,5 @@
 package lekkit.scev.items;
 
-public class ItemHDD extends ItemBase {
+public class ItemHDD extends ItemStorage {
 }
 
