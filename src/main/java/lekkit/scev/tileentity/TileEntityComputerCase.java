@@ -1,7 +1,13 @@
 package lekkit.scev.tileentity;
 
+import java.util.UUID;
+
 import lekkit.scev.inventory.InventoryMotherboard;
 import lekkit.scev.items.ItemMotherboard;
+import lekkit.scev.server.MachineManager;
+import lekkit.scev.server.MachineState;
+
+import lekkit.scev.items.*;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,8 +20,73 @@ public class TileEntityComputerCase extends TileEntityComputer {
         super(computerCaseSize);
     }
 
-    // Upon insertion/removal of the motherboard, open/close it's
-    // respective InventoryItem
+    /*
+     * Build machine based on computer components
+     */
+
+    public boolean hasCPU() {
+        return invMotherboard != null
+            && invMotherboard.getStackInSlot(0).getItem() instanceof ItemCPU;
+    }
+
+    public boolean hasRAM() {
+        if (invMotherboard != null) {
+            for (int i = 2; i < 6; ++i) {
+                if (invMotherboard.getStackInSlot(i).getItem() instanceof ItemRAM) {
+                    return true;
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
+    protected MachineState buidMachine(UUID uuid) {
+        if (invMotherboard == null) {
+            // No motherboard installed
+            return null;
+        }
+
+        if (invMotherboard.getStackInSlot(0) == null) {
+            // No CPU installed
+            return null;
+        }
+
+        if (invMotherboard.getStackInSlot(1) == null) {
+            // No firmware chip installed
+            return null;
+        }
+
+        int mem_mb = 0;
+        for (int i = 0; i < invMotherboard.getSizeInventory(); ++i) {
+            ItemStack stack = invMotherboard.getStackInSlot(i);
+            if (stack.getItem() instanceof ItemRAM) {
+                ItemRAM item = (ItemRAM)stack.getItem();
+                mem_mb += item.getRamMegs();
+            }
+        }
+
+        if (mem_mb == 0) {
+            // No RAM installed
+            return null;
+        }
+
+        MachineState state = MachineManager.createMachineState(uuid);
+        if (!state.create(mem_mb, 1, true)) {
+            MachineManager.destroyMachineState(uuid);
+            return null;
+        }
+
+        // TODO: Enumerate all other devices
+
+        return state;
+    }
+
+    /*
+     * Computer case inventory implementation
+     */
+
+    // Upon insertion/removal of the motherboard, open/close it's respective InventoryItem
     protected void updateInvMotherboard() {
         invMotherboard = null;
         ItemStack itemStack = getStackInSlot(0);
