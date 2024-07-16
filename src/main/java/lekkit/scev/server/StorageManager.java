@@ -2,14 +2,18 @@ package lekkit.scev.server;
 
 import java.util.UUID;
 import java.io.File;
-import java.io.RandomAccessFile;
 import java.nio.file.Files;
+import java.nio.channels.FileChannel;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
 import java.nio.file.Paths;
+import java.util.EnumSet;
 
 public class StorageManager {
     static {
         File dir = new File("./scev");
+        dir.mkdir();
+        dir = new File("./scev/assets");
         dir.mkdir();
         dir = new File("./scev/images");
         dir.mkdir();
@@ -24,13 +28,12 @@ public class StorageManager {
 
     public static boolean createImage(UUID image_uuid, long image_mb) {
         try {
-            File file = new File(imagePath(image_uuid));
-            if (file.createNewFile()) {
-                RandomAccessFile sparse_file = new RandomAccessFile(file, "r+");
-                sparse_file.setLength(image_mb << 20);
-                sparse_file.close();
-            }
-            return file.isFile();
+            FileChannel channel = FileChannel.open(Paths.get(imagePath(image_uuid)),
+                EnumSet.of(StandardOpenOption.CREATE_NEW, StandardOpenOption.SPARSE, StandardOpenOption.WRITE));
+            channel.truncate(image_mb << 20);
+            boolean ret = channel.size() == image_mb << 20;
+            channel.close();
+            return ret;
         } catch (Throwable e) {
             System.out.println("IO error!");
         }
@@ -63,7 +66,7 @@ public class StorageManager {
     }
 
     public static String assetPath(String asset) {
-        return "./scev/assets/" + asset + ".img";
+        return "./scev/assets/" + asset;
     }
 
     public static String imagePath(UUID image_uuid) {
