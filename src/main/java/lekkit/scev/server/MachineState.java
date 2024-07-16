@@ -32,6 +32,7 @@ public class MachineState {
             new I2CBus(machine);
             new GoldfishRTC(machine);
             new Syscon(machine);
+            new NS16550A(machine);
 
             keyboard = new HIDKeyboard(machine);
             mouse = new HIDMouse(machine);

@@ -67,10 +67,10 @@ public class TileEntityComputerCase extends TileEntityComputer {
             if (stack != null) {
                 if (stack.getItem() instanceof ItemFlash) {
                     ItemFlash item = (ItemFlash)stack.getItem();
-                    fail = fail || state.attachFirmwareFlash(item.getStorageUUID(stack), item.getStorageSize(), item.getStorageOrigin());
+                    fail = fail || !state.attachFirmwareFlash(item.getStorageUUID(stack), item.getStorageSize(), item.getStorageOrigin());
                 } else if (stack.getItem() instanceof ItemNVMe) {
                     ItemNVMe item = (ItemNVMe)stack.getItem();
-                    fail = fail || state.attachNVMeDrive(item.getStorageUUID(stack), item.getStorageSize(), item.getStorageOrigin());
+                    fail = fail || !state.attachNVMeDrive(item.getStorageUUID(stack), item.getStorageSize(), item.getStorageOrigin());
                 }
             }
         }
