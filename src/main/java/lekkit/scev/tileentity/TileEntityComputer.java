@@ -26,14 +26,16 @@ public class TileEntityComputer extends TileEntityBaseInventory {
     public void deserializeFromNBT(NBTTagCompound compound) {
         super.deserializeFromNBT(compound);
 
-        String uuidString = compound.getString("UUID");
-        if (uuidString != null) {
-            machineUUID = UUID.fromString(uuidString);
+        try {
+            String uuidString = compound.getString("UUID");
+            if (uuidString != null) {
+                machineUUID = UUID.fromString(uuidString);
 
-            if (isServer()) {
-                // TODO: Try to resume machine snapshot
+                if (isServer()) {
+                    // TODO: Try to resume machine snapshot
+                }
             }
-        }
+        } catch (Throwable e) {}
     }
 
     @Override
