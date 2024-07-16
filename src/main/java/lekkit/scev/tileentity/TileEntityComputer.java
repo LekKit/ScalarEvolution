@@ -30,7 +30,7 @@ public class TileEntityComputer extends TileEntityBaseInventory {
         return false;
     }
 
-    protected MachineState buidMachine(UUID uuid) {
+    protected MachineState buildMachine(UUID uuid) {
         return null;
     }
 
@@ -38,7 +38,7 @@ public class TileEntityComputer extends TileEntityBaseInventory {
         MachineState state = MachineManager.getMachineState(getMachineUUID());
 
         if (state == null) {
-            state = buidMachine(getMachineUUID());
+            state = buildMachine(getMachineUUID());
         }
 
         if (state != null) {

@@ -24,24 +24,8 @@ public class TileEntityComputerCase extends TileEntityComputer {
      * Build machine based on computer components
      */
 
-    public boolean hasCPU() {
-        return invMotherboard != null
-            && invMotherboard.getStackInSlot(0).getItem() instanceof ItemCPU;
-    }
-
-    public boolean hasRAM() {
-        if (invMotherboard != null) {
-            for (int i = 2; i < 6; ++i) {
-                if (invMotherboard.getStackInSlot(i).getItem() instanceof ItemRAM) {
-                    return true;
-                }
-            }
-        }
-        return true;
-    }
-
     @Override
-    protected MachineState buidMachine(UUID uuid) {
+    protected MachineState buildMachine(UUID uuid) {
         if (invMotherboard == null) {
             // No motherboard installed
             return null;
