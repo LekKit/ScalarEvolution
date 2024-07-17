@@ -168,7 +168,7 @@ public class ScalarEvolution {
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-        FMLCommonHandler.instance().bus().register(new ModEventHandler());
+        MinecraftForge.EVENT_BUS.register(new ModEventHandler());
         PacketDispatcher.registerPackets();
 
         // Recipes
