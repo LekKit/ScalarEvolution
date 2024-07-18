@@ -1,6 +1,7 @@
 package lekkit.scev.main;
 
 import lekkit.scev.packet.PacketDispatcher;
+import lekkit.scev.server.MachineManager;
 import lekkit.scev.items.*;
 import lekkit.scev.blocks.*;
 import lekkit.scev.tileentity.*;
@@ -209,6 +210,8 @@ public class ScalarEvolution {
 
     @EventHandler
     public void onServerStopping(FMLServerStoppingEvent event) {
+        System.out.println("Finishing all machines...");
+        MachineManager.finishAllMachines();
     }
 
     protected static Block registerTileModel(String name, Block block, java.lang.Class<? extends ItemBlock> itemClass,

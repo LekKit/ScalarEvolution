@@ -49,8 +49,12 @@ public class MachineState {
     }
 
     public boolean loadSnapshot() {
-        // TODO: Load machine snapshot by UUID
+        // TODO: Load machine snapshot by UUID, remove it from disk
         return false;
+    }
+
+    public void saveSnapshot() {
+        // TODO: Save machine snapshot by UUID
     }
 
     public boolean attachFirmwareFlash(UUID disk_uuid, long disk_mb, String origin) {

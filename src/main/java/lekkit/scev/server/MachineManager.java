@@ -49,6 +49,24 @@ public class MachineManager {
     }
 
     /*
+     * Finish running all available machines. Save their snapshots.
+     * Destroy machine state and clean up.
+     *
+     * Used on server stop.
+     */
+
+    public synchronized static void finishAllMachines() {
+        for (HashMap.Entry<UUID, MachineState> entry : machines.entrySet()) {
+            MachineState state = entry.getValue();
+            state.pause();
+            state.saveSnapshot();
+            state.destroy();
+        }
+
+        machines.clear();
+    }
+
+    /*
      * May be called from client thread since there's no other way to
      * handle pause events in Minecraft
      */
