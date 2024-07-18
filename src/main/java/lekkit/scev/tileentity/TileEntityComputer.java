@@ -10,7 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 public class TileEntityComputer extends TileEntityBaseInventory {
     protected UUID machineUUID;
     protected boolean running = false;
-    protected boolean paused = false;
+    protected boolean unloaded = false;
 
     public TileEntityComputer(int invSize) {
         super(invSize);
@@ -35,33 +35,18 @@ public class TileEntityComputer extends TileEntityBaseInventory {
         return null;
     }
 
-    public void pause() {
-        MachineState state = MachineManager.getMachineState(getMachineUUID());
-
-        if (state != null) {
-            state.getMachine().pause();
-
-            paused = true;
-        }
-    }
-
-    public void resume() {
-        if (paused) {
-            MachineState state = MachineManager.getMachineState(getMachineUUID());
-
-            if (state != null) {
-                state.getMachine().start();
-            }
-        }
-        paused = false;
-    }
-
-    public void powerOn() {
+    protected MachineState initMachineState() {
         MachineState state = MachineManager.getMachineState(getMachineUUID());
 
         if (state == null) {
             state = buildMachine(getMachineUUID());
         }
+
+        return state;
+    }
+
+    public void powerOn() {
+        MachineState state = initMachineState();
 
         if (state != null) {
             state.getMachine().start();
@@ -74,12 +59,32 @@ public class TileEntityComputer extends TileEntityBaseInventory {
         running = false;
     }
 
+    public void unload() {
+        MachineState state = MachineManager.getMachineState(getMachineUUID());
+
+        if (state != null) {
+            state.unload();
+            unloaded = true;
+        }
+    }
+
+    public void resume() {
+        if (unloaded) {
+            MachineState state = MachineManager.getMachineState(getMachineUUID());
+
+            if (state != null) {
+                state.load();
+            }
+        }
+        unloaded = false;
+    }
+
     public boolean isRunning() {
         return running;
     }
 
-    public boolean isPaused() {
-        return paused;
+    public boolean isUnloaded() {
+        return unloaded;
     }
 
     public void power() {
@@ -107,7 +112,14 @@ public class TileEntityComputer extends TileEntityBaseInventory {
                 machineUUID = UUID.fromString(uuidString);
 
                 if (runningOnServer()) {
-                    // TODO: Try to resume machine snapshot
+                    if (MachineManager.hasMachineStateSnapshot(machineUUID)) {
+                        MachineState state = initMachineState();
+
+                        if (state != null) {
+                            state.loadSnapshot();
+                            state.getMachine().start();
+                        }
+                    }
                 }
             }
         } catch (Throwable e) {}
@@ -134,8 +146,8 @@ public class TileEntityComputer extends TileEntityBaseInventory {
         super.onChunkUnload();
 
         if (runningOnServer()) {
-            // Pause the running machine
-            pause();
+            // Unload the running machine
+            unload();
         }
     }
 
@@ -143,8 +155,8 @@ public class TileEntityComputer extends TileEntityBaseInventory {
     public void updateEntity() {
         super.updateEntity();
 
-        if (isPaused() && runningOnServer()) {
-            // Resume the paused powered machine
+        if (isUnloaded() && runningOnServer()) {
+            // Resume the unloaded powered machine
             resume();
         }
     }
