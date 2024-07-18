@@ -56,9 +56,10 @@ public class MachineManager {
      */
 
     public synchronized static void finishAllMachines() {
+        pauseAllMachines();
+
         for (HashMap.Entry<UUID, MachineState> entry : machines.entrySet()) {
             MachineState state = entry.getValue();
-            state.pause();
             state.saveSnapshot();
             state.destroy();
         }
