@@ -188,7 +188,7 @@ public class TileEntityComputerCase extends TileEntityComputer {
     @Override
     public void setInventorySlotContents(int slot, ItemStack stack) {
         ItemStack tmpStack = getStackInSlot(slot);
-        if (tmpStack != null) {
+        if (tmpStack != null && runningOnServer()) {
             removeComponent(tmpStack);
         }
 
@@ -200,7 +200,7 @@ public class TileEntityComputerCase extends TileEntityComputer {
             super.markDirty();
         }
 
-        if (stack != null) {
+        if (stack != null && runningOnServer()) {
             installComponent(stack);
         }
     }
