@@ -16,10 +16,13 @@ public class MachineState {
     private RTL8169 nic = null;
     private GPIODevice gpio = null;
 
-    public HashMap<UUID, NVMeDrive> nvme_drives = new HashMap<UUID, NVMeDrive>();
+    private HashMap<UUID, NVMeDrive> nvme_drives = new HashMap<UUID, NVMeDrive>();
 
-    public MachineState(UUID machine_uuid) {
-        uuid = machine_uuid;
+    private boolean paused = false;
+    private boolean unloaded = false;
+
+    public MachineState(UUID machineUUID) {
+        uuid = machineUUID;
     }
 
     public boolean create(long mem_mb, int smp, boolean rv64) {
@@ -39,6 +42,15 @@ public class MachineState {
         }
 
         return machine.isValid();
+    }
+
+    public UUID getUUID() {
+        return uuid;
+    }
+
+    public boolean loadSnapshot() {
+        // TODO: Load machine snapshot by UUID
+        return false;
     }
 
     public boolean attachFirmwareFlash(UUID disk_uuid, long disk_mb, String origin) {
@@ -136,6 +148,40 @@ public class MachineState {
 
     public GPIODevice getGPIO() {
         return gpio;
+    }
+
+    public void tryResume() {
+        if (!unloaded && !paused && machine.isPowered()) {
+            machine.start();
+        }
+    }
+
+    public void unload() {
+        if (!unloaded) {
+            unloaded = true;
+            machine.pause();
+        }
+    }
+
+    public void load() {
+        if (unloaded) {
+            unloaded = true;
+            tryResume();
+        }
+    }
+
+    public void pause() {
+        if (!paused) {
+            paused = true;
+            machine.pause();
+        }
+    }
+
+    public void unpause() {
+        if (paused) {
+            paused = false;
+            tryResume();
+        }
     }
 
     public void destroy() {
