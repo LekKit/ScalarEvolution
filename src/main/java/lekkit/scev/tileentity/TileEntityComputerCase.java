@@ -60,26 +60,58 @@ public class TileEntityComputerCase extends TileEntityComputer {
             return null;
         }
 
-        boolean fail = false;
         for (int i = 0; i < invMotherboard.getSizeInventory(); ++i) {
             ItemStack stack = invMotherboard.getStackInSlot(i);
             if (stack != null) {
-                if (stack.getItem() instanceof ItemFlash) {
-                    ItemFlash item = (ItemFlash)stack.getItem();
-                    fail = fail || !state.attachFirmwareFlash(item.getStorageUUID(stack), item.getStorageSize(), item.getStorageOrigin());
-                } else if (stack.getItem() instanceof ItemNVMe) {
-                    ItemNVMe item = (ItemNVMe)stack.getItem();
-                    fail = fail || !state.attachNVMeDrive(item.getStorageUUID(stack), item.getStorageSize(), item.getStorageOrigin());
+                if (!installComponent(stack)) {
+                    MachineManager.destroyMachineState(uuid);
+                    return null;
                 }
             }
         }
 
-        if (fail) {
-            MachineManager.destroyMachineState(uuid);
-            return null;
-        }
-
         return state;
+    }
+
+    public boolean installComponent(ItemStack stack) {
+        MachineState state = MachineManager.getMachineState(getMachineUUID());
+        if (state != null) {
+            if (stack.getItem() instanceof ItemFlash) {
+                ItemFlash item = (ItemFlash)stack.getItem();
+                return state.attachFirmwareFlash(item.getStorageUUID(stack), item.getStorageSize(), item.getStorageOrigin());
+            } else if (stack.getItem() instanceof ItemNVMe) {
+                ItemNVMe item = (ItemNVMe)stack.getItem();
+                return state.attachNVMeDrive(item.getStorageUUID(stack), item.getStorageSize(), item.getStorageOrigin());
+            } else if (stack.getItem() instanceof ItemRTL8169) {
+                return state.attachNetworkingCard();
+            } else if (stack.getItem() instanceof ItemVideoAdapter) {
+                return state.attachVideoAdapter();
+            } else if (stack.getItem() instanceof ItemGPIO) {
+                return state.attachGPIO();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public void removeComponent(ItemStack stack) {
+        MachineState state = MachineManager.getMachineState(getMachineUUID());
+        if (state != null) {
+            if (stack.getItem() instanceof ItemFlash) {
+                state.pullFirmwareFlash();
+            } else if (stack.getItem() instanceof ItemNVMe) {
+                ItemNVMe item = (ItemNVMe)stack.getItem();
+                state.pullNVMe(item.getStorageUUID(stack));
+            } else if (stack.getItem() instanceof ItemRTL8169) {
+                state.pullNetworkingCard();
+            } else if (stack.getItem() instanceof ItemVideoAdapter) {
+                state.pullVideoAdapter();
+            } else if (stack.getItem() instanceof ItemGPIO) {
+                state.pullGPIO();
+            } else {
+                powerOff();
+            }
+        }
     }
 
     /*
@@ -155,12 +187,21 @@ public class TileEntityComputerCase extends TileEntityComputer {
 
     @Override
     public void setInventorySlotContents(int slot, ItemStack stack) {
+        ItemStack tmpStack = getStackInSlot(slot);
+        if (tmpStack != null) {
+            removeComponent(tmpStack);
+        }
+
         if (slot < computerCaseSize) {
             super.setInventorySlotContents(slot, stack);
             updateInvMotherboard();
         } else if (invMotherboard != null) {
             invMotherboard.setInventorySlotContents(slot - computerCaseSize, stack);
             super.markDirty();
+        }
+
+        if (stack != null) {
+            installComponent(stack);
         }
     }
 

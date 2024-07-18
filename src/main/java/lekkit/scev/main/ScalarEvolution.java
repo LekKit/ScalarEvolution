@@ -157,9 +157,9 @@ public class ScalarEvolution {
         ram_sodimm2 = registerItem("ram_sodimm2", new ItemRAM(1));
         ram_sodimm3 = registerItem("ram_sodimm3", new ItemRAM(2));
         ram_sodimm4 = registerItem("ram_sodimm4", new ItemRAM(3));
-        rtl8169 = registerItem("rtl8169", new ItemPCI());
-        vga_card = registerItem("vga_card", new ItemPCI());
-        gpio_card = registerItem("gpio_card", new ItemPCI());
+        rtl8169 = registerItem("rtl8169", new ItemRTL8169());
+        vga_card = registerItem("vga_card", new ItemVideoAdapter());
+        gpio_card = registerItem("gpio_card", new ItemGPIO());
         sound_card = registerItem("sound_card", new ItemPCI());
         nvme = registerItem("nvme", new ItemNVMe());
         motherboard1 = registerItem("motherboard1", new ItemMotherboard(1));
