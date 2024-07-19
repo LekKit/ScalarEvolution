@@ -1,5 +1,7 @@
 package lekkit.scev.main;
 
+import java.util.HashMap;
+
 import lekkit.scev.packet.PacketDispatcher;
 import lekkit.scev.server.MachineManager;
 import lekkit.scev.items.*;
@@ -13,10 +15,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.client.MinecraftForgeClient;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
@@ -35,7 +34,6 @@ import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -55,6 +53,10 @@ public class ScalarEvolution {
     public static final int GUI_MOTHERBOARD_INV = 1;
 
     public static ModConfig config;
+
+    protected static HashMap<String, Item> items = new HashMap<String, Item>();
+    protected static HashMap<String, Block> blocks = new HashMap<String, Block>();
+    protected static HashMap<String, Class<? extends TileEntity>> tileClasses = new HashMap<String, Class<? extends TileEntity>>();
 
     public static Block vt100;
     public static Block workstation;
@@ -115,20 +117,13 @@ public class ScalarEvolution {
     public void preInit(FMLPreInitializationEvent event) {
         config.load(event);
 
-        vt100 = registerTileModel("vt100", new BlockVT100(), ItemBlockBase.class, TileEntityVT100.class,
-                                    new TileVT100Renderer(), new ItemModelRenderer("vt100"));
-        workstation = registerTileModel("workstation", new BlockWorkstation(), ItemBlockBase.class, TileEntityWorkstation.class,
-                                    new TileModelRenderer("workstation", true), new ItemModelRenderer("workstation"));
-        powermark = registerTileModel("powermark", new BlockPowermark(), ItemBlockBase.class, TileEntityPowermark.class,
-                                    new TileModelRenderer("powermark", true), new ItemModelRenderer("powermark"));
-        tinkerpad = registerTileModel("tinkerpad", new BlockTinkerpad(), ItemBlockBase.class, TileEntityTinkerpad.class,
-                                    new TileTinkerpadRenderer(), new ItemTinkerpadRenderer());
-        crt_monitor = registerTileModel("crt_monitor", new BlockCRT(), ItemBlockBase.class, TileEntityCRT.class,
-                                    new TileModelRenderer("crt_monitor", false), new ItemModelRenderer("crt_monitor"));
-        keyboard = registerTileModel("keyboard", new BlockKeyboard(), ItemBlockBase.class, TileEntityKeyboard.class,
-                                    new TileModelRenderer("keyboard", true), new ItemModelRenderer("keyboard"));
-        keyboard_mouse = registerTileModel("keyboard_mouse", new BlockKeyboardMouse(), ItemBlockBase.class, TileEntityKeyboardMouse.class,
-                                    new TileModelRenderer("keyboard_mouse", true), new ItemModelRenderer("keyboard_mouse"));
+        vt100 = registerTile("vt100", new BlockVT100(), TileEntityVT100.class);
+        workstation = registerTile("workstation", new BlockWorkstation(), TileEntityWorkstation.class);
+        powermark = registerTile("powermark", new BlockPowermark(), TileEntityPowermark.class);
+        tinkerpad = registerTile("tinkerpad", new BlockTinkerpad(), TileEntityTinkerpad.class);
+        crt_monitor = registerTile("crt_monitor", new BlockCRT(), TileEntityCRT.class);
+        keyboard = registerTile("keyboard", new BlockKeyboard(), TileEntityKeyboard.class);
+        keyboard_mouse = registerTile("keyboard_mouse", new BlockKeyboardMouse(), TileEntityKeyboardMouse.class);
 
         epoxy = registerItem("epoxy");
         silica_compound = registerItem("silica_compound");
@@ -214,25 +209,54 @@ public class ScalarEvolution {
         MachineManager.finishAllMachines();
     }
 
-    protected static Block registerTileModel(String name, Block block, java.lang.Class<? extends ItemBlock> itemClass,
-                                            Class<? extends TileEntity> teClass, TileEntitySpecialRenderer teRenderer,
-                                            IItemRenderer itemRenderer) {
+    public static Class<? extends TileEntity> getTileClass(String name) {
+        return tileClasses.get(name);
+    }
+
+    public static Block getBlock(String name) {
+        return blocks.get(name);
+    }
+
+    public static Item getItemBlock(String name) {
+        Block block = getBlock(name);
+        return Item.getItemFromBlock(block);
+    }
+
+    public static Item getItem(String name) {
+        return items.get(name);
+    }
+
+    public static Block registerBlock(String name, Block block, java.lang.Class<? extends ItemBlock> itemClass) {
         block.setBlockName(ScalarEvolution.MODID + "." + name).setCreativeTab(ScalarEvolution.creativeTab);
         GameRegistry.registerBlock(block, itemClass, name);
-        GameRegistry.registerTileEntity(teClass, ScalarEvolution.MODID + ":" + name);
-        ClientRegistry.bindTileEntitySpecialRenderer(teClass, teRenderer);
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(block), itemRenderer);
+        blocks.put(name, block);
         return block;
     }
 
-    protected static Item registerItem(String itemName, Item item) {
+    public static Block registerBlock(String name, Block block) {
+        return registerBlock(name, block, ItemBlockBase.class);
+    }
+
+    public static Block registerTile(String name, Block block, java.lang.Class<? extends ItemBlock> itemClass,
+                                        Class<? extends TileEntity> teClass) {
+        GameRegistry.registerTileEntity(teClass, ScalarEvolution.MODID + ":" + name);
+        tileClasses.put(name, teClass);
+        return registerBlock(name, block, itemClass);
+    }
+
+    public static Block registerTile(String name, Block block, Class<? extends TileEntity> teClass) {
+        return registerTile(name, block, ItemBlockBase.class, teClass);
+    }
+
+    public static Item registerItem(String itemName, Item item) {
         item.setUnlocalizedName(ScalarEvolution.MODID + "." + itemName).setTextureName(ScalarEvolution.MODID + ":" + itemName);
         item.setCreativeTab(creativeTab);
         GameRegistry.registerItem(item, itemName);
+        items.put(itemName, item);
         return item;
     }
 
-    protected static Item registerItem(String itemName) {
+    public static Item registerItem(String itemName) {
         return registerItem(itemName, new ItemBase());
     }
 
