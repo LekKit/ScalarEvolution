@@ -55,7 +55,7 @@ public class ItemSolderingIron extends ItemNonStackable {
     @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
         if (!world.isRemote) {
-            net.minecraft.client.Minecraft.getMinecraft().displayGuiScreen(new MachineGui());
+            //net.minecraft.client.Minecraft.getMinecraft().displayGuiScreen(new MachineGui());
         }
         return stack;
     }
