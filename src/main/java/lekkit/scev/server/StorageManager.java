@@ -43,7 +43,7 @@ public class StorageManager {
     public static boolean copyImage(UUID image_uuid, String origin) {
         if (System.getProperty("os.name").startsWith("Linux")) {
             try {
-                Runtime.getRuntime().exec("cp --reflink=always " + assetPath(origin) + " " + imagePath(image_uuid));
+                Runtime.getRuntime().exec("cp --reflink=always " + assetPath(origin) + " " + imagePath(image_uuid)).waitFor();
             } catch (Throwable e) {}
         }
 
