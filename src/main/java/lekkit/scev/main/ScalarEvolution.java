@@ -227,7 +227,9 @@ public class ScalarEvolution {
     }
 
     public static Block registerBlock(String name, Block block, java.lang.Class<? extends ItemBlock> itemClass) {
-        block.setBlockName(ScalarEvolution.MODID + "." + name).setCreativeTab(ScalarEvolution.creativeTab);
+        block.setBlockName(ScalarEvolution.MODID + "." + name);
+        block.setCreativeTab(ScalarEvolution.creativeTab);
+        block.setBlockTextureName(ScalarEvolution.MODID + ":" + name);
         GameRegistry.registerBlock(block, itemClass, name);
         blocks.put(name, block);
         return block;

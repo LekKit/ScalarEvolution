@@ -64,12 +64,4 @@ public abstract class BlockDirectionalModel extends BlockContainer {
         setBlockBoundsBasedOnState(world, x, y, z);
         super.addCollisionBoxesToList(world, x, y, z, aabb, list, entity);
     }
-
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerBlockIcons(IIconRegister ir) {
-        String no_type_prefix = getUnlocalizedName().replace("tile.", "").replace("block.", "");
-        blockIcon = ir.registerIcon(no_type_prefix.replace(ScalarEvolution.MODID + ".", ScalarEvolution.MODID + ":"));
-    }
 }
