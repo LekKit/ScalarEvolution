@@ -45,18 +45,15 @@ public class ItemModelRenderer implements IItemRenderer {
         GL11.glPushMatrix();
         //GL11.glDisable(GL11.GL_LIGHTING);
 
-        if (type == ItemRenderType.INVENTORY) {
-            GL11.glRotatef(180F, 0F, 1F, 0F);
-            //GL11.glRotatef(25F, 1F, 1F, 1F);
-        } else if (type == ItemRenderType.EQUIPPED_FIRST_PERSON) {
+        if (type == ItemRenderType.EQUIPPED_FIRST_PERSON) {
             GL11.glTranslatef(0F, 1.5f, 0.5f);
             GL11.glScalef(1.5f, 1.5f, 1.5f);
-            GL11.glRotatef(90F, 0F, 1F, 0F);
+            GL11.glRotatef(270F, 0F, 1F, 0F);
         } else if (type == ItemRenderType.EQUIPPED) {
             GL11.glTranslatef(0F, 1F, 0F);
             GL11.glScalef(1.5f, 1.5f, 1.5f);
-            GL11.glRotatef(180F, 0F, 1F, 0F);
         } else if (type == ItemRenderType.ENTITY) {
+            GL11.glTranslatef(0F, 1F, 0F);
             GL11.glScaled(1.5, 1.5, 1.5);
         }
 

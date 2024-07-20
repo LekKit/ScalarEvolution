@@ -14,14 +14,13 @@ import org.lwjgl.opengl.GL11;
 public class TileModelRenderer extends TileEntitySpecialRenderer {
     private ResourceLocation texture;
     private WavefrontObject model;
-    private boolean fullScale;
+    private boolean fatModel;
 
-    public TileModelRenderer(String modelName, boolean scale) {
+    public TileModelRenderer(String modelName, boolean fatModel) {
         ResourceLocation resModel = new ResourceLocation(ScalarEvolution.MODID, "models/" + modelName + ".obj");
-        texture = new ResourceLocation(ScalarEvolution.MODID, "textures/blocks/" + modelName + ".png");
-        model = (WavefrontObject)AdvancedModelLoader.loadModel(resModel);
-        fullScale = scale;
-        if (ScalarEvolution.config.fatModels) fullScale = true;
+        this.texture = new ResourceLocation(ScalarEvolution.MODID, "textures/blocks/" + modelName + ".png");
+        this.model = (WavefrontObject)AdvancedModelLoader.loadModel(resModel);
+        this.fatModel = ScalarEvolution.config.fatModels ? true : fatModel;
     }
 
     public void renderDecorations(TileEntity tileEntity, double x, double y, double z, float f) {
@@ -30,7 +29,7 @@ public class TileModelRenderer extends TileEntitySpecialRenderer {
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float f) {
         GL11.glPushMatrix();
-        if (fullScale) {
+        if (fatModel) {
             int direction = ((tileEntity.getBlockMetadata() + 2) / 4) % 4;
             GL11.glTranslated(x + 0.5, y + 0.5, z + 0.5);
             GL11.glRotatef(direction * 90F, 0F, 1F, 0F);

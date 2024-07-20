@@ -23,10 +23,10 @@ public class TileTinkerpadRenderer extends TileModelRenderer {
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();
         tessellator.setColorOpaque_F(1.0f, 1.0f, 1.0f);
-        tessellator.addVertexWithUV( 0.4375,   -0.3125,  0.4374,  0.0, 1.0); // Bottom-left
-        tessellator.addVertexWithUV(-0.4375,   -0.3125,  0.4374,  1.0, 1.0); // Bottom-right
-        tessellator.addVertexWithUV(-0.4375,    0.4375,  0.4374,  1.0, 0.0); // Top-right
-        tessellator.addVertexWithUV( 0.4375,    0.4375,  0.4374,  0.0, 0.0); // Top-left
+        tessellator.addVertexWithUV(-0.4375,   -0.3125,  -0.4374,  0.0, 1.0); // Bottom-left
+        tessellator.addVertexWithUV( 0.4375,   -0.3125,  -0.4374,  1.0, 1.0); // Bottom-right
+        tessellator.addVertexWithUV( 0.4375,    0.4375,  -0.4374,  1.0, 0.0); // Top-right
+        tessellator.addVertexWithUV(-0.4375,    0.4375,  -0.4374,  0.0, 0.0); // Top-left
         tessellator.draw();
         GL11.glEnable(GL11.GL_LIGHTING);
     }

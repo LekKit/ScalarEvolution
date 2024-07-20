@@ -47,7 +47,10 @@ public abstract class BlockDirectionalModel extends BlockContainer {
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack is) {
         // Calculate 16-direction value of block rotation
-        int dir = ((int)Math.floor(((360F - entity.rotationYaw) / 22.5f) + 0.5f)) & 15;
+        int dir = ((int)Math.round((360 - entity.rotationYaw) / 22.5f)) & 15;
+
+        // Rotate opposite from player
+        dir ^= 8;
 
         world.setBlockMetadataWithNotify(x, y, z, dir, 2);
     }

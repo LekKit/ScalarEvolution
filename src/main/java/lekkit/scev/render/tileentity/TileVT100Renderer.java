@@ -33,10 +33,10 @@ public class TileVT100Renderer extends TileModelRenderer {
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();
         tessellator.setColorOpaque_F(1.0f, 1.0f, 1.0f);
-        tessellator.addVertexWithUV( 0.375,    -0.25,   -0.126,  0.0, 1.0); // Bottom-left
-        tessellator.addVertexWithUV(-0.1875,   -0.25,   -0.126,  1.0, 1.0); // Bottom-right
-        tessellator.addVertexWithUV(-0.1875,    0.1875, -0.126,  1.0, 0.0); // Top-right
-        tessellator.addVertexWithUV( 0.375,     0.1875, -0.126,  0.0, 0.0); // Top-left
+        tessellator.addVertexWithUV(-0.375,    -0.25,   0.126,  0.0, 1.0); // Bottom-left
+        tessellator.addVertexWithUV( 0.1875,   -0.25,   0.126,  1.0, 1.0); // Bottom-right
+        tessellator.addVertexWithUV( 0.1875,    0.1875, 0.126,  1.0, 0.0); // Top-right
+        tessellator.addVertexWithUV(-0.375,     0.1875, 0.126,  0.0, 0.0); // Top-left
         tessellator.draw();
         GL11.glEnable(GL11.GL_LIGHTING);
     }
