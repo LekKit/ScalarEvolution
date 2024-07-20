@@ -17,9 +17,15 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
 
 public abstract class BlockDirectionalModel extends BlockContainer {
+    protected int renderID = -1;
+
     public BlockDirectionalModel() {
         super(Material.iron);
         setHardness(2.5f);
+    }
+
+    public void setRenderId(int renderID) {
+        this.renderID = renderID;
     }
 
     @Override
@@ -35,7 +41,7 @@ public abstract class BlockDirectionalModel extends BlockContainer {
     @SideOnly(Side.CLIENT)
     @Override
     public int getRenderType() {
-        return -1;
+        return renderID;
     }
 
     @Override
@@ -57,7 +63,6 @@ public abstract class BlockDirectionalModel extends BlockContainer {
 
         setBlockBoundsBasedOnDirection(direction);
     }
-
 
     @Override
     public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB aabb, List list, Entity entity) {
