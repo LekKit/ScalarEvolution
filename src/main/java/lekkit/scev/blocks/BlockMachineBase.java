@@ -2,7 +2,6 @@ package lekkit.scev.blocks;
 
 import java.util.ArrayList;
 
-import lekkit.scev.main.ScalarEvolution;
 import lekkit.scev.tileentity.TileEntityBase;
 
 import net.minecraft.world.IBlockAccess;
@@ -14,47 +13,13 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class BlockMachineBase extends BlockDirectionalModel {
-
-    /*
-     * Lazy ass code for prototyping
-     */
-
-    protected final Class<? extends TileEntity> teClass;
-    protected final int guiId;
-
+public class BlockMachineBase extends BlockTileBase {
     public BlockMachineBase(Class<? extends TileEntity> teClass, int guiId) {
-        this.teClass = teClass;
-        this.guiId = guiId;
+        super(teClass, guiId);
     }
 
     public BlockMachineBase() {
-        this.teClass = null;
-        this.guiId = -1;
-    }
-
-    @Override
-    public TileEntity createNewTileEntity(World world, int par2) {
-        if (this.teClass != null) {
-            try {
-                return this.teClass.newInstance();
-            } catch (Throwable e) {
-                // Well fuck
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float clickX, float clickY, float clickZ) {
-        if (this.guiId != -1) {
-            TileEntity te = world.getTileEntity(x, y, z);
-            if (te != null && !player.isSneaking() && !world.isRemote) {
-                player.openGui(ScalarEvolution.instance, this.guiId, world, x, y, z);
-                return true;
-            }
-        }
-        return false;
+        super();
     }
 
     /*
