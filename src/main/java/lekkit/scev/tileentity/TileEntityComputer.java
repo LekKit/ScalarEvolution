@@ -155,9 +155,27 @@ public class TileEntityComputer extends TileEntityBaseInventory {
     public void updateEntity() {
         super.updateEntity();
 
-        if (isUnloaded() && runningOnServer()) {
-            // Resume the unloaded powered machine
-            resume();
+        if (runningOnServer()) {
+            MachineState state = MachineManager.getMachineState(getMachineUUID());
+
+            if (isUnloaded()) {
+                // Resume the unloaded powered machine
+                resume();
+            }
+
+            if (state != null && state.getGPIO() != null) {
+                // Update redstone output
+                outRedstoneSignals(state.getGPIO().read_pins());
+            }
+        }
+    }
+
+    // Handle redstone input
+    @Override
+    public void inRedstoneSignals(int signals) {
+        MachineState state = MachineManager.getMachineState(getMachineUUID());
+        if (state != null && state.getGPIO() != null) {
+            state.getGPIO().write_pins(signals);
         }
     }
 }

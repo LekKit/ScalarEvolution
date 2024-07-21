@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import lekkit.scev.main.ScalarEvolution;
 import lekkit.scev.tileentity.TileEntityBase;
 
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.EntityLivingBase;
@@ -114,11 +116,68 @@ public class BlockMachineBase extends BlockDirectionalModel {
     }
 
     /*
-     * Connect to redstone wires
+     * Redstone interaction
      */
 
     @Override
     public boolean canProvidePower() {
         return true;
+    }
+
+    @Override
+    public void onBlockAdded(World world, int x, int y, int z) {
+        checkRedstoneSides(world, x, y, z);
+    }
+
+    @Override
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbor) {
+        checkRedstoneSides(world, x, y, z);
+    }
+
+    /*
+     * Side:
+     *   0: DOWN
+     *   1: UP
+     *   2: NORTH
+     *   3: EAST
+     *   4: SOUTH
+     *   5: WEST
+     */
+
+    @Override
+    public int isProvidingStrongPower(IBlockAccess world, int x, int y, int z, int side) {
+        TileEntity te = world.getTileEntity(x, y, z);
+
+        if (te instanceof TileEntityBase) {
+            TileEntityBase teBase = (TileEntityBase)te;
+            return (teBase.getOutRedstoneSignals() >> side) & 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public int isProvidingWeakPower(IBlockAccess world, int x, int y, int z, int side) {
+        return isProvidingStrongPower(world, x, y, z, side);
+    }
+
+    protected boolean getPowerFrom(World world, int x, int y, int z, int side) {
+        return world.getIndirectPowerOutput(x, y, z, side);
+    }
+
+    public void checkRedstoneSides(World world, int x, int y, int z) {
+        TileEntity te = world.getTileEntity(x, y, z);
+
+        if (te instanceof TileEntityBase) {
+            TileEntityBase teBase = (TileEntityBase)te;
+            int signals = 0;
+            if (getPowerFrom(world, x, y - 1, z, 0)) signals |= 1;
+            if (getPowerFrom(world, x, y + 1, z, 1)) signals |= 2;
+            if (getPowerFrom(world, x, y, z - 1, 2)) signals |= 4;
+            if (getPowerFrom(world, x, y, z + 1, 3)) signals |= 8;
+            if (getPowerFrom(world, x - 1, y, z, 4)) signals |= 16;
+            if (getPowerFrom(world, x + 1, y, z, 5)) signals |= 32;
+
+            teBase.inRedstoneSignals(signals);
+        }
     }
 }
