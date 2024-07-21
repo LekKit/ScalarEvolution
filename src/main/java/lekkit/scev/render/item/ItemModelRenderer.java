@@ -27,7 +27,7 @@ public class ItemModelRenderer implements IItemRenderer {
         model = (WavefrontObject)AdvancedModelLoader.loadModel(resModel);
     }
 
-    public void renderDecorations(ItemRenderType type, ItemStack item, Object... data) {
+    public void renderDecorations(ItemRenderType type, ItemStack item) {
     }
 
     @Override
@@ -60,7 +60,7 @@ public class ItemModelRenderer implements IItemRenderer {
         FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
         model.renderAll();
 
-        renderDecorations(type, item, data);
+        renderDecorations(type, item);
 
         //GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glPopMatrix();
