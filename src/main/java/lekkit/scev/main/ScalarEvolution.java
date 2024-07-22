@@ -51,6 +51,7 @@ public class ScalarEvolution {
 
     public static final int GUI_COMPUTER_CASE_INV = 0;
     public static final int GUI_MOTHERBOARD_INV = 1;
+    public static final int GUI_DISPLAY = 2;
 
     public static ModConfig config;
 
@@ -120,7 +121,7 @@ public class ScalarEvolution {
         vt100 = registerTile("vt100", new BlockVT100(), TileEntityVT100.class);
         workstation = registerTile("workstation", new BlockWorkstation(), TileEntityWorkstation.class);
         powermark = registerTile("powermark", new BlockPowermark(), TileEntityPowermark.class);
-        tinkerpad = registerTile("tinkerpad", new BlockTinkerpad(), TileEntityTinkerpad.class);
+        tinkerpad = registerTile("tinkerpad", new BlockTinkerpad(), ItemTinkerpad.class, TileEntityTinkerpad.class);
         crt_monitor = registerTile("crt_monitor", new BlockCRT(), TileEntityCRT.class);
         keyboard = registerTile("keyboard", new BlockKeyboard(), TileEntityKeyboard.class);
         keyboard_mouse = registerTile("keyboard_mouse", new BlockKeyboardMouse(), TileEntityKeyboardMouse.class);
