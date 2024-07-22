@@ -119,8 +119,8 @@ public class ScalarEvolution {
         config.load(event);
 
         vt100 = registerTile("vt100", new BlockVT100(), TileEntityVT100.class);
-        workstation = registerTile("workstation", new BlockWorkstation(), TileEntityWorkstation.class);
-        powermark = registerTile("powermark", new BlockPowermark(), TileEntityPowermark.class);
+        workstation = registerTile("workstation", new BlockWorkstation(), ItemBlockNonStackable.class, TileEntityWorkstation.class);
+        powermark = registerTile("powermark", new BlockPowermark(), ItemBlockNonStackable.class, TileEntityPowermark.class);
         tinkerpad = registerTile("tinkerpad", new BlockTinkerpad(), ItemTinkerpad.class, TileEntityTinkerpad.class);
         crt_monitor = registerTile("crt_monitor", new BlockCRT(), TileEntityCRT.class);
         keyboard = registerTile("keyboard", new BlockKeyboard(), TileEntityKeyboard.class);

@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class ItemTinkerpad extends ItemBlockBase {
+public class ItemTinkerpad extends ItemBlockNonStackable {
     public ItemTinkerpad(Block block) {
         super(block);
     }
