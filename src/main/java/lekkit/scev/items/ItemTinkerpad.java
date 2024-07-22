@@ -16,7 +16,7 @@ public class ItemTinkerpad extends ItemBlockNonStackable {
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
         if (!player.isSneaking()) {
             if (!world.isRemote) {
-                player.openGui(ScalarEvolution.instance, ScalarEvolution.GUI_DISPLAY, world, x, y, z);
+                player.openGui(ScalarEvolution.instance, ScalarEvolution.GUI_DISPLAY_ITEM, world, x, y, z);
             }
             return true;
         }

@@ -14,6 +14,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class BlockMachineBase extends BlockTileBase {
+    public BlockMachineBase(Class<? extends TileEntity> teClass, int guiId, int shiftGuiId) {
+        super(teClass, guiId, shiftGuiId);
+    }
+
     public BlockMachineBase(Class<? extends TileEntity> teClass, int guiId) {
         super(teClass, guiId);
     }

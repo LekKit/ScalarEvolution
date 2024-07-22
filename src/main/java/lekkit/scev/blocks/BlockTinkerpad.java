@@ -5,6 +5,6 @@ import lekkit.scev.tileentity.TileEntityTinkerpad;
 
 public class BlockTinkerpad extends BlockMachineBase {
     public BlockTinkerpad() {
-        super(TileEntityTinkerpad.class, ScalarEvolution.GUI_COMPUTER_CASE_INV);
+        super(TileEntityTinkerpad.class, ScalarEvolution.GUI_DISPLAY_TILE, ScalarEvolution.GUI_COMPUTER_CASE_INV);
     }
 }
