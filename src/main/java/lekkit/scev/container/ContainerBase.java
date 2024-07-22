@@ -20,16 +20,18 @@ public class ContainerBase extends Container {
         // More stupid magic numbers sorta resembling ContainerChest
         int yOffset = fatGui ? 56 : 0;
 
-        // Player inventory
-        for (int i = 0; i < 3; ++i) {
-            for (int j = 0; j < 9; ++j) {
-                this.addSlotToContainer(new Slot(player.inventory, i * 9 + j + 9, 8 + j * 18, yOffset + 84 + i * 18));
+        if (player != null) {
+            // Player inventory
+            for (int i = 0; i < 3; ++i) {
+                for (int j = 0; j < 9; ++j) {
+                    this.addSlotToContainer(new Slot(player.inventory, i * 9 + j + 9, 8 + j * 18, yOffset + 84 + i * 18));
+                }
             }
-        }
 
-        // Player action bar
-        for (int i = 0; i < 9; ++i) {
-            this.addSlotToContainer(new Slot(player.inventory, i, 8 + i * 18, yOffset + 142));
+            // Player action bar
+            for (int i = 0; i < 9; ++i) {
+                this.addSlotToContainer(new Slot(player.inventory, i, 8 + i * 18, yOffset + 142));
+            }
         }
 
         this.player = player;
@@ -45,6 +47,10 @@ public class ContainerBase extends Container {
         this(player, null, false);
     }
 
+    public ContainerBase() {
+        this(null, null, false);
+    }
+
     public int customSlotsSize() {
         return inventorySlots.size() - INV_SIZE;
     }
@@ -57,7 +63,10 @@ public class ContainerBase extends Container {
     }
 
     public IInventory getPlayerInventory() {
-        return player.inventory;
+        if (player != null) {
+            return player.inventory;
+        }
+        return null;
     }
 
     public IInventory getContainerInventory() {

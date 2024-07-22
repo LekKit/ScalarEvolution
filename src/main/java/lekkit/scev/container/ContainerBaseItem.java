@@ -5,12 +5,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 public class ContainerBaseItem extends ContainerBase {
-    public ContainerBaseItem(EntityPlayer player, IInventory inventory) {
-        super(player, inventory);
-    }
-
     public ContainerBaseItem(EntityPlayer player, IInventory inventory, boolean fatGui) {
         super(player, inventory, fatGui);
+    }
+
+    public ContainerBaseItem(EntityPlayer player, IInventory inventory) {
+        super(player, inventory);
     }
 
     @Override
