@@ -14,31 +14,28 @@ public class CommonProxy implements IGuiHandler {
 
     @Override
     public Object getServerGuiElement(int guiId, EntityPlayer player, World world, int x, int y, int z) {
-        if (guiId == ScalarEvolution.GUI_WORKSTATION_INV) {
-            TileEntityWorkstation te = (TileEntityWorkstation)world.getTileEntity(x, y, z);
-
-            if (te != null) {
-                return new ContainerComputerCase(player, te);
+        try {
+            switch (guiId) {
+                case ScalarEvolution.GUI_COMPUTER_CASE_INV:
+                    return new ContainerComputerCase(player, (TileEntityComputerCase)world.getTileEntity(x, y, z));
+                case ScalarEvolution.GUI_MOTHERBOARD_INV:
+                    return new ContainerMotherboard(player, new InventoryMotherboard(player.getHeldItem()));
             }
-        }
-        if (guiId == ScalarEvolution.GUI_MOTHERBOARD_INV) {
-            return new ContainerMotherboard(player, new InventoryMotherboard(player.getHeldItem()));
-        }
+        } catch (Throwable e) {}
         return null;
     }
 
     @Override
     public Object getClientGuiElement(int guiId, EntityPlayer player, World world, int x, int y, int z) {
-        if (guiId == ScalarEvolution.GUI_WORKSTATION_INV) {
-            TileEntityWorkstation te = (TileEntityWorkstation)world.getTileEntity(x, y, z);
-
-            if (te != null) {
-                return new GuiComputerCase(new ContainerComputerCase(player, te));
+        try {
+            Object serverElement = getServerGuiElement(guiId, player, world, x, y, z);
+            switch (guiId) {
+                case ScalarEvolution.GUI_COMPUTER_CASE_INV:
+                    return new GuiComputerCase((ContainerComputerCase)serverElement);
+                case ScalarEvolution.GUI_MOTHERBOARD_INV:
+                    return new GuiMotherboard((ContainerMotherboard)serverElement);
             }
-        }
-        if (guiId == ScalarEvolution.GUI_MOTHERBOARD_INV) {
-            return new GuiMotherboard(new ContainerMotherboard(player, new InventoryMotherboard(player.getHeldItem())));
-        }
+        } catch (Throwable e) {}
         return null;
     }
 }

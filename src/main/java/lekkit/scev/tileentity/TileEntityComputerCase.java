@@ -13,11 +13,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class TileEntityComputerCase extends TileEntityComputer {
-    protected static final int computerCaseSize = 1;
+    protected final int maxMotherboardLevel;
+    protected final int computerCaseSize;
     protected InventoryMotherboard invMotherboard = null;
 
-    public TileEntityComputerCase() {
-        super(computerCaseSize);
+    public TileEntityComputerCase(int maxMotherboardLevel, int extensionSlots) {
+        super(extensionSlots + 1);
+        this.maxMotherboardLevel = maxMotherboardLevel;
+        this.computerCaseSize = extensionSlots + 1;
     }
 
     /*
@@ -138,6 +141,10 @@ public class TileEntityComputerCase extends TileEntityComputer {
         return computerCaseSize;
     }
 
+    public int getMaxMotherboardLevel() {
+        return maxMotherboardLevel;
+    }
+
     @Override
     public String getInventoryName() {
         return "container.scev.computer_case";
@@ -146,7 +153,12 @@ public class TileEntityComputerCase extends TileEntityComputer {
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
         if (slot < computerCaseSize) {
-            return stack.getItem() instanceof ItemMotherboard;
+            if (slot == 0) {
+                if (stack.getItem() instanceof ItemMotherboard) {
+                    ItemMotherboard item = (ItemMotherboard)stack.getItem();
+                    return item.getMotherboardLevel() <= getMaxMotherboardLevel();
+                }
+            }
         } else if (invMotherboard != null) {
             return invMotherboard.isItemValidForSlot(slot - computerCaseSize, stack);
         }

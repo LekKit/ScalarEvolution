@@ -49,7 +49,7 @@ public class ScalarEvolution {
     public static final String NAME = "Scalar Evolution";
     public static final String VERSION = "@VERSION@";
 
-    public static final int GUI_WORKSTATION_INV = 0;
+    public static final int GUI_COMPUTER_CASE_INV = 0;
     public static final int GUI_MOTHERBOARD_INV = 1;
 
     public static ModConfig config;
