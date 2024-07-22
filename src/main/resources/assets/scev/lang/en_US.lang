@@ -8,6 +8,7 @@ text.scev.capacity=Capacity
 text.scev.ram_slots=Memory slots
 text.scev.pci_slots=PCI Expansion slots
 text.scev.m2_slots=M.2 (NGFF) slots
+text.scev.installed_components=Installed components
 
 item.scev.epoxy.name=Epoxy Solution
 item.scev.epoxy.lore0=Versatile adhesive
@@ -67,11 +68,11 @@ item.scev.ram_sodimm2.name=Memory Stick
 item.scev.ram_sodimm3.name=§eMemory Stick
 item.scev.ram_sodimm4.name=§bMemory Stick
 
-item.scev.rtl8169.name=RailTech RTL8169 Network Card
+item.scev.rtl8169.name=RailTek RTL8169 Network Card
 item.scev.rtl8169.lore0=Connects to the §eInternet
 item.scev.rtl8169.lore1=Be sure to secure your machine!
 
-item.scev.vga_card.name=Videoadapter Card
+item.scev.vga_card.name=§eVideoadapter Card
 item.scev.vga_card.lore0=Provides a framebuffer §eVGA output
 
 item.scev.gpio_card.name=GPIO Redstone Card
