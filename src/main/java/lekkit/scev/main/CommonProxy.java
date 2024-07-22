@@ -21,7 +21,9 @@ public class CommonProxy implements IGuiHandler {
                 case ScalarEvolution.GUI_MOTHERBOARD_INV:
                     return new ContainerMotherboard(player, new InventoryMotherboard(player.getHeldItem()));
             }
-        } catch (Throwable e) {}
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -35,7 +37,9 @@ public class CommonProxy implements IGuiHandler {
                 case ScalarEvolution.GUI_MOTHERBOARD_INV:
                     return new GuiMotherboard((ContainerMotherboard)serverElement);
             }
-        } catch (Throwable e) {}
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }
