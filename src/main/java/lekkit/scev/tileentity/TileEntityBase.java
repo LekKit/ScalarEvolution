@@ -74,5 +74,13 @@ public class TileEntityBase extends TileEntity {
     public int getOutRedstoneSignals() {
         return redstoneSignals;
     }
+
+    /*
+     * Util
+     */
+
+    public boolean isValid() {
+        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this;
+    }
 }
 
