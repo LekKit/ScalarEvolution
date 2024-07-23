@@ -107,7 +107,7 @@ public class InventoryItem implements IInventory {
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-        return true;
+        return entityplayer.getHeldItem() == item_stack;
     }
 
     @Override
