@@ -11,8 +11,8 @@ import net.minecraft.entity.player.EntityPlayer;
 public class ItemBase extends Item {
     LoreUtil lore = new LoreUtil();
 
-    public void addLore(String text, String post) {
-        lore.addLore(text, post);
+    public void addLore(String text) {
+        lore.addLore(text);
     }
 
     @Override

@@ -13,9 +13,9 @@ public class ItemMotherboard extends ItemNonStackable {
     public ItemMotherboard(int level) {
         this.level = level;
 
-        addLore("text.scev.ram_slots", ": §e" + getRAMSlots());
-        addLore("text.scev.pci_slots", ": §e" + getPCISlots());
-        addLore("text.scev.m2_slots", ": §e" + getM2Slots());
+        addLore("text.scev.ram_slots: §e" + getRAMSlots());
+        addLore("text.scev.pci_slots: §e" + getPCISlots());
+        addLore("text.scev.m2_slots: §e" + getM2Slots());
     }
 
     public int getMotherboardLevel() {

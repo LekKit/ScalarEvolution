@@ -3,28 +3,20 @@ package lekkit.scev.items.util;
 import java.util.List;
 import java.util.Vector;
 
+import lekkit.scev.gui.util.LocaleUtil;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.StatCollector;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
 
 public class LoreUtil {
-    private class StrPair {
-        StrPair(String text, String post) {
-            key = text;
-            val = post;
-        }
-        public String key;
-        public String val;
-    }
+    private Vector<String> customLore = new Vector<String>();
 
-    private Vector<StrPair> customLore = new Vector<StrPair>();
-
-    public void addLore(String text, String post) {
-        customLore.add(new StrPair(text, post));
+    public void addLore(String text) {
+        customLore.add(text);
     }
 
     public void provideLore(ItemStack stack, EntityPlayer player, List<String> list) {
@@ -32,8 +24,8 @@ public class LoreUtil {
         list.add("");
 
         for (int i=0; i<10; ++i) {
-            if (StatCollector.canTranslate(stack.getUnlocalizedName() + ".lore" + i)) {
-                list.add(StatCollector.translateToLocal(stack.getUnlocalizedName() + ".lore" + i));
+            if (LocaleUtil.canTranslate(stack.getUnlocalizedName() + ".lore" + i)) {
+                list.add(LocaleUtil.translate(stack.getUnlocalizedName() + ".lore" + i));
                 hasLore = true;
             } else {
                 break;
@@ -47,15 +39,15 @@ public class LoreUtil {
 
     public void provideInfo(ItemStack stack, EntityPlayer player, List<String> list) {
         if (customLore.size() > 0) {
-            for (StrPair pair : customLore) {
-                list.add(StatCollector.translateToLocal(pair.key) + pair.val);
+            for (String lore : customLore) {
+                list.add(LocaleUtil.translateText(lore));
             }
             list.add("");
         }
 
         NBTTagList items = getItemsTag(stack);
         if (items != null && items.tagCount() != 0) {
-            list.add(StatCollector.translateToLocal("text.scev.installed_components") + ":");
+            list.add(LocaleUtil.translate("text.scev.installed_components") + ":");
 
             enumerateItems(items, list);
 

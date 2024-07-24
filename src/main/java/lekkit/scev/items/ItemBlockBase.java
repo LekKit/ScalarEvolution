@@ -16,8 +16,8 @@ public class ItemBlockBase extends ItemBlock {
         super(block);
     }
 
-    public void addLore(String text, String post) {
-        lore.addLore(text, post);
+    public void addLore(String text) {
+        lore.addLore(text);
     }
 
     @Override

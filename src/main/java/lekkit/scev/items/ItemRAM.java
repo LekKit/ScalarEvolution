@@ -6,7 +6,7 @@ public class ItemRAM extends ItemBase {
     public ItemRAM(int level) {
         this.level = level;
 
-        addLore("text.scev.capacity", ": §e" + getRamMegs() + " MiB");
+        addLore("text.scev.capacity: §e" + getRamMegs() + " MiB");
     }
 
     public int getRamMegs() {
