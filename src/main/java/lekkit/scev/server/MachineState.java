@@ -42,6 +42,7 @@ public class MachineState {
 
             keyboard = new HIDKeyboard(machine);
             mouse = new HIDMouse(machine);
+            mouse.resolution(640, 480);
         }
 
         return machine.isValid();
