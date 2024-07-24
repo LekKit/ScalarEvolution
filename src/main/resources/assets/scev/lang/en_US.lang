@@ -9,6 +9,8 @@ text.scev.ram_slots=Memory slots
 text.scev.pci_slots=PCI Expansion slots
 text.scev.m2_slots=M.2 (NGFF) slots
 text.scev.installed_components=Installed components
+text.scev.send_esc_hint=Shift+Esc: Send Esc
+text.scev.lock_mouse_hint=Ctrl+Alt+F: Grab cursor
 
 item.scev.epoxy.name=Epoxy Solution
 item.scev.epoxy.lore0=Versatile adhesive

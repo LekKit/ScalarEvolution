@@ -10,15 +10,26 @@ public class GuiDisplayTile extends GuiDisplayBase {
     }
 
     @Override
-    public void initUserInterface() {
-        setGuiSize(640 + 32, 480 + 80);
+    public void mousePlace(int x, int y) {
+        System.out.println("place: " + x + ", " + y);
+    }
 
-        buttonList.add(new ButtonBase(1, getGuiPosX() + guiCoord(620), getGuiPosY() + guiCoord(532), "power_btn"));
-        buttonList.add(new ButtonBase(2, getGuiPosX() + guiCoord(560), getGuiPosY() + guiCoord(532), "reset_btn"));
+    @Override
+    public void mouseMove(int x, int y) {
+        System.out.println("move: " + x + ", " + y);
+    }
+
+    @Override
+    public void initUserInterface() {
+        setGuiSize(640 + 32, 480 + 32);
+
+        buttonList.add(new ButtonBase(1, guiCoordX(620), guiCoordY(520), "power_btn"));
+        buttonList.add(new ButtonBase(2, guiCoordX(540), guiCoordY(520), "reset_btn"));
     }
 
     @Override
     public void drawUserInterface() {
-        renderTexturedGuiRect(getGuiPosX(), getGuiPosY(), getGuiWidth(), getGuiHeight());
+        super.drawUserInterface();
+        //renderTexturedGuiRect(16 + 10, 16 + 10, 640 - 50, 480 - 50);
     }
 }
