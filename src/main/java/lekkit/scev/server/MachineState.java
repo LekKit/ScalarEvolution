@@ -20,6 +20,9 @@ public class MachineState {
 
     private boolean paused = false;
     private boolean unloaded = false;
+    private boolean persisting = true;
+
+    Object opaque = null;
 
     public MachineState(UUID machineUUID) {
         uuid = machineUUID;
@@ -48,13 +51,31 @@ public class MachineState {
         return uuid;
     }
 
+    public void setOpaque(Object opaque) {
+        this.opaque = opaque;
+    }
+
+    public Object getOpaque() {
+        return opaque;
+    }
+
+    public void setPersisting(boolean persisting) {
+        this.persisting = persisting;
+    }
+
+    public boolean isPersisting() {
+        return persisting;
+    }
+
     public boolean loadSnapshot() {
         // TODO: Load machine snapshot by UUID, remove it from disk
         return false;
     }
 
     public void saveSnapshot() {
-        // TODO: Save machine snapshot by UUID
+        if (isPersisting()) {
+            // TODO: Save machine snapshot by UUID
+        }
     }
 
     public boolean attachFirmwareFlash(UUID disk_uuid, long disk_mb, String origin) {
