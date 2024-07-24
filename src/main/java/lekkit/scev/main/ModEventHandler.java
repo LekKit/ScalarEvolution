@@ -8,6 +8,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import net.minecraftforge.client.event.GuiOpenEvent;
 
+import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
+import net.minecraftforge.event.entity.item.ItemExpireEvent;
+
 import net.minecraft.client.Minecraft;
 
 public class ModEventHandler {
@@ -35,5 +38,15 @@ public class ModEventHandler {
                 paused = false;
             }
         }
+    }
+
+    @SubscribeEvent
+    public void onPlayerDestroyItem(PlayerDestroyItemEvent event) {
+        System.out.println("Destroyed item " + event.original.getDisplayName());
+    }
+
+    @SubscribeEvent
+    public void onItemExpire(ItemExpireEvent event) {
+        System.out.println("Destroyed item " + event.entityItem.getEntityItem().getDisplayName());
     }
 }
