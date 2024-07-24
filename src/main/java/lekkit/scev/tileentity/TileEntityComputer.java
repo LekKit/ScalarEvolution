@@ -4,10 +4,11 @@ import java.util.UUID;
 
 import lekkit.scev.server.MachineManager;
 import lekkit.scev.server.MachineState;
+import lekkit.scev.server.IMachineHandle;
 
 import net.minecraft.nbt.NBTTagCompound;
 
-public class TileEntityComputer extends TileEntityBaseInventory {
+public class TileEntityComputer extends TileEntityBaseInventory implements IMachineHandle {
     protected UUID machineUUID;
     protected boolean running = false;
     protected boolean unloaded = false;

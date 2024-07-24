@@ -1,10 +1,15 @@
 package lekkit.scev.gui;
 
-import lekkit.scev.container.ContainerTileDummy;
+import lekkit.scev.container.ContainerDisplayDummy;
+import lekkit.scev.client.DisplayState;
+import lekkit.scev.client.DisplayManager;
 
-public class GuiDisplayTile extends GuiDisplayBase {
-    public GuiDisplayTile(ContainerTileDummy container) {
+public class GuiDisplay extends GuiDisplayBase {
+    public ContainerDisplayDummy cont;
+
+    public GuiDisplay(ContainerDisplayDummy container) {
         super(container);
+        cont = container;
 
         setBackgroundTexture("display");
     }
@@ -29,7 +34,12 @@ public class GuiDisplayTile extends GuiDisplayBase {
 
     @Override
     public void drawUserInterface() {
+        DisplayState display = DisplayManager.getDisplayState(cont.getMachineUUID());
         super.drawUserInterface();
-        //renderTexturedGuiRect(16 + 10, 16 + 10, 640 - 50, 480 - 50);
+
+        if (display != null) {
+            display.bindTexture();
+            renderTexturedGuiRect(16, 16, 640, 480);
+        }
     }
 }

@@ -5,6 +5,8 @@ import lekkit.scev.gui.*;
 import lekkit.scev.container.*;
 import lekkit.scev.inventory.*;
 
+import lekkit.scev.server.IMachineHandle;
+
 import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -21,7 +23,7 @@ public class CommonProxy implements IGuiHandler {
                 case ScalarEvolution.GUI_MOTHERBOARD_INV:
                     return new ContainerMotherboard(player, new InventoryMotherboard(player.getHeldItem()));
                 case ScalarEvolution.GUI_DISPLAY_TILE:
-                    return new ContainerTileDummy(player, (TileEntityBase)world.getTileEntity(x, y, z));
+                    return new ContainerDisplayDummy(player, (IMachineHandle)world.getTileEntity(x, y, z));
             }
         } catch (Throwable e) {
             e.printStackTrace();
@@ -39,7 +41,7 @@ public class CommonProxy implements IGuiHandler {
                 case ScalarEvolution.GUI_MOTHERBOARD_INV:
                     return new GuiMotherboard((ContainerMotherboard)serverElement);
                 case ScalarEvolution.GUI_DISPLAY_TILE:
-                    return new GuiDisplayTile((ContainerTileDummy)serverElement);
+                    return new GuiDisplay((ContainerDisplayDummy)serverElement);
             }
         } catch (Throwable e) {
             e.printStackTrace();
