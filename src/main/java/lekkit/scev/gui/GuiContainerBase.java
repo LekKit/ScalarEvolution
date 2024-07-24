@@ -30,7 +30,11 @@ public class GuiContainerBase extends GuiContainer {
     }
 
     public void setBackgroundTexture(String textureName) {
-        bgTexture = new ResourceLocation(ScalarEvolution.MODID, "textures/gui/" + textureName + ".png");
+        if (textureName != null) {
+            bgTexture = new ResourceLocation(ScalarEvolution.MODID, "textures/gui/" + textureName + ".png");
+        } else {
+            bgTexture = null;
+        }
     }
 
     public int getGuiPosX() {
