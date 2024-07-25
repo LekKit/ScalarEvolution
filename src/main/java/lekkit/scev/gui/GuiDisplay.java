@@ -5,8 +5,11 @@ import lekkit.scev.container.ContainerMachine;
 import lekkit.scev.client.DisplayState;
 import lekkit.scev.client.DisplayManager;
 
+import lekkit.scev.gui.util.KeyUtil;
+
 import lekkit.scev.packet.PacketDispatcher;
 import lekkit.scev.packet.server.MachineResetPacket;
+import lekkit.scev.packet.server.MachineInputPacket;
 
 public class GuiDisplay extends GuiDisplayBase {
     public ContainerMachine containerMachine;
@@ -18,14 +21,47 @@ public class GuiDisplay extends GuiDisplayBase {
         setBackgroundTexture("display");
     }
 
+    public void inputPacket(byte inputType, byte key) {
+        PacketDispatcher.sendToServer(new MachineInputPacket(inputType, key));
+    }
+
+    public void inputPacket(byte inputType, short x, short y) {
+        PacketDispatcher.sendToServer(new MachineInputPacket(inputType, x, y));
+    }
+
+    @Override
+    public void keyboardDown(int keycode) {
+        inputPacket(MachineInputPacket.INPUT_KEYBOARD_PRESS, KeyUtil.hidKeyFromLWJGL(keycode));
+    }
+
+    @Override
+    public void keyboardUp(int keycode) {
+        inputPacket(MachineInputPacket.INPUT_KEYBOARD_RELEASE, KeyUtil.hidKeyFromLWJGL(keycode));
+    }
+
+    @Override
+    public void mouseDown(int btn) {
+        inputPacket(MachineInputPacket.INPUT_MOUSE_PRESS, (byte)(1 << btn));
+    }
+
+    @Override
+    public void mouseUp(int btn) {
+        inputPacket(MachineInputPacket.INPUT_MOUSE_RELEASE, (byte)(1 << btn));
+    }
+
     @Override
     public void mousePlace(int x, int y) {
-        System.out.println("place: " + x + ", " + y);
+        inputPacket(MachineInputPacket.INPUT_MOUSE_PLACE, (short)x, (short)y);
     }
 
     @Override
     public void mouseMove(int x, int y) {
-        System.out.println("move: " + x + ", " + y);
+        inputPacket(MachineInputPacket.INPUT_MOUSE_MOVE, (short)x, (short)y);
+    }
+
+    @Override
+    public void mouseScroll(int scrollDelta) {
+        inputPacket(MachineInputPacket.INPUT_MOUSE_SCROLL, (byte)scrollDelta);
     }
 
     @Override

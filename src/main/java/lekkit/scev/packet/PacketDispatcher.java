@@ -22,6 +22,7 @@ public class PacketDispatcher {
     */
     public static final void registerPackets() {
         registerMessage(MachineResetPacket.Handler.class, MachineResetPacket.class, Side.SERVER);
+        registerMessage(MachineInputPacket.Handler.class, MachineInputPacket.class, Side.SERVER);
     }
 
     /**
