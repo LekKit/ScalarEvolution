@@ -29,7 +29,7 @@ public class MachineState {
     }
 
     public boolean create(long mem_mb, int smp, boolean rv64) {
-        RVVMNative.loadLib("/tmp/RVVM/release.linux.x86_64/librvvm.so");
+        RVVMNative.loadLib("/usr/lib/librvvm.so");
 
         machine = new RVVMMachine(mem_mb, smp, rv64);
         if (machine.isValid()) {
