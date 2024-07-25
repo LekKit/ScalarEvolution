@@ -51,8 +51,9 @@ public class ScalarEvolution {
 
     public static final int GUI_COMPUTER_CASE_INV = 0;
     public static final int GUI_MOTHERBOARD_INV = 1;
-    public static final int GUI_DISPLAY_TILE = 2;
-    public static final int GUI_DISPLAY_ITEM = 3;
+    public static final int GUI_LAPTOP_INV = 3;
+    public static final int GUI_DISPLAY_TILE = 4;
+    public static final int GUI_DISPLAY_ITEM = 5;
 
     public static ModConfig config;
 

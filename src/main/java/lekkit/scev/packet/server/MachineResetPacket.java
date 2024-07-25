@@ -2,7 +2,7 @@ package lekkit.scev.packet.server;
 
 import lekkit.scev.packet.AbstractServerMessageHandler;
 import lekkit.scev.container.ContainerBase;
-import lekkit.scev.tileentity.TileEntityComputer;
+import lekkit.scev.server.IMachineHandle;
 
 import io.netty.buffer.ByteBuf;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -30,19 +30,22 @@ public class MachineResetPacket implements IMessage {
     public static class Handler extends AbstractServerMessageHandler<MachineResetPacket> {
         @Override
         public IMessage handleServerMessage(EntityPlayer player, MachineResetPacket message, MessageContext ctx) {
-            if (player.openContainer instanceof ContainerBase) {
-                ContainerBase container = (ContainerBase)player.openContainer;
-                if (container.getContainerInventory() instanceof TileEntityComputer) {
-                    // Machine power/reset handling
-                    TileEntityComputer te = (TileEntityComputer)container.getContainerInventory();
+            try {
+                if (player.openContainer instanceof ContainerBase) {
+                    ContainerBase container = (ContainerBase)player.openContainer;
 
-                    if (message.reset) {
-                        te.reset();
-                    } else {
-                        te.power();
+                    if (container.getContainerInventory() instanceof IMachineHandle) {
+                        // Machine power/reset handling
+                        IMachineHandle handle = (IMachineHandle)container.getContainerInventory();
+
+                        if (message.reset) {
+                            handle.reset();
+                        } else {
+                            handle.power();
+                        }
                     }
                 }
-            }
+            } catch (Throwable e) {}
             return null;
         }
     }

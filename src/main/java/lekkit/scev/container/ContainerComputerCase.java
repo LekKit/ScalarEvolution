@@ -1,12 +1,12 @@
 package lekkit.scev.container;
 
-import lekkit.scev.tileentity.TileEntityComputerCase;
+import lekkit.scev.server.IMachineHandle;
 import lekkit.scev.inventory.SlotBase;
 
 import net.minecraft.entity.player.EntityPlayer;
 
 public class ContainerComputerCase extends ContainerBase {
-    public ContainerComputerCase(EntityPlayer player, TileEntityComputerCase inventory) {
+    public ContainerComputerCase(EntityPlayer player, IMachineHandle inventory) {
         super(player, inventory, true);
 
         int caseSlots = inventory.getComputerCaseSize();

@@ -8,9 +8,8 @@ import lekkit.scev.server.IMachineHandle;
 
 import net.minecraft.nbt.NBTTagCompound;
 
-public class TileEntityComputer extends TileEntityBaseInventory implements IMachineHandle {
+public abstract class TileEntityComputer extends TileEntityBaseInventory implements IMachineHandle {
     protected UUID machineUUID;
-    protected boolean running = false;
     protected boolean unloaded = false;
 
     public TileEntityComputer(int invSize) {
@@ -51,13 +50,11 @@ public class TileEntityComputer extends TileEntityBaseInventory implements IMach
 
         if (state != null) {
             state.getMachine().start();
-            running = true;
         }
     }
 
     public void powerOff() {
         MachineManager.destroyMachineState(getMachineUUID());
-        running = false;
     }
 
     public void unload() {
@@ -80,8 +77,12 @@ public class TileEntityComputer extends TileEntityBaseInventory implements IMach
         unloaded = false;
     }
 
-    public boolean isRunning() {
-        return running;
+    public boolean isPowered() {
+        MachineState state = MachineManager.getMachineState(getMachineUUID());
+        if (state != null) {
+            return state.getMachine().isPowered();
+        }
+        return false;
     }
 
     public boolean isUnloaded() {
@@ -89,7 +90,7 @@ public class TileEntityComputer extends TileEntityBaseInventory implements IMach
     }
 
     public void power() {
-        if (isRunning()) {
+        if (isPowered()) {
             powerOff();
         } else {
             powerOn();

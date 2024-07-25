@@ -1,8 +1,9 @@
 package lekkit.scev.gui;
 
 import lekkit.scev.main.ScalarEvolution;
+
+import lekkit.scev.server.IMachineHandle;
 import lekkit.scev.container.ContainerComputerCase;
-import lekkit.scev.tileentity.TileEntityComputerCase;
 import lekkit.scev.items.ItemMotherboard;
 import lekkit.scev.packet.PacketDispatcher;
 import lekkit.scev.packet.server.MachineResetPacket;
@@ -15,9 +16,9 @@ public class GuiComputerCase extends GuiContainerBase {
         setBackgroundTexture("computer_case_empty");
     }
 
-    public TileEntityComputerCase getComputerCase() {
+    public IMachineHandle getComputerCase() {
         ContainerComputerCase container = (ContainerComputerCase)getClientSideContainer();
-        return (TileEntityComputerCase)container.getContainerInventory();
+        return (IMachineHandle)container.getContainerInventory();
     }
 
     @Override

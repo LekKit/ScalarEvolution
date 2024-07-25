@@ -2,14 +2,14 @@ package lekkit.scev.container;
 
 import java.util.UUID;
 
-import lekkit.scev.server.IMachineHandle;
+import lekkit.scev.server.IDisplayHandle;
 
 import net.minecraft.entity.player.EntityPlayer;
 
 public class ContainerDisplayDummy extends ContainerBase {
-    protected IMachineHandle handle;
+    protected IDisplayHandle handle;
 
-    public ContainerDisplayDummy(EntityPlayer player, IMachineHandle handle) {
+    public ContainerDisplayDummy(EntityPlayer player, IDisplayHandle handle) {
         super(player);
         this.handle = handle;
     }
