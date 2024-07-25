@@ -2,31 +2,14 @@ package lekkit.scev.items;
 
 import java.util.UUID;
 
+import lekkit.scev.items.util.NBTUtil;
+
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
 public class ItemStorage extends ItemNonStackable {
     public UUID getStorageUUID(ItemStack stack) {
         if (stack.getItem() instanceof ItemStorage) {
-            UUID uuid = null;
-            try {
-                NBTTagCompound compound = stack.getTagCompound();
-                if (compound != null) {
-                    uuid = UUID.fromString(compound.getString("UUID"));
-                }
-            } catch (Throwable e) {}
-
-            if (uuid == null) {
-                NBTTagCompound compound = stack.getTagCompound();
-                if (compound == null) {
-                    compound = new NBTTagCompound();
-                    stack.setTagCompound(compound);
-                }
-                uuid = UUID.randomUUID();
-                compound.setString("UUID", uuid.toString());
-            }
-
-            return uuid;
+            return NBTUtil.getItemUUID(stack, true);
         }
 
         System.out.println("Not a storage item!");
