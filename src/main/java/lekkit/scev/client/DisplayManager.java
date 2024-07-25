@@ -35,14 +35,16 @@ public class DisplayManager {
             display = null;
         }
 
-        if (display == null) {
-            MachineState state = MachineManager.getMachineState(machineUUID);
-            if (state != null) {
-                // This is a singleplayer game, machine is directly accessible
-                display = new DisplayState(state);
-                displays.put(machineUUID, display);
+        try {
+            if (display == null) {
+                MachineState state = MachineManager.getMachineState(machineUUID);
+                if (state != null && state.getDisplay() != null) {
+                    // This is a singleplayer game, machine is directly accessible
+                    display = new DisplayState(state);
+                    displays.put(machineUUID, display);
+                }
             }
-        }
+        } catch (Throwable e) {}
 
         return display;
     }
