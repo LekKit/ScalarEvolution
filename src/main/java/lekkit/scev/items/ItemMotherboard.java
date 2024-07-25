@@ -2,11 +2,6 @@ package lekkit.scev.items;
 
 import lekkit.scev.main.ScalarEvolution;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-
 public class ItemMotherboard extends ItemNonStackable {
     private final int level;
 
