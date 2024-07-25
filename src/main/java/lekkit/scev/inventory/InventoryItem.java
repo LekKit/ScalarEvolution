@@ -35,7 +35,10 @@ public class InventoryItem implements IInventory {
 
     @Override
     public ItemStack getStackInSlot(int slot) {
-        return inventory[slot];
+        if (slot < inv_size) {
+            return inventory[slot];
+        }
+        return null;
     }
 
     @Override
@@ -127,13 +130,13 @@ public class InventoryItem implements IInventory {
     public void readFromNBT(NBTTagCompound compound) {
         NBTTagList items = compound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 
-        inventory = new ItemStack[getSizeInventory()];
+        inventory = new ItemStack[inv_size];
         for (int i = 0; i < items.tagCount(); ++i) {
             NBTTagCompound item = (NBTTagCompound) items.getCompoundTagAt(i);
             int slot = item.getInteger("Slot");
 
             // Just double-checking that the saved slot index is within our inventory array bounds
-            if (slot >= 0 && slot < getSizeInventory()) {
+            if (slot >= 0 && slot < inv_size) {
                 inventory[slot] = ItemStack.loadItemStackFromNBT(item);
             }
         }
@@ -143,7 +146,7 @@ public class InventoryItem implements IInventory {
         // Create a new NBT Tag List to store itemstacks as NBT Tags
         NBTTagList items = new NBTTagList();
 
-        for (int i = 0; i < getSizeInventory(); ++i) {
+        for (int i = 0; i < inv_size; ++i) {
             // Only write stacks that contain items
             if (getStackInSlot(i) != null) {
                 // Make a new NBT Tag Compound to write the itemstack and slot index to
