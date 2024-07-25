@@ -146,6 +146,8 @@ public class GuiDisplayBase extends GuiScreen {
 
     public void mouseUp(int button) {}
 
+    public void mouseScroll(int scrollDelta) {}
+
     public void keyboardDown(int lwjglKeycode) {}
 
     public void keyboardUp(int lwjglKeycode) {}
@@ -246,6 +248,13 @@ public class GuiDisplayBase extends GuiScreen {
                     mouseDown(btn);
                 } else {
                     mouseUp(btn);
+                }
+            }
+
+            if (Mouse.hasWheel()) {
+                int scrollDelta = Mouse.getDWheel();
+                if (scrollDelta != 0) {
+                    mouseScroll(scrollDelta);
                 }
             }
         }
