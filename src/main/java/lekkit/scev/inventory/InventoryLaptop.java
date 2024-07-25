@@ -28,6 +28,8 @@ public class InventoryLaptop extends InventoryItem implements IMachineHandle, ID
         this.maxMotherboardLevel = maxMotherboardLevel;
         this.computerCaseSize = extensionSlots + 1;
         this.machineUUID = NBTUtil.getItemUUID(stack, true);
+
+        updateInvMotherboard();
     }
 
     /*
@@ -278,11 +280,5 @@ public class InventoryLaptop extends InventoryItem implements IMachineHandle, ID
         if (stack != null && ServerUtil.runningOnServer()) {
             installComponent(stack);
         }
-    }
-
-    @Override
-    public void readFromNBT(NBTTagCompound compound) {
-        super.readFromNBT(compound);
-        updateInvMotherboard();
     }
 }
