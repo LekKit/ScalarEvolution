@@ -13,6 +13,8 @@ public class ItemMotherboard extends ItemNonStackable {
     public ItemMotherboard(int level) {
         this.level = level;
 
+        setGuiId(ScalarEvolution.GUI_MOTHERBOARD_INV);
+
         addLore("text.scev.ram_slots: §e" + getRAMSlots());
         addLore("text.scev.pci_slots: §e" + getPCISlots());
         addLore("text.scev.m2_slots: §e" + getM2Slots());
@@ -78,21 +80,6 @@ public class ItemMotherboard extends ItemNonStackable {
             case 13: return getMotherboardLevel() >= 3;
         }
         return false;
-    }
-
-    // Without this, inventory won't work (Go figure...)
-    @Override
-    public int getMaxItemUseDuration(ItemStack stack) {
-        return 1;
-    }
-
-    @Override
-    public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
-        if (!world.isRemote && !player.isSneaking()) {
-            player.openGui(ScalarEvolution.instance, ScalarEvolution.GUI_MOTHERBOARD_INV, world, 0, 0, 0);
-        }
-
-        return itemstack;
     }
 }
 
