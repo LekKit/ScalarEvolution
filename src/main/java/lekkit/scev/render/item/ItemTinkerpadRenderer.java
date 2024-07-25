@@ -1,7 +1,9 @@
 package lekkit.scev.render.item;
 
+import lekkit.scev.client.DisplayManager;
+import lekkit.scev.client.DisplayState;
 import lekkit.scev.render.util.DisplayRenderer;
-import lekkit.scev.gui.MachineGui;
+import lekkit.scev.items.util.NBTUtil;
 
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraft.item.ItemStack;
@@ -12,8 +14,13 @@ public class ItemTinkerpadRenderer extends ItemModelRenderer {
     }
 
     @Override
-    public void renderDecorations(ItemRenderType type, ItemStack item) {
-        int textureID = MachineGui.texID;
-        DisplayRenderer.renderDisplay(textureID, -0.4375, 0.4375, 0.4375, -0.3125, -0.4375);
+    public void renderDecorations(ItemRenderType type, ItemStack stack) {
+        try {
+            DisplayState display = DisplayManager.getDisplayState(NBTUtil.getItemUUID(stack));
+            if (display != null) {
+                display.bindTexture();
+                DisplayRenderer.renderOverlay(-0.4375, 0.4375, 0.4375, -0.3125, -0.4375);
+            }
+        } catch (Throwable e) {}
     }
 }
