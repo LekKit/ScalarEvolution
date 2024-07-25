@@ -37,7 +37,7 @@ public class StorageManager {
         } catch (Throwable e) {
             System.out.println("IO error!");
         }
-        return false;
+        return checkImage(image_uuid);
     }
 
     public static boolean copyImage(UUID image_uuid, String origin) {
@@ -52,7 +52,7 @@ public class StorageManager {
                 Files.copy(Paths.get(assetPath(origin)), Paths.get(imagePath(image_uuid)), StandardCopyOption.COPY_ATTRIBUTES);
             } catch (Throwable e) {}
         }
-        return false;
+        return checkImage(image_uuid);
     }
 
     public static boolean initImage(UUID image_uuid, long image_mb, String origin) {
