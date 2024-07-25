@@ -93,6 +93,7 @@ public class ItemBlockBase extends ItemBlock {
             if (!world.isRemote) {
                 player.openGui(ScalarEvolution.instance, guiId, world, x, y, z);
             }
+            return true;
         }
         return super.onItemUse(stack, player, world, x, y, z, side, hitX, hitY, hitZ);
     }
