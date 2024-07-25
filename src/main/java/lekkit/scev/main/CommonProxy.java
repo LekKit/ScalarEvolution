@@ -27,9 +27,9 @@ public class CommonProxy implements IGuiHandler {
                     // TODO
                     return new ContainerComputerCase(player, new InventoryLaptop(player.getHeldItem(), 3, 2));
                 case ScalarEvolution.GUI_DISPLAY_TILE:
-                    return new ContainerDisplayDummy(player, (IDisplayHandle)world.getTileEntity(x, y, z));
+                    return new ContainerMachine(player, (IDisplayHandle)world.getTileEntity(x, y, z));
                 case ScalarEvolution.GUI_DISPLAY_ITEM:
-                    return new ContainerDisplayDummy(player, new InventoryLaptop(player.getHeldItem(), 3, 2));
+                    return new ContainerMachine(player, new InventoryLaptop(player.getHeldItem(), 3, 2));
             }
         } catch (Throwable e) {
             e.printStackTrace();
@@ -49,9 +49,9 @@ public class CommonProxy implements IGuiHandler {
                 case ScalarEvolution.GUI_LAPTOP_INV:
                     return new GuiComputerCase((ContainerComputerCase)serverElement);
                 case ScalarEvolution.GUI_DISPLAY_TILE:
-                    return new GuiDisplay((ContainerDisplayDummy)serverElement);
+                    return new GuiDisplay((ContainerMachine)serverElement);
                 case ScalarEvolution.GUI_DISPLAY_ITEM:
-                    return new GuiDisplay((ContainerDisplayDummy)serverElement);
+                    return new GuiDisplay((ContainerMachine)serverElement);
             }
         } catch (Throwable e) {
             e.printStackTrace();

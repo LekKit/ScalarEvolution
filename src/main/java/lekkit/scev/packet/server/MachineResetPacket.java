@@ -1,7 +1,7 @@
 package lekkit.scev.packet.server;
 
 import lekkit.scev.packet.AbstractServerMessageHandler;
-import lekkit.scev.container.ContainerBase;
+import lekkit.scev.container.ContainerMachine;
 import lekkit.scev.server.IMachineHandle;
 
 import io.netty.buffer.ByteBuf;
@@ -31,17 +31,16 @@ public class MachineResetPacket implements IMessage {
         @Override
         public IMessage handleServerMessage(EntityPlayer player, MachineResetPacket message, MessageContext ctx) {
             try {
-                if (player.openContainer instanceof ContainerBase) {
-                    ContainerBase container = (ContainerBase)player.openContainer;
+                if (player.openContainer instanceof ContainerMachine) {
+                    ContainerMachine container = (ContainerMachine)player.openContainer;
 
-                    if (container.getContainerInventory() instanceof IMachineHandle) {
+                    if (container.getMachineHandle() instanceof IMachineHandle) {
                         // Machine power/reset handling
-                        IMachineHandle handle = (IMachineHandle)container.getContainerInventory();
 
                         if (message.reset) {
-                            handle.reset();
+                            container.getMachineHandle().reset();
                         } else {
-                            handle.power();
+                            container.getMachineHandle().power();
                         }
                     }
                 }

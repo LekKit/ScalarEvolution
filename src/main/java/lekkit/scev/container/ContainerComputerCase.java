@@ -5,7 +5,7 @@ import lekkit.scev.inventory.SlotBase;
 
 import net.minecraft.entity.player.EntityPlayer;
 
-public class ContainerComputerCase extends ContainerBase {
+public class ContainerComputerCase extends ContainerMachine {
     public ContainerComputerCase(EntityPlayer player, IMachineHandle inventory) {
         super(player, inventory, true);
 
