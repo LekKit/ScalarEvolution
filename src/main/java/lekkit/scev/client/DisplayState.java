@@ -9,12 +9,13 @@ import lekkit.rvvm.RVVMMachine;
 import org.lwjgl.opengl.GL11;
 
 public class DisplayState {
-    protected UUID uuid;
-    protected ByteBuffer buffer;
-    protected RVVMMachine singleplayerMachine;
+    protected final UUID uuid;
+    protected final ByteBuffer buffer;
+    protected final MachineState singleplayerMachine;
 
     protected final int width;
     protected final int height;
+
     protected int textureID = -1;
     protected boolean dirty = true;
 
@@ -29,8 +30,8 @@ public class DisplayState {
 
     public DisplayState(MachineState state) {
         this.uuid = state.getUUID();
-        this.singleplayerMachine = state.getMachine();
-        this.buffer = state.getDisplay().getBuffer();
+        this.singleplayerMachine = state;
+        this.buffer = null;
 
         this.width = state.getDisplay().getWidth();
         this.height = state.getDisplay().getHeight();
@@ -49,6 +50,9 @@ public class DisplayState {
     }
 
     public ByteBuffer getBuffer() {
+        if (singleplayerMachine != null && singleplayerMachine.getDisplay() != null) {
+            return singleplayerMachine.getDisplay().getBuffer();
+        }
         return buffer;
     }
 
