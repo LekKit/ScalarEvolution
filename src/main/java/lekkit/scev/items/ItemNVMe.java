@@ -3,7 +3,7 @@ package lekkit.scev.items;
 public class ItemNVMe extends ItemStorage {
     @Override
     public String getStorageOrigin() {
-        return "rootfs.ext2";
+        return "archriscv.img";
     }
 
     @Override

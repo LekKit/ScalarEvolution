@@ -33,6 +33,8 @@ public class MachineState {
 
         machine = new RVVMMachine(mem_mb, smp, rv64);
         if (machine.isValid()) {
+            machine.setOption(RVVMMachine.RVVM_OPT_HW_IMITATE, 1);
+
             new PLIC(machine);
             new PCIBus(machine);
             new I2CBus(machine);
