@@ -29,7 +29,7 @@ public class MachineState {
     }
 
     public boolean create(long mem_mb, int smp, boolean rv64) {
-        RVVMNative.loadLib("/usr/lib/librvvm.so");
+        RVVMNative.loadLib("/tmp/RVVM/release.linux.x86_64/librvvm.so");
 
         machine = new RVVMMachine(mem_mb, smp, rv64);
         if (machine.isValid()) {
@@ -127,18 +127,21 @@ public class MachineState {
     public void pullFirmwareFlash() {
         if (flash != null) {
             flash.remove();
+            flash = null;
         }
     }
 
     public void pullVideoAdapter() {
         if (display != null) {
             display.remove();
+            display = null;
         }
     }
 
     public void pullNetworkingCard() {
         if (nic != null) {
             nic.remove();
+            nic = null;
         }
     }
 
@@ -153,6 +156,7 @@ public class MachineState {
     public void pullGPIO() {
         if (gpio != null) {
             gpio.remove();
+            gpio = null;
         }
     }
 
