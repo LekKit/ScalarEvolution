@@ -45,13 +45,20 @@ public class DisplayState {
         return dirty || singleplayerMachine != null;
     }
 
+    public boolean isValid() {
+        return getBuffer() != null;
+    }
+
     public synchronized void markDirty() {
         dirty = true;
     }
 
     public ByteBuffer getBuffer() {
-        if (singleplayerMachine != null && singleplayerMachine.getDisplay() != null) {
-            return singleplayerMachine.getDisplay().getBuffer();
+        if (singleplayerMachine != null) {
+            if (singleplayerMachine.getDisplay() != null) {
+                return singleplayerMachine.getDisplay().getBuffer();
+            }
+            return null;
         }
         return buffer;
     }

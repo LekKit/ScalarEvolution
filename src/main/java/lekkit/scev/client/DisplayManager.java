@@ -28,6 +28,13 @@ public class DisplayManager {
     public synchronized static DisplayState getDisplayState(UUID machineUUID) {
         DisplayState display = displays.get(machineUUID);
 
+        // Singleplayer display optimization
+
+        if (display != null && !display.isValid()) {
+            destroyDisplayState(machineUUID);
+            display = null;
+        }
+
         if (display == null) {
             MachineState state = MachineManager.getMachineState(machineUUID);
             if (state != null) {
