@@ -14,7 +14,7 @@ public class MachineState {
     private HIDKeyboard keyboard = null;
     private MTDFlash flash = null;
     private RTL8169 nic = null;
-    private GPIODevice gpio = null;
+    private SiFiveGPIO gpio = null;
 
     private HashMap<UUID, NVMeDrive> nvme_drives = new HashMap<UUID, NVMeDrive>();
 
@@ -126,33 +126,33 @@ public class MachineState {
 
     public void pullFirmwareFlash() {
         if (flash != null) {
-            flash.detach();
+            flash.remove();
         }
     }
 
     public void pullVideoAdapter() {
         if (display != null) {
-            display.detach();
+            display.remove();
         }
     }
 
     public void pullNetworkingCard() {
         if (nic != null) {
-            nic.detach();
+            nic.remove();
         }
     }
 
     public void pullNVMe(UUID disk_uuid) {
         NVMeDrive nvme = nvme_drives.get(disk_uuid);
         if (nvme != null) {
-            nvme.detach();
+            nvme.remove();
             nvme_drives.remove(disk_uuid);
         }
     }
 
     public void pullGPIO() {
         if (gpio != null) {
-            gpio.detach();
+            gpio.remove();
         }
     }
 
@@ -172,7 +172,7 @@ public class MachineState {
         return keyboard;
     }
 
-    public GPIODevice getGPIO() {
+    public SiFiveGPIO getGPIO() {
         return gpio;
     }
 
@@ -210,10 +210,10 @@ public class MachineState {
         }
     }
 
-    public void destroy() {
+    public synchronized void destroy() {
         if (machine != null) {
             machine.pause();
-            machine.dumpContext();
+            machine.free();
         }
 
         machine = null;
