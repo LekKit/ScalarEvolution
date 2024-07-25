@@ -6,7 +6,7 @@ import lekkit.scev.items.ItemMotherboard;
 
 import net.minecraft.inventory.IInventory;
 
-public interface IMachineHandle extends IInventory, IDisplayHandle {
+public interface IMachineHandle extends IInventory {
 
     public int getComputerCaseSize();
 
