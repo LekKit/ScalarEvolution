@@ -81,6 +81,9 @@ public class InventoryLaptop extends InventoryItem implements IMachineHandle, ID
             }
         }
 
+        invMotherboard.markDirty();
+        super.markDirty();
+
         return state;
     }
 

@@ -73,6 +73,9 @@ public class TileEntityComputerCase extends TileEntityComputer {
             }
         }
 
+        invMotherboard.markDirty();
+        super.markDirty();
+
         return state;
     }
 
