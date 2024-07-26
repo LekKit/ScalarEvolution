@@ -71,6 +71,7 @@ public class LoreUtil {
         } else if (lastItemCount > 1) {
             list.add("  §f" + lastItemName + " x" + lastItemCount);
         }
+        lastItemCount = 0;
     }
 
     public void enumerateItems(NBTTagList items, List<String> list) {
@@ -97,6 +98,7 @@ public class LoreUtil {
                     }
                 }
             }
+            pushLastItem(list);
         } catch (Throwable e) {}
     }
 }
