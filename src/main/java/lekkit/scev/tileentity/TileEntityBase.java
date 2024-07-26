@@ -67,7 +67,7 @@ public class TileEntityBase extends TileEntity {
     public void outRedstoneSignals(int signals) {
         if (redstoneSignals != signals) {
             redstoneSignals = signals;
-            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+            worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, worldObj.getBlock(xCoord, yCoord, zCoord));
         }
     }
 

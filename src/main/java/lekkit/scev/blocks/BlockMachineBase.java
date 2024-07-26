@@ -119,7 +119,9 @@ public class BlockMachineBase extends BlockTileBase {
 
         if (te instanceof TileEntityBase) {
             TileEntityBase teBase = (TileEntityBase)te;
-            return (teBase.getOutRedstoneSignals() >> side) & 1;
+            if (((teBase.getOutRedstoneSignals() >> side) & 1) != 0) {
+                return 15;
+            }
         }
         return 0;
     }
