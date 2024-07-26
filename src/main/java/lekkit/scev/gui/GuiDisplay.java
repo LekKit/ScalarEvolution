@@ -51,7 +51,11 @@ public class GuiDisplay extends GuiDisplayBase {
 
     @Override
     public void mousePlace(int x, int y) {
-        inputPacket(MachineInputPacket.INPUT_MOUSE_PLACE, (short)x, (short)y);
+        x -= 16;
+        y -= 16;
+        if (x >= 0 && x < 640 && y >= 0 && y < 480) {
+            inputPacket(MachineInputPacket.INPUT_MOUSE_PLACE, (short)x, (short)y);
+        }
     }
 
     @Override
