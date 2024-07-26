@@ -130,7 +130,8 @@ public class BlockMachineBase extends BlockTileBase {
     }
 
     protected boolean getPowerFrom(World world, int x, int y, int z, int side) {
-        return world.getIndirectPowerOutput(x, y, z, side);
+        return world.getIndirectPowerOutput(x, y, z, side)
+            || world.isBlockIndirectlyGettingPowered(x, y, z);
     }
 
     public void checkRedstoneSides(World world, int x, int y, int z) {
