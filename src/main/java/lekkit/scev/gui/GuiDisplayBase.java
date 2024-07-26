@@ -24,7 +24,7 @@ public class GuiDisplayBase extends GuiScreen {
     private int guiTop = 0;
     private int xSize = 0;
     private int ySize = 0;
-    private int guiScale = 0;
+    private int guiScale = 1;
 
     private boolean mouseInGui = false;
     private boolean lockMouse = false;
@@ -35,8 +35,14 @@ public class GuiDisplayBase extends GuiScreen {
         this.container = container;
     }
 
+    public int getMinecraftGuiScale() {
+        int scale = (Display.getWidth() + 20) / width;
+        if (scale == 0) scale = 1;
+        return scale;
+    }
+
     public void setGuiSize(int w, int h) {
-        guiScale = 1;
+        guiScale = getMinecraftGuiScale();
         while (w / guiScale > width || h / guiScale > height) {
             guiScale *= 2;
         }
@@ -94,6 +100,10 @@ public class GuiDisplayBase extends GuiScreen {
 
     public int guiCoordY(int coord) {
         return guiTop + guiCoord(coord);
+    }
+
+    public int displayCoord(int coord) {
+        return coord * guiScale / getMinecraftGuiScale();
     }
 
     public void renderTexturedGuiRect(int x, int y, int w, int h) {
@@ -231,8 +241,8 @@ public class GuiDisplayBase extends GuiScreen {
             mouseInGui = true;
         } else {
             // LWJGL EventY() goes up
-            int x = (Mouse.getEventX() * getScreenWidth() / Display.getWidth()) - getGuiPosX();
-            int y = ((Display.getHeight() - Mouse.getEventY()) * getScreenHeight() / Display.getHeight()) - getGuiPosY();
+            int x = displayCoord(Mouse.getEventX()) - getGuiPosX();
+            int y = displayCoord(Display.getHeight() - Mouse.getEventY()) - getGuiPosY();
             mouseInGui = x >= 0 && x < getGuiWidth() && y >= 0 && y < getGuiHeight();
             if (mouseInGui && (x != lastMouseX || y != lastMouseY)) {
                 lastMouseX = x;
