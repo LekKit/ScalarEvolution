@@ -94,23 +94,25 @@ public class BlockMachineBase extends BlockTileBase {
     }
 
     @Override
-    public void onBlockAdded(World world, int x, int y, int z) {
+    public void onPostBlockPlaced(World world, int x, int y, int z, int meta) {
+        super.onPostBlockPlaced(world, x, y, z, meta);
         checkRedstoneSides(world, x, y, z);
     }
 
     @Override
     public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbor) {
+        super.onNeighborBlockChange(world, x, y, z, neighbor);
         checkRedstoneSides(world, x, y, z);
     }
 
     /*
-     * Side:
-     *   0: DOWN
-     *   1: UP
-     *   2: NORTH
-     *   3: EAST
-     *   4: SOUTH
-     *   5: WEST
+     * Sides:
+     *   0: DOWN  (Towards negative Y)
+     *   1: UP    (Towards positive Y)
+     *   2: NORTH (Towards negative Z)
+     *   3: SOUTH (Towards positive Z)
+     *   4: WEST  (Towards negative X)
+     *   5: EAST  (Towards positive X)
      */
 
     @Override
@@ -119,7 +121,7 @@ public class BlockMachineBase extends BlockTileBase {
 
         if (te instanceof TileEntityBase) {
             TileEntityBase teBase = (TileEntityBase)te;
-            if (((teBase.getOutRedstoneSignals() >> side) & 1) != 0) {
+            if (((teBase.getOutRedstoneSignals() >> (side ^ 1)) & 1) != 0) {
                 return 15;
             }
         }
@@ -132,8 +134,9 @@ public class BlockMachineBase extends BlockTileBase {
     }
 
     protected boolean getPowerFrom(World world, int x, int y, int z, int side) {
+        // This is an ugly hack but it actually does what we need
         return world.getIndirectPowerOutput(x, y, z, side)
-            || world.isBlockIndirectlyGettingPowered(x, y, z);
+            || (side > 1 && world.getIndirectPowerOutput(x, y, z, 1));
     }
 
     public void checkRedstoneSides(World world, int x, int y, int z) {

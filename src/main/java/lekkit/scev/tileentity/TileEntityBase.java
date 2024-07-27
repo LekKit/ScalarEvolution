@@ -62,6 +62,12 @@ public class TileEntityBase extends TileEntity {
      * Redstone interaction
      */
 
+    @Override
+    public void invalidate() {
+        super.invalidate();
+        inRedstoneSignals(0);
+    }
+
     public void inRedstoneSignals(int signals) {}
 
     public void outRedstoneSignals(int signals) {
