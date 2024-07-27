@@ -21,7 +21,7 @@ public class DisplayState {
 
     public DisplayState(UUID machineUUID, int width, int height) {
         this.uuid = machineUUID;
-        this.buffer = ByteBuffer.allocateDirect(getWidth() * getHeight() * getBytesPerPixel());
+        this.buffer = ByteBuffer.allocateDirect(width * height * getBytesPerPixel());
         this.singleplayerMachine = null;
 
         this.width = width;
@@ -88,8 +88,12 @@ public class DisplayState {
 
         // Upload dirty framebuffer to VRAM
         if (isDirty()) {
-            getBuffer().rewind();
-            GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, getWidth(), getHeight(), 0, 0x80E1, GL11.GL_UNSIGNED_BYTE, getBuffer());
+            try {
+                getBuffer().rewind();
+                GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, getWidth(), getHeight(),
+                                    0, 0x80E1, GL11.GL_UNSIGNED_BYTE, getBuffer());
+            } catch (Throwable e) {}
+            dirty = false;
         }
     }
 
