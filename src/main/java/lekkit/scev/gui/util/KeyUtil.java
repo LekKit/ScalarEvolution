@@ -124,7 +124,18 @@ public class KeyUtil {
             case Keyboard.KEY_NUMPAD9:     return HIDKeyboard.HID_KEY_KP9;
             case Keyboard.KEY_NUMPAD0:     return HIDKeyboard.HID_KEY_KP0;
             case Keyboard.KEY_DECIMAL:     return HIDKeyboard.HID_KEY_KPDOT;
+
+            // Fix for shift key retardation in LWJGL
+            case Keyboard.KEY_AT:         return HIDKeyboard.HID_KEY_2;
+            case Keyboard.KEY_CIRCUMFLEX: return HIDKeyboard.HID_KEY_6;
+            case Keyboard.KEY_UNDERLINE:  return HIDKeyboard.HID_KEY_MINUS;
+            case Keyboard.KEY_COLON:      return HIDKeyboard.HID_KEY_SEMICOLON;
+
+            // Fix for another dumb LWJGL bug where it reports backslash as KEY_NONE
+            case Keyboard.KEY_NONE:       return HIDKeyboard.HID_KEY_BACKSLASH;
         }
+
+        System.out.println("Unhandled LWJGL key #" + keycode + " (" + Keyboard.getKeyName(keycode) + ")");
         return HIDKeyboard.HID_KEY_NONE;
     }
 }
