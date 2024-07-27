@@ -272,22 +272,26 @@ public class GuiDisplayBase extends GuiScreen {
 
     @Override
     public void handleKeyboardInput() {
+        int key = Keyboard.getEventKey();
+
+        if (Keyboard.isRepeatEvent()) {
+            return;
+        }
+
         if (Keyboard.getEventKeyState()) {
-            if (Keyboard.getEventKey() == Keyboard.KEY_ESCAPE && !Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
+            if (key == Keyboard.KEY_ESCAPE && !Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
                 super.handleKeyboardInput();
                 return;
             }
 
-            if (Keyboard.getEventKey() == Keyboard.KEY_F
-             && Keyboard.isKeyDown(Keyboard.KEY_LCONTROL)
-             && Keyboard.isKeyDown(Keyboard.KEY_LMENU)) {
+            if (key == Keyboard.KEY_F && Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) && Keyboard.isKeyDown(Keyboard.KEY_LMENU)) {
                 lockMouse = !lockMouse;
                 mouseLock(lockMouse);
             }
 
-            keyboardDown(Keyboard.getEventKey());
+            keyboardDown(key);
         } else {
-            keyboardUp(Keyboard.getEventKey());
+            keyboardUp(key);
         }
     }
 }
