@@ -13,6 +13,8 @@ import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 
+import net.minecraft.tileentity.TileEntity;
+
 public class PacketDispatcher {
     private static final SimpleNetworkWrapper dispatcher = NetworkRegistry.INSTANCE.newSimpleChannel(ScalarEvolution.MODID);
     private static byte packetId = 0;
@@ -73,6 +75,13 @@ public class PacketDispatcher {
     */
     public static final void sendToAllAround(IMessage message, EntityPlayer player, double range) {
         sendToAllAround(message, player.worldObj.provider.dimensionId, player.posX, player.posY, player.posZ, range);
+    }
+
+    /**
+    * Sends a message to everyone within a certain range of the tile entity provided.
+    */
+    public static final void sendToAllAround(IMessage message, TileEntity tileEntity, double range) {
+        sendToAllAround(message, tileEntity.getWorldObj().provider.dimensionId, tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, range);
     }
 
     /**
