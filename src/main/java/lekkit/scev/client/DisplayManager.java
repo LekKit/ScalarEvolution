@@ -29,7 +29,6 @@ public class DisplayManager {
         DisplayState display = displays.get(machineUUID);
 
         // Singleplayer display optimization
-
         if (display != null && !display.isValid()) {
             destroyDisplayState(machineUUID);
             display = null;

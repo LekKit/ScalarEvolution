@@ -3,6 +3,7 @@ package lekkit.scev.packet;
 import lekkit.scev.main.ScalarEvolution;
 
 import lekkit.scev.packet.server.*;
+import lekkit.scev.packet.client.*;
 
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -25,6 +26,8 @@ public class PacketDispatcher {
     public static final void registerPackets() {
         registerMessage(MachineResetPacket.Handler.class, MachineResetPacket.class, Side.SERVER);
         registerMessage(MachineInputPacket.Handler.class, MachineInputPacket.class, Side.SERVER);
+
+        registerMessage(DisplayPacket.Handler.class, DisplayPacket.class, Side.SERVER);
     }
 
     /**

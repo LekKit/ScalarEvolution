@@ -6,6 +6,9 @@ import lekkit.scev.server.MachineManager;
 import lekkit.scev.server.MachineState;
 import lekkit.scev.server.IMachineHandle;
 
+import lekkit.scev.packet.PacketDispatcher;
+import lekkit.scev.packet.client.DisplayPacket;
+
 import net.minecraft.nbt.NBTTagCompound;
 
 public abstract class TileEntityComputer extends TileEntityBaseInventory implements IMachineHandle {
@@ -165,9 +168,14 @@ public abstract class TileEntityComputer extends TileEntityBaseInventory impleme
                 resume();
             }
 
-            if (state != null && state.getGPIO() != null) {
-                // Update redstone output
-                outRedstoneSignals(state.getGPIO().read_pins());
+            if (state != null) {
+                if (state.getGPIO() != null) {
+                    // Update redstone output
+                    outRedstoneSignals(state.getGPIO().read_pins());
+                }
+                if (state.getDisplay() != null) {
+                    PacketDispatcher.sendToAllAround(new DisplayPacket(getMachineUUID()), this, 10);
+                }
             }
         }
     }
