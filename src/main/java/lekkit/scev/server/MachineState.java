@@ -35,6 +35,8 @@ public class MachineState {
         if (machine.isValid()) {
             machine.setOption(RVVMMachine.RVVM_OPT_HW_IMITATE, 1);
 
+            machine.appendCmdline("root=/dev/nvme0n1 rw");
+
             new PLIC(machine);
             new PCIBus(machine);
             new I2CBus(machine);
