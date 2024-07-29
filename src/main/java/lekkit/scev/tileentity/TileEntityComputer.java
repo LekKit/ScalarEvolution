@@ -1,14 +1,11 @@
 package lekkit.scev.tileentity;
 
 import java.util.UUID;
-
-import lekkit.scev.server.MachineManager;
-import lekkit.scev.server.MachineState;
-import lekkit.scev.server.IMachineHandle;
-
 import lekkit.scev.packet.PacketDispatcher;
 import lekkit.scev.packet.client.DisplayPacket;
-
+import lekkit.scev.server.IMachineHandle;
+import lekkit.scev.server.MachineManager;
+import lekkit.scev.server.MachineState;
 import net.minecraft.nbt.NBTTagCompound;
 
 public abstract class TileEntityComputer extends TileEntityBaseInventory implements IMachineHandle {

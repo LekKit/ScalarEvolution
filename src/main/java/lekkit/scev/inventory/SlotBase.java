@@ -1,9 +1,7 @@
 package lekkit.scev.inventory;
 
-import lekkit.scev.main.ScalarEvolution;
-
-import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 /*

@@ -1,13 +1,13 @@
 package lekkit.scev.server;
 
-import java.util.UUID;
 import java.io.File;
-import java.nio.file.Files;
 import java.nio.channels.FileChannel;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
-import java.nio.file.Paths;
 import java.util.EnumSet;
+import java.util.UUID;
 
 public class StorageManager {
     static {

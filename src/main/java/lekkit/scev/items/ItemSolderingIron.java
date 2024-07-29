@@ -1,12 +1,8 @@
 package lekkit.scev.items;
 
-import lekkit.scev.gui.MachineGui;
-
-import java.util.List;
-
-import net.minecraft.item.ItemStack;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemSolderingIron extends ItemNonStackable {

@@ -1,17 +1,13 @@
 package lekkit.scev.items;
 
 import java.util.List;
-
-import lekkit.scev.main.ScalarEvolution;
-
-import lekkit.scev.items.util.LoreUtil;
 import lekkit.scev.entity.item.EntityItemBase;
-
+import lekkit.scev.items.util.LoreUtil;
+import lekkit.scev.main.ScalarEvolution;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.entity.player.EntityPlayer;
-
-import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 
 public class ItemBase extends Item {
@@ -100,4 +96,3 @@ public class ItemBase extends Item {
         System.out.println("Destroyed item " + stack.getDisplayName());
     }
 }
-

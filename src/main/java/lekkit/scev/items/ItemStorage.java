@@ -1,9 +1,7 @@
 package lekkit.scev.items;
 
 import java.util.UUID;
-
 import lekkit.scev.items.util.NBTUtil;
-
 import net.minecraft.item.ItemStack;
 
 public class ItemStorage extends ItemNonStackable {
@@ -26,4 +24,3 @@ public class ItemStorage extends ItemNonStackable {
         return 0;
     }
 }
-

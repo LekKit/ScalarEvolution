@@ -1,17 +1,14 @@
 package lekkit.scev.packet.client;
 
-import java.util.UUID;
-
-import lekkit.scev.packet.AbstractClientMessageHandler;
-
-import lekkit.scev.server.MachineState;
-import lekkit.scev.server.MachineManager;
-import lekkit.scev.client.DisplayState;
-import lekkit.scev.client.DisplayManager;
-
-import io.netty.buffer.ByteBuf;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
+import java.util.UUID;
+import lekkit.scev.client.DisplayManager;
+import lekkit.scev.client.DisplayState;
+import lekkit.scev.packet.AbstractClientMessageHandler;
+import lekkit.scev.server.MachineManager;
+import lekkit.scev.server.MachineState;
 
 public class DisplayPacket implements IMessage {
     private UUID uuid = null;

@@ -1,7 +1,6 @@
 package lekkit.scev.gui.util;
 
 import java.util.HashMap;
-
 import net.minecraft.util.StatCollector;
 
 public class LocaleUtil {

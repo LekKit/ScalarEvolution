@@ -1,14 +1,11 @@
 package lekkit.scev.gui;
 
-import org.lwjgl.opengl.GL11;
-
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.gui.GuiScreen;
-
 import lekkit.rvvm.*;
-
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.Tessellator;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
 
 public class MachineGui extends GuiScreen {
     private static RVVMMachine machine;

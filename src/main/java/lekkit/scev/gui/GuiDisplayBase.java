@@ -1,18 +1,16 @@
 package lekkit.scev.gui;
 
-import lekkit.scev.main.ScalarEvolution;
 import lekkit.scev.container.ContainerBase;
 import lekkit.scev.gui.util.LocaleUtil;
-
-import net.minecraft.client.gui.GuiScreen;
+import lekkit.scev.main.ScalarEvolution;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.GL11;
 
 public class GuiDisplayBase extends GuiScreen {
     protected final ContainerBase container;

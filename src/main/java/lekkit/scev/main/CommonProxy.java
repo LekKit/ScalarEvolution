@@ -1,14 +1,12 @@
 package lekkit.scev.main;
 
-import lekkit.scev.tileentity.*;
-import lekkit.scev.gui.*;
-import lekkit.scev.container.*;
-import lekkit.scev.inventory.*;
-
-import lekkit.scev.server.IMachineHandle;
-import lekkit.scev.server.IDisplayHandle;
-
 import cpw.mods.fml.common.network.IGuiHandler;
+import lekkit.scev.container.*;
+import lekkit.scev.gui.*;
+import lekkit.scev.inventory.*;
+import lekkit.scev.server.IDisplayHandle;
+import lekkit.scev.server.IMachineHandle;
+import lekkit.scev.tileentity.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 

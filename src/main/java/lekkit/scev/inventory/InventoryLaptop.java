@@ -1,21 +1,15 @@
 package lekkit.scev.inventory;
 
 import java.util.UUID;
-
-import lekkit.scev.items.util.NBTUtil;
+import lekkit.scev.items.*;
 import lekkit.scev.items.ItemMotherboard;
-import lekkit.scev.items.ItemTinkerpad;
-
+import lekkit.scev.items.util.NBTUtil;
 import lekkit.scev.server.IDisplayHandle;
 import lekkit.scev.server.IMachineHandle;
 import lekkit.scev.server.MachineManager;
 import lekkit.scev.server.MachineState;
 import lekkit.scev.server.util.ServerUtil;
-
-import lekkit.scev.items.*;
-
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
 public class InventoryLaptop extends InventoryItem implements IMachineHandle, IDisplayHandle {
     protected final int maxMotherboardLevel;

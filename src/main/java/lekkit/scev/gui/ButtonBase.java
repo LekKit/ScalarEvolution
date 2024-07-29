@@ -1,13 +1,11 @@
 package lekkit.scev.gui;
 
 import lekkit.scev.main.ScalarEvolution;
-
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.client.Minecraft;
-import org.lwjgl.opengl.GL11;
-import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class ButtonBase extends GuiButton {
     protected final ResourceLocation btnTexture;

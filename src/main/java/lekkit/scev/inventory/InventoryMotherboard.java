@@ -1,7 +1,6 @@
 package lekkit.scev.inventory;
 
 import lekkit.scev.items.*;
-
 import net.minecraft.item.ItemStack;
 
 public class InventoryMotherboard extends InventoryItem {

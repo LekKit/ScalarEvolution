@@ -1,7 +1,6 @@
 package lekkit.scev.items.util;
 
 import java.util.UUID;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 

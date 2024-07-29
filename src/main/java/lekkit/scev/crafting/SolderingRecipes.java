@@ -1,8 +1,8 @@
 package lekkit.scev.crafting;
 
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
 
 public class SolderingRecipes implements IRecipe {

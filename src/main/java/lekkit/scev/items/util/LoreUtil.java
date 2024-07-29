@@ -2,12 +2,9 @@ package lekkit.scev.items.util;
 
 import java.util.List;
 import java.util.Vector;
-
 import lekkit.scev.gui.util.LocaleUtil;
-
-import net.minecraft.item.ItemStack;
 import net.minecraft.entity.player.EntityPlayer;
-
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
@@ -102,4 +99,3 @@ public class LoreUtil {
         } catch (Throwable e) {}
     }
 }
-

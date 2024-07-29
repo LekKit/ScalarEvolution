@@ -1,18 +1,15 @@
 package lekkit.scev.main;
 
-import lekkit.scev.render.block.*;
-import lekkit.scev.render.tileentity.*;
-import lekkit.scev.render.item.*;
-
-import lekkit.scev.blocks.BlockDirectionalModel;
-
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import lekkit.scev.blocks.BlockDirectionalModel;
+import lekkit.scev.render.block.*;
+import lekkit.scev.render.item.*;
+import lekkit.scev.render.tileentity.*;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraftforge.client.IItemRenderer;
-
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.client.MinecraftForgeClient;
-import cpw.mods.fml.client.registry.ClientRegistry;
 
 public class ClientProxy extends CommonProxy {
     @Override

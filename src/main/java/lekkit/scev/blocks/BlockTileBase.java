@@ -1,10 +1,9 @@
 package lekkit.scev.blocks;
 
 import lekkit.scev.main.ScalarEvolution;
-
-import net.minecraft.world.World;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 public class BlockTileBase extends BlockDirectionalModel {
     protected final Class<? extends TileEntity> teClass;

@@ -1,12 +1,10 @@
 package lekkit.scev.gui;
 
-import lekkit.scev.main.ScalarEvolution;
-
-import lekkit.scev.server.IMachineHandle;
 import lekkit.scev.container.ContainerComputerCase;
 import lekkit.scev.items.ItemMotherboard;
 import lekkit.scev.packet.PacketDispatcher;
 import lekkit.scev.packet.server.MachineResetPacket;
+import lekkit.scev.server.IMachineHandle;
 
 public class GuiComputerCase extends GuiContainerBase {
 

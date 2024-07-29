@@ -9,4 +9,3 @@ public abstract class AbstractServerMessageHandler<T extends IMessage> extends A
         return null;
     }
 }
-

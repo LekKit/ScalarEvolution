@@ -1,10 +1,8 @@
 package lekkit.scev.render.util;
 
-import org.lwjgl.opengl.GL11;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
-
-import net.minecraft.client.Minecraft;
+import org.lwjgl.opengl.GL11;
 
 public class DisplayRenderer {
     /*

@@ -1,7 +1,6 @@
 package lekkit.scev.gui.util;
 
 import lekkit.rvvm.HIDKeyboard;
-
 import org.lwjgl.input.Keyboard;
 
 public class KeyUtil {

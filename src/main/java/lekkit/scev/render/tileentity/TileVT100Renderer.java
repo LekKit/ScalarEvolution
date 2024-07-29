@@ -1,8 +1,7 @@
 package lekkit.scev.render.tileentity;
 
-import lekkit.scev.render.util.DisplayRenderer;
 import lekkit.scev.gui.MachineGui;
-
+import lekkit.scev.render.util.DisplayRenderer;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileVT100Renderer extends TileRendererBase {

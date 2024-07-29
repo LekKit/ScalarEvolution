@@ -2,7 +2,6 @@ package lekkit.scev.container;
 
 import lekkit.scev.inventory.InventoryMotherboard;
 import lekkit.scev.inventory.SlotBase;
-
 import net.minecraft.entity.player.EntityPlayer;
 
 public class ContainerMotherboard extends ContainerBaseItem {

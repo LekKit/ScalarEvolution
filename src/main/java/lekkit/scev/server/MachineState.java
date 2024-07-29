@@ -1,8 +1,7 @@
 package lekkit.scev.server;
 
-import java.util.UUID;
 import java.util.HashMap;
-
+import java.util.UUID;
 import lekkit.rvvm.*;
 
 public class MachineState {

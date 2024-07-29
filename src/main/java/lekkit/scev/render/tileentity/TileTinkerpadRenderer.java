@@ -4,7 +4,6 @@ import lekkit.scev.client.DisplayManager;
 import lekkit.scev.client.DisplayState;
 import lekkit.scev.render.util.DisplayRenderer;
 import lekkit.scev.tileentity.TileEntityTinkerpad;
-
 import net.minecraft.tileentity.TileEntity;
 
 public class TileTinkerpadRenderer extends TileRendererBase {

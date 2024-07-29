@@ -1,9 +1,8 @@
 package lekkit.scev.blocks;
 
 import lekkit.scev.tileentity.TileEntityKeyboardMouse;
-
-import net.minecraft.world.World;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 // Reference vanilla class for ease of porting: BlockCocoa
 

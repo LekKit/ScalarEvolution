@@ -1,14 +1,10 @@
 package lekkit.scev.packet;
 
-import lekkit.scev.main.ScalarEvolution;
-
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
-
 import net.minecraft.entity.player.EntityPlayer;
 
 public abstract class AbstractMessageHandler<T extends IMessage> implements IMessageHandler <T, IMessage> {

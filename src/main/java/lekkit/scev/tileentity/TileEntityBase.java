@@ -1,10 +1,10 @@
 package lekkit.scev.tileentity;
 
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.network.Packet;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityBase extends TileEntity {
     int redstoneSignals = 0;
@@ -89,4 +89,3 @@ public class TileEntityBase extends TileEntity {
         return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this;
     }
 }
-

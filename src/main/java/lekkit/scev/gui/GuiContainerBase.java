@@ -1,15 +1,14 @@
 package lekkit.scev.gui;
 
-import lekkit.scev.main.ScalarEvolution;
 import lekkit.scev.container.ContainerBase;
-import lekkit.scev.inventory.SlotBase;
 import lekkit.scev.inventory.IconSilly;
-
-import net.minecraft.client.gui.inventory.GuiContainer;
+import lekkit.scev.inventory.SlotBase;
+import lekkit.scev.main.ScalarEvolution;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 

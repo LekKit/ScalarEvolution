@@ -1,14 +1,12 @@
 package lekkit.scev.render.tileentity;
 
 import lekkit.scev.main.ScalarEvolution;
-
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.obj.WavefrontObject;
-import net.minecraft.client.Minecraft;
-
 import org.lwjgl.opengl.GL11;
 
 public class TileRendererBase extends TileEntitySpecialRenderer {

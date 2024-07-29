@@ -1,9 +1,7 @@
 package lekkit.scev.server;
 
 import java.util.UUID;
-
 import lekkit.scev.items.ItemMotherboard;
-
 import net.minecraft.inventory.IInventory;
 
 public interface IMachineHandle extends IInventory {

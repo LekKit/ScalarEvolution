@@ -1,11 +1,8 @@
 package lekkit.scev.client;
 
-import java.util.UUID;
 import java.nio.ByteBuffer;
-
+import java.util.UUID;
 import lekkit.scev.server.MachineState;
-import lekkit.rvvm.RVVMMachine;
-
 import org.lwjgl.opengl.GL11;
 
 public class DisplayState {

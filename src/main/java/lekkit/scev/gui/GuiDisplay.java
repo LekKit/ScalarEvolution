@@ -1,15 +1,12 @@
 package lekkit.scev.gui;
 
-import lekkit.scev.container.ContainerMachine;
-
-import lekkit.scev.client.DisplayState;
 import lekkit.scev.client.DisplayManager;
-
+import lekkit.scev.client.DisplayState;
+import lekkit.scev.container.ContainerMachine;
 import lekkit.scev.gui.util.KeyUtil;
-
 import lekkit.scev.packet.PacketDispatcher;
-import lekkit.scev.packet.server.MachineResetPacket;
 import lekkit.scev.packet.server.MachineInputPacket;
+import lekkit.scev.packet.server.MachineResetPacket;
 
 public class GuiDisplay extends GuiDisplayBase {
     public ContainerMachine containerMachine;

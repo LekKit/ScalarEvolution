@@ -1,8 +1,7 @@
 package lekkit.scev.main;
 
-import java.io.File;
-
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import java.io.File;
 import net.minecraftforge.common.config.Configuration;
 
 public class ModConfig {

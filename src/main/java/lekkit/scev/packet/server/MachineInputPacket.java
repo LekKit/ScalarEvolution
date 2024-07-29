@@ -1,14 +1,12 @@
 package lekkit.scev.packet.server;
 
-import lekkit.scev.packet.AbstractServerMessageHandler;
-import lekkit.scev.container.ContainerMachine;
-
-import lekkit.scev.server.MachineState;
-import lekkit.scev.server.MachineManager;
-
-import io.netty.buffer.ByteBuf;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
+import lekkit.scev.container.ContainerMachine;
+import lekkit.scev.packet.AbstractServerMessageHandler;
+import lekkit.scev.server.MachineManager;
+import lekkit.scev.server.MachineState;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class MachineInputPacket implements IMessage {

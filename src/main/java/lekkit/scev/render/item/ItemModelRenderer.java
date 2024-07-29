@@ -1,21 +1,15 @@
 package lekkit.scev.render.item;
 
-import lekkit.scev.main.ScalarEvolution;
-
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.client.FMLClientHandler;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import lekkit.scev.main.ScalarEvolution;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraftforge.client.IItemRenderer.ItemRendererHelper;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.obj.WavefrontObject;
-
-import net.minecraft.client.renderer.OpenGlHelper;
+import org.lwjgl.opengl.GL11;
 
 public class ItemModelRenderer implements IItemRenderer {
     private ResourceLocation texture;

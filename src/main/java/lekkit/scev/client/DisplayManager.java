@@ -1,8 +1,7 @@
 package lekkit.scev.client;
 
-import java.util.UUID;
 import java.util.HashMap;
-
+import java.util.UUID;
 import lekkit.scev.server.MachineManager;
 import lekkit.scev.server.MachineState;
 

@@ -1,17 +1,13 @@
 package lekkit.scev.main;
 
-import lekkit.scev.server.MachineManager;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
-import net.minecraftforge.client.event.GuiOpenEvent;
-
-import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
-import net.minecraftforge.event.entity.item.ItemExpireEvent;
-
+import lekkit.scev.server.MachineManager;
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.client.event.GuiOpenEvent;
+import net.minecraftforge.event.entity.item.ItemExpireEvent;
+import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
 
 public class ModEventHandler {
     public void onGamePaused() {

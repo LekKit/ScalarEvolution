@@ -2,13 +2,12 @@ package lekkit.scev.entity.item;
 
 import lekkit.scev.items.ItemBase;
 import lekkit.scev.items.ItemBlockBase;
-
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.Entity;
-import net.minecraft.world.World;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
 
 public class EntityItemBase extends EntityItem {
     protected boolean destroyed = false;

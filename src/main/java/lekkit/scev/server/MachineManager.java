@@ -1,7 +1,7 @@
 package lekkit.scev.server;
 
-import java.util.UUID;
 import java.util.HashMap;
+import java.util.UUID;
 
 public class MachineManager {
     private static HashMap<UUID, MachineState> machines = new HashMap<UUID, MachineState>();

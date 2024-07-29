@@ -1,10 +1,10 @@
 package lekkit.scev.container;
 
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Container;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 
 public class ContainerBase extends Container {
     private static final int INV_START = 0;

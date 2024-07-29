@@ -1,19 +1,15 @@
 package lekkit.scev.packet;
 
-import lekkit.scev.main.ScalarEvolution;
-
-import lekkit.scev.packet.server.*;
-import lekkit.scev.packet.client.*;
-
-import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
-
+import lekkit.scev.main.ScalarEvolution;
+import lekkit.scev.packet.client.*;
+import lekkit.scev.packet.server.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-
 import net.minecraft.tileentity.TileEntity;
 
 public class PacketDispatcher {

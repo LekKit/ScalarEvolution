@@ -1,6 +1,5 @@
 package lekkit.scev.gui;
 
-import lekkit.scev.main.ScalarEvolution;
 import lekkit.scev.container.ContainerMotherboard;
 import lekkit.scev.inventory.InventoryItem;
 import lekkit.scev.items.ItemMotherboard;

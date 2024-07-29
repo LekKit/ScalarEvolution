@@ -1,7 +1,6 @@
 package lekkit.scev.items;
 
 import lekkit.scev.main.ScalarEvolution;
-
 import net.minecraft.block.Block;
 
 public class ItemTinkerpad extends ItemBlockNonStackable {

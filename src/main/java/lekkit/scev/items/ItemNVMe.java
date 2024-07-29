@@ -11,4 +11,3 @@ public class ItemNVMe extends ItemStorage {
         return 2048;
     }
 }
-

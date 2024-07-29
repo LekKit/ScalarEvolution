@@ -1,8 +1,7 @@
 package lekkit.scev.container;
 
-import lekkit.scev.server.IMachineHandle;
 import lekkit.scev.inventory.SlotBase;
-
+import lekkit.scev.server.IMachineHandle;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class ContainerComputerCase extends ContainerMachine {

@@ -2,11 +2,10 @@ package lekkit.scev.render.item;
 
 import lekkit.scev.client.DisplayManager;
 import lekkit.scev.client.DisplayState;
-import lekkit.scev.render.util.DisplayRenderer;
 import lekkit.scev.items.util.NBTUtil;
-
-import net.minecraftforge.client.IItemRenderer.ItemRenderType;
+import lekkit.scev.render.util.DisplayRenderer;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 public class ItemTinkerpadRenderer extends ItemModelRenderer {
     public ItemTinkerpadRenderer() {

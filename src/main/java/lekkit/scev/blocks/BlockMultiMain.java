@@ -1,8 +1,8 @@
 package lekkit.scev.blocks;
 
-import net.minecraft.world.World;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public abstract class BlockMultiMain extends BlockMachineBase {
     protected BlockMultiPart part = new BlockMultiPart(this);

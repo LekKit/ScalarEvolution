@@ -1,28 +1,5 @@
 package lekkit.scev.main;
 
-import java.util.HashMap;
-
-import lekkit.scev.packet.PacketDispatcher;
-import lekkit.scev.server.MachineManager;
-import lekkit.scev.items.*;
-import lekkit.scev.blocks.*;
-import lekkit.scev.tileentity.*;
-import lekkit.scev.render.item.*;
-import lekkit.scev.render.tileentity.*;
-
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
-import net.minecraft.block.material.Material;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraftforge.common.MinecraftForge;
-
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -32,10 +9,26 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import java.util.HashMap;
+import lekkit.scev.blocks.*;
+import lekkit.scev.items.*;
+import lekkit.scev.packet.PacketDispatcher;
+import lekkit.scev.render.item.*;
+import lekkit.scev.render.tileentity.*;
+import lekkit.scev.server.MachineManager;
+import lekkit.scev.tileentity.*;
+import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.MinecraftForge;
 
 @Mod(modid = ScalarEvolution.MODID, version = ScalarEvolution.VERSION, name = ScalarEvolution.NAME)
 public class ScalarEvolution {

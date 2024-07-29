@@ -2,7 +2,6 @@ package lekkit.scev.packet;
 
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-
 import net.minecraft.entity.player.EntityPlayer;
 
 public abstract class AbstractClientMessageHandler<T extends IMessage> extends AbstractMessageHandler<T> {
@@ -11,4 +10,3 @@ public abstract class AbstractClientMessageHandler<T extends IMessage> extends A
         return null;
     }
 }
-

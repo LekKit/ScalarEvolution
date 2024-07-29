@@ -1,10 +1,8 @@
 package lekkit.scev.container;
 
 import java.util.UUID;
-
 import lekkit.scev.server.IDisplayHandle;
 import lekkit.scev.server.IMachineHandle;
-
 import net.minecraft.entity.player.EntityPlayer;
 
 public class ContainerMachine extends ContainerBase {

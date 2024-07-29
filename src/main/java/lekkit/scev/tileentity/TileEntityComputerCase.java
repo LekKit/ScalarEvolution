@@ -1,14 +1,11 @@
 package lekkit.scev.tileentity;
 
 import java.util.UUID;
-
 import lekkit.scev.inventory.InventoryMotherboard;
+import lekkit.scev.items.*;
 import lekkit.scev.items.ItemMotherboard;
 import lekkit.scev.server.MachineManager;
 import lekkit.scev.server.MachineState;
-
-import lekkit.scev.items.*;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
