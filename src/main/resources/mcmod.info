@@ -1,14 +1,16 @@
 [{
-  "modid": "${mod_id}",
-  "name": "${mod_name}",
-  "description": "${mod_description}",
-  "version": "${mod_version}",
-  "mcversion": "${mc_version}",
+  "modid": "${modId}",
+  "name": "${modName}",
+  "description": "Brings *super-scalar* RISC-V machines into Minecraft",
+  "version": "${modVersion}",
+  "mcversion": "${minecraftVersion}",
   "url": "https://github.com/LekKit/ScalarEvolution",
   "updateUrl": "",
-  "authorList": ["${mod_author}"],
-  "credits": "",
-  "logoFile": "${mod_icon}",
+  "authorList": [
+    "LekKit"
+  ],
+  "credits": "LekKit",
+  "logoFile": "assets/scev/icon.png",
   "screenshots": [],
   "dependencies": []
 }]
