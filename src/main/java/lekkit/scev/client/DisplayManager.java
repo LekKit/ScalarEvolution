@@ -7,8 +7,13 @@ import lekkit.scev.server.MachineState;
 
 public class DisplayManager {
     protected static HashMap<UUID, DisplayState> displays = new HashMap<UUID, DisplayState>();
+    protected static final boolean optimizeSingleplayer = true;
 
     public synchronized static DisplayState createDisplayState(UUID machineUUID, int width, int height) {
+        if (optimizeSingleplayer && MachineManager.getMachineState(machineUUID) != null) {
+            return null;
+        }
+
         DisplayState display = getDisplayState(machineUUID);
 
         if (display != null && (display.getWidth() != width || display.getHeight() != height)) {
@@ -27,22 +32,23 @@ public class DisplayManager {
     public synchronized static DisplayState getDisplayState(UUID machineUUID) {
         DisplayState display = displays.get(machineUUID);
 
-        // Singleplayer display optimization
-        if (display != null && !display.isValid()) {
-            destroyDisplayState(machineUUID);
-            display = null;
-        }
-
-        try {
-            if (display == null) {
-                MachineState state = MachineManager.getMachineState(machineUUID);
-                if (state != null && state.getDisplay() != null) {
-                    // This is a singleplayer game, machine is directly accessible
-                    display = new DisplayState(state);
-                    displays.put(machineUUID, display);
-                }
+        if (optimizeSingleplayer) {
+            if (display != null && (!display.isValid() || !display.isLocal())) {
+                destroyDisplayState(machineUUID);
+                display = null;
             }
-        } catch (Throwable e) {}
+
+            try {
+                if (display == null) {
+                    MachineState state = MachineManager.getMachineState(machineUUID);
+                    if (state != null && state.getDisplay() != null) {
+                        // This is a singleplayer game, machine is directly accessible
+                        display = new DisplayState(state);
+                        displays.put(machineUUID, display);
+                    }
+                }
+            } catch (Throwable e) {}
+        }
 
         return display;
     }

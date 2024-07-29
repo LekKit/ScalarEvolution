@@ -46,6 +46,10 @@ public class DisplayState {
         return getBuffer() != null;
     }
 
+    public boolean isLocal() {
+        return singleplayerMachine != null;
+    }
+
     public synchronized void markDirty() {
         dirty = true;
     }
