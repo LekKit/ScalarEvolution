@@ -36,7 +36,7 @@
 dependencies {
     runtimeOnlyNonPublishable("com.github.GTNewHorizons:Angelica:1.0.0-beta2:dev")
     runtimeOnlyNonPublishable("com.github.GTNewHorizons:BetterCrashes:1.4.0-GTNH:dev")
-    runtimeOnlyNonPublishable("com.github.GTNewHorizons:Hodgepodge:2.5.39-pre:dev")
+    runtimeOnlyNonPublishable("com.github.GTNewHorizons:Hodgepodge:2.5.38:dev")
     runtimeOnlyNonPublishable("com.github.GTNewHorizons:waila:1.8.1:dev")
     runtimeOnlyNonPublishable("com.github.GTNewHorizons:WailaHarvestability:1.2.1-GTNH:dev")
 }
