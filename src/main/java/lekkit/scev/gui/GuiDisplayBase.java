@@ -25,7 +25,7 @@ public class GuiDisplayBase extends GuiScreen {
     private int guiScale = 1;
 
     private boolean mouseInGui = false;
-    private boolean lockMouse = false;
+    private boolean grabInput = false;
     private int lastMouseX = -1;
     private int lastMouseY = -1;
 
@@ -142,7 +142,7 @@ public class GuiDisplayBase extends GuiScreen {
     public void drawUserInterface() {
         renderText(LocaleUtil.translate("text.scev.send_esc_hint"), 0, getGuiHeight() + 8);
         if (needsMouse()) {
-            renderText(LocaleUtil.translate("text.scev.lock_mouse_hint"), 0, getGuiHeight() + 40);
+            renderText(LocaleUtil.translate("text.scev.grab_input_hint"), 0, getGuiHeight() + 40);
         }
     }
 
@@ -229,7 +229,7 @@ public class GuiDisplayBase extends GuiScreen {
 
         if (!needsMouse()) return;
 
-        if (lockMouse) {
+        if (grabInput) {
             // TODO: Test this
             int x = Mouse.getDX();
             int y = -Mouse.getDY();
@@ -277,14 +277,14 @@ public class GuiDisplayBase extends GuiScreen {
         }
 
         if (Keyboard.getEventKeyState()) {
-            if (key == Keyboard.KEY_ESCAPE && !Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
+            if (!grabInput && key == Keyboard.KEY_ESCAPE && !Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
                 super.handleKeyboardInput();
                 return;
             }
 
-            if (key == Keyboard.KEY_F && Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) && Keyboard.isKeyDown(Keyboard.KEY_LMENU)) {
-                lockMouse = !lockMouse;
-                mouseLock(lockMouse);
+            if (key == Keyboard.KEY_G && Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) && Keyboard.isKeyDown(Keyboard.KEY_LMENU)) {
+                grabInput = !grabInput;
+                mouseLock(grabInput);
             }
 
             keyboardDown(key);
