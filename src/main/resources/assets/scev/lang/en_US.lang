@@ -11,6 +11,7 @@ text.scev.m2_slots=M.2 (NGFF) slots
 text.scev.installed_components=Installed components
 text.scev.send_esc_hint=Shift+Esc: Send Esc
 text.scev.grab_input_hint=Ctrl+Alt+G: Grab input
+text.scev.release_grab_hint=Ctrl+Alt+G: Release grab
 
 item.scev.epoxy.name=Epoxy Solution
 item.scev.epoxy.lore0=Versatile adhesive

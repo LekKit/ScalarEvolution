@@ -25,7 +25,7 @@ public class GuiDisplayBase extends GuiScreen {
     private int guiScale = 1;
 
     private boolean mouseInGui = false;
-    private boolean grabInput = false;
+    private boolean inputGrabbed = false;
     private int lastMouseX = -1;
     private int lastMouseY = -1;
 
@@ -133,6 +133,11 @@ public class GuiDisplayBase extends GuiScreen {
         }
     }
 
+    public void grabInput(boolean grab) {
+        inputGrabbed = grab && needsMouse();
+        mouseLock(grab);
+    }
+
     public boolean needsMouse() {
         return true;
     }
@@ -140,9 +145,13 @@ public class GuiDisplayBase extends GuiScreen {
     public void initUserInterface() {}
 
     public void drawUserInterface() {
-        renderText(LocaleUtil.translate("text.scev.send_esc_hint"), 0, getGuiHeight() + 8);
-        if (needsMouse()) {
-            renderText(LocaleUtil.translate("text.scev.grab_input_hint"), 0, getGuiHeight() + 40);
+        if (inputGrabbed) {
+            renderText(LocaleUtil.translate("text.scev.release_grab_hint"), 0, getGuiHeight() + 8);
+        } else {
+            renderText(LocaleUtil.translate("text.scev.send_esc_hint"), 0, getGuiHeight() + 8);
+            if (needsMouse()) {
+                renderText(LocaleUtil.translate("text.scev.grab_input_hint"), 0, getGuiHeight() + 40);
+            }
         }
     }
 
@@ -218,6 +227,11 @@ public class GuiDisplayBase extends GuiScreen {
     public void updateScreen() {
         super.updateScreen();
 
+        if (!Display.isActive()) {
+            // Release grab if we're unfocused
+            grabInput(false);
+        }
+
         if (!this.mc.thePlayer.isEntityAlive() || this.mc.thePlayer.isDead) {
             this.mc.thePlayer.closeScreen();
         }
@@ -229,7 +243,7 @@ public class GuiDisplayBase extends GuiScreen {
 
         if (!needsMouse()) return;
 
-        if (grabInput) {
+        if (inputGrabbed) {
             // TODO: Test this
             int x = Mouse.getDX();
             int y = -Mouse.getDY();
@@ -277,14 +291,13 @@ public class GuiDisplayBase extends GuiScreen {
         }
 
         if (Keyboard.getEventKeyState()) {
-            if (!grabInput && key == Keyboard.KEY_ESCAPE && !Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
+            if (!inputGrabbed && key == Keyboard.KEY_ESCAPE && !Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
                 super.handleKeyboardInput();
                 return;
             }
 
             if (key == Keyboard.KEY_G && Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) && Keyboard.isKeyDown(Keyboard.KEY_LMENU)) {
-                grabInput = !grabInput;
-                mouseLock(grabInput);
+                grabInput(!inputGrabbed);
             }
 
             keyboardDown(key);
