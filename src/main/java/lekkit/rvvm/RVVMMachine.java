@@ -11,24 +11,23 @@ import java.nio.ByteBuffer;
 public class RVVMMachine {
     private long machine = 0;
 
-    public static final int RVVM_OPT_NONE = 0;
-    public static final int RVVM_OPT_JIT = 1;          // Enable JIT
-    public static final int RVVM_OPT_JIT_CACHE = 2;    // Amount of per-core JIT cache (In bytes)
-    public static final int RVVM_OPT_JIT_HARVARD = 3;  // No dirty code tracking, explicit ifence, slower
-    public static final int RVVM_OPT_VERBOSITY = 4;    // Verbosity level of internal logic
-    public static final int RVVM_OPT_HW_IMITATE = 5;   // Imitate traits or identity of physical hardware
-    public static final int RVVM_OPT_MAX_CPU_CENT = 6; // Max CPU load % per guest/host CPUs
-    public static final int RVVM_OPT_RESET_PC = 7;     // Physical jump address at reset, defaults to mem_base
-    public static final int RVVM_OPT_DTB_ADDR = 8;     // Pass DTB address if non-zero, omits FDT generation
-    public static final int RVVM_MAX_OPTS = 9;
+    public static final int RVVM_OPT_NONE         = 0x0;
+    public static final int RVVM_OPT_RESET_PC     = 0x1; //!< Physical jump address at reset, defaults to 0x80000000
+    public static final int RVVM_OPT_DTB_ADDR     = 0x2; //!< Pass DTB address if non-zero, omits FDT generation
+    public static final int RVVM_OPT_TIME_FREQ    = 0x3; //!< Machine timer frequency, 10Mhz by default
+    public static final int RVVM_OPT_HW_IMITATE   = 0x4; //!< Imitate traits or identity of physical hardware
+    public static final int RVVM_OPT_MAX_CPU_CENT = 0x5; //!< Max CPU load % per guest/host CPUs
+    public static final int RVVM_OPT_JIT          = 0x6; //!< Enable JIT
+    public static final int RVVM_OPT_JIT_CACHE    = 0x7; //!< Amount of per-core JIT cache (In bytes)
+    public static final int RVVM_OPT_JIT_HARVARD  = 0x8; //!< No dirty code tracking, explicit ifence, slower
 
-    public static final int RVVM_OPT_MEM_BASE = 0x80000001;   // Physical RAM base address
-    public static final int RVVM_OPT_MEM_SIZE = 0x80000002;   // Physical RAM size
-    public static final int RVVM_OPT_HART_COUNT = 0x80000003; // Amount of harts
+    public static final int RVVM_OPT_MEM_BASE   = 0x80000001; //!< Physical RAM base address, defaults to 0x80000000
+    public static final int RVVM_OPT_MEM_SIZE   = 0x80000002; //!< Physical RAM size
+    public static final int RVVM_OPT_HART_COUNT = 0x80000003; //!< Amount of harts
 
-    public RVVMMachine(long mem_mb, int smp, boolean rv64) {
+    public RVVMMachine(long mem_mb, int smp, String isa) {
         if (RVVMNative.isLoaded()) {
-            this.machine = RVVMNative.create_machine(RVVMNative.DEFAULT_MEMBASE, mem_mb << 20, smp, rv64);
+            this.machine = RVVMNative.create_machine(mem_mb << 20, smp, isa);
         }
 
         if (isValid()) {

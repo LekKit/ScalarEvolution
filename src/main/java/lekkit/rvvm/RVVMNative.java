@@ -15,11 +15,10 @@ public class RVVMNative {
     public static boolean loaded = false;
 
     private static void checkABI() {
-        int abi = get_abi_version();
-        if (abi == 7) {
+        if (check_abi(8)) {
             loaded = true;
         } else {
-            System.out.println("ERROR: Invalid librvvm ABI version: " + Integer.toString(abi));
+            System.out.println("ERROR: Invalid librvvm ABI version! Please update your JNI bindings!");
         }
     }
 
@@ -50,10 +49,10 @@ public class RVVMNative {
 
     public static final long DEFAULT_MEMBASE = 0x80000000L;
 
-    public static native int get_abi_version();
+    public static native boolean check_abi(int abi);
 
     // Common RVVM API functions
-    public static native long       create_machine(long mem_base, long mem_size, int smp, boolean rv64);
+    public static native long       create_machine(long mem_size, int smp, String isa);
     public static native ByteBuffer get_dma_buf(long machine, long addr, long size);
     public static native long       get_plic(long machine);
     public static native void       set_plic(long machine, long plic);
