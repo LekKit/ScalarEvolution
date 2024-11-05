@@ -55,7 +55,7 @@ public class TileEntityComputerCase extends TileEntityComputer {
             return null;
         }
 
-        MachineState state = MachineManager.createMachineState(uuid, mem_mb, 1, true);
+        MachineState state = MachineManager.createMachineState(uuid, mem_mb, 1, "rv64");
         if (state == null) {
             return null;
         }

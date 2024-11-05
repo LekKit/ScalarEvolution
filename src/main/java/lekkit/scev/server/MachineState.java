@@ -27,10 +27,10 @@ public class MachineState {
         uuid = machineUUID;
     }
 
-    public boolean create(long mem_mb, int smp, boolean rv64) {
+    public boolean create(long mem_mb, int smp, String isa) {
         RVVMNative.loadLib("/usr/lib/librvvm.so");
 
-        machine = new RVVMMachine(mem_mb, smp, rv64);
+        machine = new RVVMMachine(mem_mb, smp, isa);
         if (machine.isValid()) {
             machine.setOption(RVVMMachine.RVVM_OPT_HW_IMITATE, 1);
 

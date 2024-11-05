@@ -31,7 +31,7 @@ public class MachineGui extends GuiScreen {
         if (texID == 0) {
             RVVMNative.loadLib("/usr/lib/librvvm.so");
 
-            machine = new RVVMMachine(256, 1, true);
+            machine = new RVVMMachine(256, 1, "rv64");
             new PLIC(machine);
             new PCIBus(machine);
             new I2CBus(machine);

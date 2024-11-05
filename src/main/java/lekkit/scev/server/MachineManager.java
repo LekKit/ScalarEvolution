@@ -6,7 +6,7 @@ import java.util.UUID;
 public class MachineManager {
     private static HashMap<UUID, MachineState> machines = new HashMap<UUID, MachineState>();
 
-    public synchronized static MachineState createMachineState(UUID machineUUID, long mem_mb, int smp, boolean rv64) {
+    public synchronized static MachineState createMachineState(UUID machineUUID, long mem_mb, int smp, String isa) {
         MachineState state = getMachineState(machineUUID);
         if (state != null) {
             System.out.println("Machine already exists!");
@@ -14,7 +14,7 @@ public class MachineManager {
         }
 
         state = new MachineState(machineUUID);
-        if (state.create(mem_mb, smp, rv64)) {
+        if (state.create(mem_mb, smp, isa)) {
             machines.put(machineUUID, state);
 
             return state;
