@@ -57,8 +57,8 @@ public class DisplayManager {
         DisplayState display = displays.get(machineUUID);
 
         if (display != null) {
-            display.destroy();
             displays.remove(machineUUID);
+            display.destroy();
         }
     }
 

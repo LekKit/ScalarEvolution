@@ -6,10 +6,11 @@
 
 package lekkit.rvvm;
 
-public class I2CBus {
-    public I2CBus(RVVMMachine machine) {
+public class DS1742 extends MMIODevice {
+    public DS1742(RVVMMachine machine) {
+        super(machine);
         if (machine.isValid()) {
-            RVVMNative.i2c_bus_init_auto(machine.getPtr());
+            setMMIOHandle(RVVMNative.rtc_ds1742_init_auto(machine.getPtr()));
         }
     }
 }

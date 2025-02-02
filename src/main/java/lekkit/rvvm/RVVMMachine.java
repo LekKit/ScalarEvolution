@@ -31,7 +31,7 @@ public class RVVMMachine {
         }
 
         if (isValid()) {
-            RVVMNative.clint_init_auto(machine);
+            RVVMNative.riscv_clint_init_auto(machine);
         }
     }
 
@@ -138,7 +138,7 @@ public class RVVMMachine {
         return false;
     }
 
-    // Beware to drop all references beforehand
+    // Beware to drop all references to devices owned by this machine beforehand
     public synchronized void free() {
         if (isValid()) {
             RVVMNative.free_machine(machine);

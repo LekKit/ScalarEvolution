@@ -7,16 +7,9 @@
 package lekkit.rvvm;
 
 public class PLIC {
-    protected final RVVMMachine machine;
-    protected final long plic_ctx;
-
     public PLIC(RVVMMachine machine) {
         if (machine.isValid()) {
-            this.machine = machine;
-            plic_ctx = RVVMNative.plic_init_auto(machine.getPtr());
-        } else {
-            this.machine = null;
-            plic_ctx = 0;
+            RVVMNative.riscv_plic_init_auto(machine.getPtr());
         }
     }
 }

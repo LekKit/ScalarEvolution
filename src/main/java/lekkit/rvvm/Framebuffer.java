@@ -29,19 +29,24 @@ public class Framebuffer extends MMIODevice {
         this.bpp = bpp;
         this.buff = ByteBuffer.allocateDirect(x * y * (bpp / 8));
         if (machine.isValid()) {
-            setMMIOHandle(RVVMNative.framebuffer_init_auto(machine.getPtr(), this.buff, x, y, bpp));
+            ByteBuffer[] arr = { null };
+            setMMIOHandle(RVVMNative.framebuffer_init_auto(machine.getPtr(), arr, x, y, bpp));
+            buff = arr[0];
         }
     }
 
     public ByteBuffer getBuffer() {
         return buff;
     }
+
     public int getWidth() {
         return width;
     }
+
     public int getHeight() {
         return height;
     }
+
     public int getBpp() {
         return bpp;
     }

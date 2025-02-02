@@ -32,8 +32,8 @@ public class MachineManager {
     public synchronized static void removeMachineState(UUID machineUUID) {
         MachineState state = getMachineState(machineUUID);
         if (state != null) {
-            state.destroy();
             machines.remove(machineUUID);
+            state.destroy();
         }
     }
 

@@ -10,7 +10,10 @@ public class NVMeDrive extends PCIDevice {
     public NVMeDrive(RVVMMachine machine, String imagePath, boolean rw) {
         super(machine);
         if (machine.isValid()) {
-            setPCIHandle(RVVMNative.nvme_init_auto(machine.getPtr(), imagePath, rw));
+            long pci_bus = RVVMNative.get_pci_bus(machine.getPtr());
+            if (pci_bus != 0) {
+                setPCIHandle(RVVMNative.nvme_init(pci_bus, imagePath, rw));
+            }
         }
     }
 }
